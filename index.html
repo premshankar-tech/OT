@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NREMS — National Result & Objection Pipeline</title>
+<title>Hubblehox — Objection Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -98,7 +98,7 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink)}
 .conn.lit .flow{background:linear-gradient(90deg,var(--verify),var(--brand))}
 .conn.flowing .flow{background:linear-gradient(90deg,var(--brand),#5fa3e6,var(--brand));background-size:200% 100%;animation:flow 1.1s linear infinite}
 @keyframes flow{0%{background-position:120% 0}100%{background-position:-120% 0}}
-.userchip{display:flex;align-items:center;gap:10px;padding:6px 6px 6px 13px;border:1px solid var(--line);border-radius:30px;background:var(--surface-2);flex:none}
+.userchip{display:flex;align-items:center;gap:10px;padding:6px 6px 6px 13px;border:1px solid var(--line);border-radius:30px;background:var(--surface-2);flex:none;margin-left:auto}
 .userchip .who{text-align:right;line-height:1.15}
 .userchip .who b{font-size:12.5px;font-family:'Archivo';font-weight:700}
 .userchip .who span{font-size:10.5px;color:var(--muted);font-family:'IBM Plex Mono'}
@@ -183,19 +183,202 @@ textarea.inp{min-height:88px;resize:vertical}
 .file-chip .x{margin-left:auto;color:var(--muted);cursor:pointer;font-size:16px}
 
 /* login */
-.login{display:grid;place-items:center;min-height:100vh;background:radial-gradient(120% 100% at 50% 0%,#1d3e6e 0%,var(--brand-deep) 60%);padding:24px}
-.login-card{background:var(--surface);border-radius:20px;box-shadow:var(--shadow-lg);width:100%;max-width:420px;overflow:hidden}
-.login-top{background:linear-gradient(150deg,#1d3e6e,var(--brand-deep));padding:30px 32px 26px;color:#fff;position:relative}
-.login-top .gov{font-family:'IBM Plex Mono';font-size:10.5px;letter-spacing:1.4px;color:#9DB6D8;text-transform:uppercase}
-.login-top h2{font-family:'Archivo';font-weight:800;font-size:21px;margin-top:8px;letter-spacing:-.3px}
-.login-top p{font-size:12.5px;color:#B7C8E0;margin-top:6px}
-.login-body{padding:26px 32px 30px}
-.login-tabs{display:flex;gap:6px;background:var(--surface-2);padding:4px;border-radius:11px;margin-bottom:22px}
-.login-tab{flex:1;padding:9px;border-radius:8px;font-size:12.5px;font-weight:600;color:var(--muted);text-align:center;transition:.15s}
-.login-tab.active{background:#fff;color:var(--brand);box-shadow:var(--shadow)}
+.login{display:grid;grid-template-columns:1.04fr 1fr;min-height:100vh;background:var(--surface)}
+/* left brand panel */
+.login-brand{position:relative;overflow:hidden;background:linear-gradient(157deg,#1d3e6e 0%,var(--brand-deep) 72%);color:#fff;padding:52px 56px;display:flex;flex-direction:column}
+.login-brand::after{content:'';position:absolute;inset:0;background:radial-gradient(80% 55% at 88% 8%,rgba(255,255,255,.10),transparent 60%);pointer-events:none}
+.login-brand>*{position:relative;z-index:1}
+.lb-gov{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:1.6px;color:#9DB6D8;text-transform:uppercase}
+.lb-crest{width:72px;height:72px;border-radius:18px;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);display:grid;place-items:center;margin:28px 0 24px}
+.lb-crest svg{width:38px;height:38px}
+.login-brand h1{font-family:'Fraunces';font-weight:600;font-size:33px;line-height:1.12;letter-spacing:-.5px;max-width:15ch}
+.lb-tag{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:2.2px;color:#B7C8E0;text-transform:uppercase;margin-top:14px}
+.lb-mock{margin:34px 0 30px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:16px}
+.lbm-bar{display:flex;gap:6px;margin-bottom:13px}
+.lbm-bar span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.28)}
+.lbm-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:10px}
+.lbm-tiles i{height:34px;border-radius:8px;background:rgba(255,255,255,.13)}
+.lbm-row{display:grid;grid-template-columns:1.7fr 1fr;gap:9px}
+.lbm-chart{height:60px;border-radius:8px;background:rgba(255,255,255,.08);display:flex;align-items:flex-end;gap:5px;padding:9px}
+.lbm-chart u{flex:1;background:rgba(255,255,255,.42);border-radius:3px 3px 0 0}
+.lbm-donut{height:60px;border-radius:8px;background:rgba(255,255,255,.08);display:grid;place-items:center}
+.lbm-donut::before{content:'';width:30px;height:30px;border-radius:50%;border:5px solid rgba(255,255,255,.5);border-right-color:rgba(255,255,255,.16);border-bottom-color:rgba(255,255,255,.16)}
+.lb-desc{font-size:13.5px;color:#C6D4E8;line-height:1.6;max-width:44ch}
+.lb-foot{margin-top:auto;font-family:'IBM Plex Mono';font-size:10.5px;letter-spacing:1.4px;color:#7E96BC;text-transform:uppercase;padding-top:30px}
+/* right profile panel */
+.login-panel{display:flex;flex-direction:column;justify-content:center;padding:40px 54px;max-width:580px;width:100%;margin:0 auto;max-height:100vh;overflow-y:auto}
+.lp-h{font-family:'Archivo';font-weight:800;font-size:27px;letter-spacing:-.4px;color:var(--ink)}
+.lp-sub{font-size:14px;color:var(--muted);margin-top:6px}
+.lp-divider{display:flex;align-items:center;gap:14px;margin:26px 0 16px;color:var(--muted);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px}
+.lp-divider::before,.lp-divider::after{content:'';height:1px;background:var(--line);flex:1}
+.profile-list{display:flex;flex-direction:column;gap:10px;max-height:32vh;overflow-y:auto;padding:2px 6px 2px 2px}
+.profile-list::-webkit-scrollbar{width:6px}.profile-list::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:6px}
+.profile-card{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:13px 15px;border:1px solid var(--line);border-radius:13px;background:var(--surface);cursor:pointer;transition:.16s;font-family:inherit}
+.profile-card:hover{border-color:var(--brand);box-shadow:var(--shadow);transform:translateY(-1px)}
+.p-av{width:42px;height:42px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:'Archivo';font-weight:700;font-size:14px;color:#fff;letter-spacing:.3px}
+.p-meta{flex:1;min-width:0}
+.p-name{font-weight:700;font-size:14px;color:var(--ink)}
+.p-org{font-size:12px;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p-role{flex:none;font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;white-space:nowrap}
+.p-role.r-cand{background:var(--brand-soft);color:var(--brand)}
+.p-role.r-adm{background:#E9ECF2;color:var(--ink)}
+.p-role.r-sme{background:var(--verify-soft);color:var(--verify)}
+.p-role.r-sme2{background:var(--amber-soft);color:var(--amber)}
+.p-role.r-sme3{background:var(--rose-soft);color:var(--rose)}
+.lp-note{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--muted);margin-top:18px;line-height:1.5}
+.lp-note svg{width:15px;height:15px;flex:none;color:var(--brand);margin-top:1px}
+/* login credential form */
+.lp-form{display:flex;flex-direction:column;gap:13px;margin-top:6px}
+.lp-field label{display:block;font-size:11.5px;font-weight:700;color:var(--ink-2);margin-bottom:6px;letter-spacing:.2px}
+.lp-err{display:none;background:var(--rose-soft);color:var(--rose);font-size:12.5px;font-weight:600;padding:9px 13px;border-radius:9px}
+.lp-cred{font-family:'IBM Plex Mono';font-size:11px;color:var(--muted);margin-top:2px}
+.lp-cred b{color:var(--ink-2)}
+.p-id{font-family:'IBM Plex Mono';font-size:10.5px;color:var(--brand);margin-top:2px}
+/* sidebar signed-in user card (dark theme) */
+.signed-user{display:flex;align-items:center;gap:11px;padding:10px 11px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(255,255,255,.05)}
+.su-av{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-family:'Archivo';font-weight:700;font-size:13px}
+.su-meta{display:flex;flex-direction:column;min-width:0}
+.su-name{font-weight:700;font-size:13px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.su-role{font-size:11px;color:#90A6C6}
+.su-scope{font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.4px;color:#7E94B4;margin:9px 2px 0;text-transform:uppercase;line-height:1.4}
+.signout-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:11px;padding:9px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.04);color:#C2D0E3;font-size:12.5px;font-weight:600;font-family:inherit;cursor:pointer;transition:.15s}
+.signout-btn:hover{border-color:rgba(214,90,80,.55);color:#FF9E96;background:rgba(178,58,51,.18)}
+.signout-btn svg{width:15px;height:15px}
+/* top-right chip logout */
+.chip-logout{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);display:grid;place-items:center;cursor:pointer;transition:.15s;flex:none}
+.chip-logout:hover{border-color:var(--rose);color:var(--rose);background:var(--rose-soft)}
+.chip-logout svg{width:16px;height:16px}
+/* sidebar role tag */
+.role-tag{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);padding:7px 12px;border-radius:9px}
+.role-tag svg{width:15px;height:15px;opacity:.85}
+/* exam cover card */
+.exam-cover{display:flex;align-items:center;gap:20px;width:100%;text-align:left;background:linear-gradient(150deg,#1d3e6e,var(--brand-deep));color:#fff;border:none;border-radius:16px;padding:26px 28px;cursor:pointer;transition:.18s;box-shadow:var(--shadow);position:relative;overflow:hidden;font-family:inherit}
+.exam-cover:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.xc-crest{width:58px;height:58px;border-radius:14px;background:rgba(255,255,255,.12);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);display:grid;place-items:center;flex:none}
+.xc-crest svg{width:28px;height:28px}
+.xc-body{flex:1;min-width:0}
+.xc-name{font-family:'Fraunces';font-weight:600;font-size:22px;letter-spacing:-.3px}
+.xc-meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:11px;font-size:12.5px;color:#C6D4E8}
+.xc-meta span{display:inline-flex;align-items:center;gap:7px}
+.xc-meta svg{width:15px;height:15px;color:#9DB6D8}
+.xc-cta{margin-top:16px;font-size:13px;font-weight:700;color:#fff;display:inline-flex;align-items:center;gap:8px}
+.xc-cta span{transition:.18s}
+.exam-cover:hover .xc-cta span{transform:translateX(4px)}
+.xc-shift{position:absolute;top:18px;right:20px;font-family:'IBM Plex Mono';font-size:10.5px;letter-spacing:.5px;color:#9DB6D8;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:4px 10px;border-radius:20px}
+/* exam-card grid (admin: manage multiple exams) */
+.exam-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.exam-tile{display:flex;flex-direction:column;gap:0;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:18px 18px 14px;cursor:pointer;transition:.16s;font-family:inherit;position:relative;overflow:hidden}
+.exam-tile::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#2E6BB8,var(--brand-deep))}
+.exam-tile:hover{border-color:var(--brand);box-shadow:var(--shadow);transform:translateY(-2px)}
+/* per-exam pipeline progress */
+.et-pipe{display:flex;align-items:center;margin:13px 0 4px;padding-top:13px;border-top:1px solid var(--line)}
+.ep-step{display:flex;align-items:center;gap:6px;font-size:10.5px;font-weight:600;color:var(--muted);white-space:nowrap}
+.ep-dot{width:9px;height:9px;border-radius:50%;background:var(--line-2);flex:none}
+.ep-step.active{color:var(--brand)} .ep-step.active .ep-dot{background:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.ep-step.done{color:var(--verify)} .ep-step.done .ep-dot{background:var(--verify)}
+.ep-line{flex:1;height:2px;background:var(--line);margin:0 7px;border-radius:2px;min-width:12px}
+.ep-line.lit{background:var(--verify)}
+.epx-row{padding:12px 0;border-bottom:1px solid var(--line)}
+.epx-row:last-child{border-bottom:none}
+.epx-name{font-family:'Archivo';font-weight:700;font-size:13px;color:var(--ink);margin-bottom:5px;display:flex;align-items:center;gap:8px}
+.epx-tag{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--brand);background:var(--brand-soft);padding:1px 7px;border-radius:5px}
+.epx-row .et-pipe{margin:0;padding-top:0;border-top:none}
+.et-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.et-ic{width:40px;height:40px;border-radius:11px;background:linear-gradient(150deg,#2E6BB8,var(--brand-deep));display:grid;place-items:center;flex:none}
+.et-ic svg{width:20px;height:20px}
+.et-name{font-family:'Fraunces';font-weight:600;font-size:18px;line-height:1.2;color:var(--ink);letter-spacing:-.2px}
+.et-meta{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:12px;color:var(--muted)}
+.et-meta span{display:inline-flex;align-items:center;gap:6px}
+.et-meta svg{width:13px;height:13px;color:var(--line-2)}
+.et-foot{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.et-tier{font-family:'IBM Plex Mono';font-size:10.5px;letter-spacing:.4px;color:var(--muted);text-transform:uppercase}
+.et-cta{font-size:12.5px;font-weight:700;color:var(--brand)}
+@media(max-width:760px){.exam-grid{grid-template-columns:1fr}}
+/* reports list */
+.report-list{display:flex;flex-direction:column;gap:10px}
+.report-row{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:13px 16px;transition:.15s}
+.report-row:hover{border-color:var(--line-2);box-shadow:var(--shadow)}
+.rr-ic{width:42px;height:42px;border-radius:11px;background:var(--brand-soft);display:grid;place-items:center;flex:none}
+.rr-ic svg{width:20px;height:20px;color:var(--brand)}
+.rr-body{flex:1;min-width:0}
+.rr-name{font-family:'Archivo';font-weight:700;font-size:14px;color:var(--ink);display:flex;align-items:center;gap:9px}
+.rr-fmt{font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.4px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted);padding:2px 7px;border-radius:5px}
+.rr-desc{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4}
+.rr-meta{font-family:'IBM Plex Mono';font-size:10.5px;color:var(--muted);flex:none}
+@media(max-width:620px){.report-row{flex-wrap:wrap}.rr-meta{display:none}}
+/* user management */
+.user-list{display:flex;flex-direction:column;gap:10px}
+.user-row{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:13px 16px;transition:.15s}
+.user-row.off{opacity:.55}
+.ur-av{width:42px;height:42px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-family:'Archivo';font-weight:700;font-size:14px}
+.ur-body{flex:1;min-width:0}
+.ur-name{font-family:'Archivo';font-weight:700;font-size:14px;color:var(--ink);display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.ur-email{font-family:'IBM Plex Mono';font-size:11px;color:var(--muted);margin-top:2px}
+.ur-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.ur-chip{font-size:10.5px;font-weight:600;background:var(--brand-soft);color:var(--brand);padding:2px 8px;border-radius:6px}
+.ur-actions{display:flex;align-items:center;gap:10px;flex:none}
+.mod-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mod-check{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--ink-2);padding:9px 11px;border:1px solid var(--line);border-radius:9px;cursor:pointer}
+.mod-check input{width:16px;height:16px;flex:none;accent-color:var(--brand);cursor:pointer}
+@media(max-width:620px){.user-row{flex-wrap:wrap}.ur-actions{width:100%;justify-content:flex-end}.mod-grid{grid-template-columns:1fr}}
+/* instructions + consent */
+.steps-ol{margin:14px 0 4px;padding-left:20px;display:flex;flex-direction:column;gap:9px;font-size:13.5px;color:var(--ink-2);line-height:1.5}
+.rules-ul{margin:14px 0 4px;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--ink-2);line-height:1.5}
+.consent{display:flex;align-items:flex-start;gap:12px;margin-top:20px;padding:15px 16px;border:1px solid var(--line-2);border-radius:12px;background:var(--surface-2);cursor:pointer;font-size:13px;color:var(--ink-2);line-height:1.5}
+.consent input{margin-top:1px;width:18px;height:18px;flex:none;accent-color:var(--brand);cursor:pointer}
+/* fee model selector */
+.fee-modes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.fee-mode{text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;transition:.15s;font-family:inherit}
+.fee-mode:hover{border-color:var(--line-2)}
+.fee-mode.on{border-color:var(--brand);background:var(--brand-soft)}
+.fm-t{font-family:'Archivo';font-weight:700;font-size:13.5px;color:var(--ink);margin-bottom:5px}
+.fee-mode.on .fm-t{color:var(--brand)}
+.fm-d{font-size:11.5px;color:var(--muted);line-height:1.45}
+@media(max-width:620px){.fee-modes{grid-template-columns:1fr}}
+/* immersive question paper (sidebar hidden) */
+.app.immersive{grid-template-columns:1fr;grid-template-areas:"top" "main"}
+.app.immersive .sidebar{display:none}
+.app.immersive .menu-btn{display:none}
+.app.immersive .main{max-width:1160px;padding-top:22px}
+.paper-bar{display:flex;align-items:center;gap:11px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:11px 13px;margin-bottom:22px;box-shadow:var(--shadow);position:sticky;top:14px;z-index:20}
+.pb-exit{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-weight:600;font-size:13px;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:8px 12px;cursor:pointer;transition:.15s}
+.pb-exit:hover{border-color:var(--line-2);color:var(--ink)}
+.pb-exit svg{width:15px;height:15px}
+.pb-title{font-family:'Archivo';font-weight:700;font-size:13.5px;color:var(--ink);line-height:1.2;display:flex;flex-direction:column}
+.pb-title small{font-family:'IBM Plex Mono';font-weight:400;font-size:10px;color:var(--muted);margin-top:2px;letter-spacing:.2px}
+.view-toggle{display:flex;gap:4px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:4px;margin-left:auto}
+.view-toggle button{display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);background:transparent;border:none;border-radius:7px;padding:7px 13px;cursor:pointer;transition:.15s}
+.view-toggle button svg{width:15px;height:15px}
+.view-toggle button.on{background:var(--surface);color:var(--brand);box-shadow:var(--shadow)}
+.q-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:stretch;grid-auto-rows:1fr}
+.q-grid .qcard{height:100%}
+.q-grid .qcard .qbody{flex:1}
+.focus-wrap{display:flex;flex-direction:column;gap:18px}
+.focus-rail{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.qdot{width:38px;height:38px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);font-family:'IBM Plex Mono';font-weight:600;font-size:13px;cursor:pointer;transition:.15s}
+.qdot:hover{border-color:var(--brand);color:var(--brand)}
+.qdot.cur{background:var(--brand);border-color:var(--brand);color:#fff}
+.qdot.obj{box-shadow:inset 0 -3px 0 var(--amber)}
+.focus-stage{max-width:780px;width:100%;margin:0 auto}
+.focus-count{font-family:'IBM Plex Mono';font-size:12px;letter-spacing:.6px;color:var(--muted);text-transform:uppercase;text-align:center;margin-bottom:12px}
+.focus-count span{color:var(--line-2)}
+.focus-stage .qcard{box-shadow:var(--shadow-lg)}
+.focus-stage .qstmt{font-size:17px;line-height:1.5}
+.focus-nav{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:22px}
+.focus-prog{font-family:'IBM Plex Mono';font-size:13px;color:var(--muted);flex:none}
+@media(max-width:760px){.q-grid{grid-template-columns:1fr}.paper-bar{position:static}}
+/* section tabs (paper) */
+.sec-tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.sec-tab{flex:1;min-width:130px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 15px;cursor:pointer;transition:.15s;font-family:inherit}
+.sec-tab:hover{border-color:var(--line-2)}
+.sec-tab.on{border-color:var(--brand);background:var(--brand-soft)}
+.st-name{display:block;font-family:'Archivo';font-weight:700;font-size:13.5px;color:var(--ink)}
+.sec-tab.on .st-name{color:var(--brand)}
+.st-meta{display:block;font-family:'IBM Plex Mono';font-size:10.5px;color:var(--muted);margin-top:3px}
+@media(max-width:920px){.login{grid-template-columns:1fr}.login-brand{display:none}.login-panel{padding:40px 22px;justify-content:flex-start;padding-top:40px}.profile-list{max-height:none}}
 
 /* question card */
-.qcard{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden;transition:.15s}
+.qcard{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden;transition:.15s;display:flex;flex-direction:column}
 .qcard:hover{border-color:var(--line-2);box-shadow:var(--shadow)}
 .qcard .qhead{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--surface-2);border-bottom:1px solid var(--line)}
 .qnum{font-family:'IBM Plex Mono';font-weight:600;font-size:12px;background:var(--ink);color:#fff;border-radius:7px;padding:4px 9px;flex:none}
@@ -347,34 +530,50 @@ textarea.inp{min-height:88px;resize:vertical}
 
 <!-- ============ LOGIN ============ -->
 <div id="loginScreen" class="login">
-  <div class="login-card">
-    <div class="login-top">
-      <div class="gov">Government of India · Examination Authority</div>
-      <h2>National Recruitment Exam · Result Portal</h2>
-      <p>Objection · Normalization · Scorecard — single integrated pipeline</p>
+  <!-- LEFT · BRAND -->
+  <div class="login-brand">
+    <div class="lb-gov">Hubblehox Platform</div>
+    <div class="lb-crest">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#cfe0f5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
     </div>
-    <div class="login-body">
-      <div class="login-tabs" id="loginTabs">
-        <div class="login-tab active" data-role="candidate">Candidate</div>
-        <div class="login-tab" data-role="admin">Admin</div>
-        <div class="login-tab" data-role="sme">SME</div>
+    <h1>Hubblehox Objection Management System</h1>
+    <div class="lb-tag">Objection · Normalization · Scorecard</div>
+    <div class="lb-mock">
+      <div class="lbm-bar"><span></span><span></span><span></span></div>
+      <div class="lbm-tiles"><i></i><i></i><i></i><i></i></div>
+      <div class="lbm-row">
+        <div class="lbm-chart"><u style="height:46%"></u><u style="height:72%"></u><u style="height:38%"></u><u style="height:88%"></u><u style="height:60%"></u><u style="height:34%"></u></div>
+        <div class="lbm-donut"></div>
       </div>
-      <div class="field">
-        <label id="idLabel">Roll Number</label>
-        <input class="inp" id="loginId" placeholder="e.g. NRE2026100482">
+    </div>
+    <div class="lb-desc">A single integrated pipeline for answer-key objections, cross-shift score normalization, and verified score-card generation — one live dataset shared across every role.</div>
+    <div class="lb-foot">Hubblehox · Objection Management System · v2.4</div>
+  </div>
+  <!-- RIGHT · PROFILES -->
+  <div class="login-panel">
+    <div class="lp-h">Welcome back 👋</div>
+    <div class="lp-sub">Sign in with your credentials, or quick-pick a demo profile below.</div>
+    <div class="lp-form">
+      <div class="lp-field">
+        <label>Login ID</label>
+        <input class="inp" id="loginId" placeholder="e.g. PCM2026100482 or SME-PHY-04" onkeydown="if(event.key==='Enter')submitLogin()">
       </div>
-      <div class="field">
+      <div class="lp-field">
         <label>Password</label>
-        <input class="inp" type="password" value="••••••••">
+        <input class="inp" id="loginPwd" type="password" placeholder="Enter password" onkeydown="if(event.key==='Enter')submitLogin()">
       </div>
-      <button class="btn btn-primary btn-block" onclick="doLogin()" style="margin-top:6px">
+      <div class="lp-err" id="loginErr"></div>
+      <button class="btn btn-primary btn-block" onclick="submitLogin()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>
         Sign in to portal
       </button>
-      <div class="note note-info" style="margin-top:18px">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-        <span>Prototype — pick any role tab and sign in. The three products share one live dataset, so actions in one ripple through the others.</span>
-      </div>
+      <div class="lp-cred">Demo password for every account · <b>demo@1234</b></div>
+    </div>
+    <div class="lp-divider">Or quick sign-in (demo)</div>
+    <div class="profile-list" id="profileList"></div>
+    <div class="lp-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span>Role-based access — each account sees only the modules its role permits. Sign out to switch users; the shared dataset persists across sessions.</span>
     </div>
   </div>
 </div>
@@ -389,19 +588,20 @@ textarea.inp{min-height:88px;resize:vertical}
           <svg viewBox="0 0 24 24" fill="none" stroke="#cfe0f5" stroke-width="1.7"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
         <div>
-          <div class="name">NREMS Portal</div>
-          <div class="sub">Result Pipeline · v2.4</div>
+          <div class="name">Hubblehox OMS</div>
+          <div class="sub">Objection Management · v2.4</div>
         </div>
       </div>
     </div>
     <div class="role-switch">
-      <div class="lbl">Signed in as</div>
-      <div class="role-pills" id="rolePills"></div>
+      <div class="lbl">Role &amp; access</div>
+      <div class="role-tag" id="roleTag"></div>
+      <div class="su-scope" id="suScope"></div>
     </div>
     <nav class="nav" id="navList"></nav>
     <div class="sb-foot">
-      Exam: <b style="color:#C2D0E3">NRE 2026 · Tier I</b><br>
-      2 shifts · 18,402 candidates
+      Exam: <b style="color:#C2D0E3">PCM · Entrance</b><br>
+      8 shifts · 2,00,000 candidates
     </div>
   </aside>
 
@@ -410,10 +610,12 @@ textarea.inp{min-height:88px;resize:vertical}
       <button class="menu-btn" onclick="toggleSidebar(true)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
       </button>
-      <div class="spine" id="spine"></div>
       <div class="userchip">
         <div class="who"><b id="chipName">—</b><span id="chipMeta">—</span></div>
         <div class="av" id="chipAv">A</div>
+        <button class="chip-logout" onclick="signOut()" title="Sign out" aria-label="Sign out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+        </button>
       </div>
     </div>
   </header>
@@ -443,50 +645,161 @@ const ICN = {
   check:'<path d="M20 6L9 17l-5-5"/>',
   user:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/>',
   money:'<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/>',
-  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  report:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h2v4H8zM12 11h2v6h-2zM16 15h0v2h0z"/>'
 };
 const T = {
   candidate:'Candidate', admin:'Admin', sme:'SME'
 };
+/* assignable admin-area modules for user management / RBAC */
+const MODULES = [
+  {id:'dashboard', label:'Dashboard'},
+  {id:'pipeline', label:'Data Pipeline'},
+  {id:'window', label:'Window & Fee'},
+  {id:'manage', label:'Objection Management'},
+  {id:'assign', label:'SME Assignment'},
+  {id:'normalize', label:'Normalization'},
+  {id:'publish', label:'Scorecard Publishing'},
+  {id:'reports', label:'Reports'},
+  {id:'users', label:'User Management'}
+];
+const ALL_ADMIN_MODULES = MODULES.map(m=>m.id);
 
 const state = {
   role:'candidate',
   screen:'dashboard',
-  exam:{ name:'National Recruitment Exam 2026', tier:'Tier I (CBT)', date:'14 Feb 2026', totalQ:8, marksPer:2, negMark:0.5 },
-  fee:500, windowOpen:true, windowStart:'20 Feb 2026', windowEnd:'27 Feb 2026',
+  session:{ name:'Aarav Sharma', sub:'PCM2026100482', av:'AS', color:'#1A4D8F' },
+  lastProfile:{},
+  exam:{ name:'PCM — Physics · Chemistry · Mathematics', tier:'Entrance · CBT', date:'14 Feb 2026', totalQ:150, marksPer:2, negMark:0.5, sections:['Physics','Chemistry','Mathematics'], perSection:50 },
+  fee:500, feeModel:'per', windowOpen:true, windowStart:'20 Feb 2026', windowEnd:'27 Feb 2026', windowStartTime:'10:00 AM', windowEndTime:'05:00 PM',
+  scoreLiveStart:'02 Mar 2026', scoreLiveStartTime:'12:00 PM', scoreLiveEnd:'31 Mar 2026', scoreLiveEndTime:'11:59 PM', scoreLive:false,  // scorecard live window (start–end)
+  examGate:{}, selectedExamId:'pcm',  // admin: which exam-config screens are open, and which exam is being configured
+  users:[
+    {id:'u-meera', name:'Meera Krishnan', email:'meera.krishnan@hubblehox.io', role:'admin', roleLabel:'Exam Controller', modules:['dashboard','pipeline','window','manage','assign','normalize','publish','reports','users'], status:'active', initials:'MK', color:'#102A4C'},
+    {id:'u-control', name:'Control Room', email:'ops@hubblehox.io', role:'admin', roleLabel:'System Admin', modules:['dashboard','pipeline','window','manage','assign','normalize','publish','reports','users'], status:'active', initials:'CR', color:'#3A4D66'},
+    {id:'u-iyer', name:'Dr. R. Iyer', email:'r.iyer@hubblehox.io', role:'sme', roleLabel:'Subject Expert', modules:['assigned','history'], status:'active', initials:'RI', color:'#117A52'},
+    {id:'u-bose', name:'Prof. S. Bose', email:'s.bose@hubblehox.io', role:'sme', roleLabel:'Subject Expert', modules:['assigned','history'], status:'active', initials:'SB', color:'#A86A12'},
+    {id:'u-audit', name:'Anita Desai', email:'a.desai@hubblehox.io', role:'admin', roleLabel:'Custom · Reports', modules:['dashboard','reports'], status:'active', initials:'AD', color:'#7A4FB0', custom:true, loginable:true},
+    {id:'u-fin', name:'Rakesh Menon', email:'r.menon@hubblehox.io', role:'admin', roleLabel:'Custom · Finance', modules:['dashboard','window','reports'], status:'active', initials:'RM', color:'#0E7C86', custom:true, loginable:true}
+  ],
   pipeline:{ objection:'active', normalization:'idle', scorecard:'idle' }, // idle | active | done
   smeList:['Dr. R. Iyer','Prof. S. Bose','Dr. M. Khan'],
   // The logged-in candidate
-  me:{ name:'Aarav Sharma', roll:'NRE2026100482', reg:'REG-2026-77410', cat:'OBC', shift:'Shift 2 (Afternoon)', email:'aarav.s@****.in' },
-  // Master question bank for the candidate's paper
-  questions:[
-    {n:1, stmt:'Which constitutional amendment introduced the Goods and Services Tax (GST) in India?', opts:{A:'100th',B:'101st',C:'102nd',D:'103rd'}, key:'B', chosen:'B', subject:'Polity'},
-    {n:2, stmt:'The term "Carrying Capacity" is most closely associated with which field?', opts:{A:'Ecology',B:'Thermodynamics',C:'Macroeconomics',D:'Optics'}, key:'A', chosen:'C', subject:'Science'},
-    {n:3, stmt:'If 5 machines make 5 widgets in 5 minutes, how long for 100 machines to make 100 widgets?', opts:{A:'100 min',B:'20 min',C:'5 min',D:'1 min'}, key:'C', chosen:'A', subject:'Aptitude'},
-    {n:4, stmt:'Select the correctly spelled word.', opts:{A:'Occurrence',B:'Occurence',C:'Ocurrence',D:'Occurance'}, key:'A', chosen:'A', subject:'English'},
-    {n:5, stmt:'The Tropic of Cancer does NOT pass through which of these states?', opts:{A:'Gujarat',B:'Rajasthan',C:'Odisha',D:'Tripura'}, key:'C', chosen:'D', subject:'Geography'},
-    {n:6, stmt:'A "Repo Rate" is the rate at which:', opts:{A:'Banks lend to RBI',B:'RBI lends to banks',C:'Banks lend to public',D:'Govt borrows abroad'}, key:'B', chosen:'B', subject:'Economy'},
-    {n:7, stmt:'Which planet has the shortest day in the solar system?', opts:{A:'Mercury',B:'Earth',C:'Jupiter',D:'Mars'}, key:'C', chosen:'A', subject:'Science'},
-    {n:8, stmt:'Find the next term: 2, 6, 12, 20, 30, ?', opts:{A:'36',B:'40',C:'42',D:'48'}, key:'C', chosen:'C', subject:'Aptitude'}
-  ],
+  me:{ name:'Aarav Sharma', roll:'PCM2026100482', reg:'REG-2026-77410', cat:'OBC', shift:'Shift 3', email:'aarav.s@****.in' },
+  // Master question bank — 3 sections × 50 questions, generated
+  questions: genPaper(['Physics','Chemistry','Mathematics']),
   objections:[], // candidate's own basket / submitted
   objSubmitted:false, objId:null,
   // Admin-side objection queue (other candidates + this one once submitted)
   queue:[
-    {id:'OBJ-90231', cand:'Priya Nair', roll:'NRE2026100119', q:2, subject:'Science', reason:'Answer Key is Incorrect', sme:'Dr. R. Iyer', status:'accepted', decision:'Key A→A upheld; no change', stamp:'24 Feb, 11:02'},
-    {id:'OBJ-90244', cand:'Imran Q.', roll:'NRE2026100330', q:7, subject:'Science', reason:'Answer Key is Incorrect', sme:'Prof. S. Bose', status:'review', decision:'', stamp:'24 Feb, 13:40'},
-    {id:'OBJ-90251', cand:'Neha G.', roll:'NRE2026100571', q:3, subject:'Aptitude', reason:'Multiple Correct Answers', sme:'Dr. M. Khan', status:'rejected', decision:'Only C satisfies the constraint', stamp:'25 Feb, 09:15'},
-    {id:'OBJ-90260', cand:'Vikram S.', roll:'NRE2026100804', q:5, subject:'Geography', reason:'Question is Incorrect', sme:null, status:'pending', decision:'', stamp:'25 Feb, 16:22'}
+    {id:'OBJ-90231', cand:'Priya Nair', roll:'PCM2026100119', q:2, subject:'Physics', reason:'Answer Key is Incorrect', sme:'Dr. R. Iyer', status:'accepted', decision:'Key upheld; no change', stamp:'24 Feb, 11:02'},
+    {id:'OBJ-90244', cand:'Imran Q.', roll:'PCM2026100330', q:73, subject:'Chemistry', reason:'Answer Key is Incorrect', sme:'Prof. S. Bose', status:'review', decision:'', stamp:'24 Feb, 13:40'},
+    {id:'OBJ-90251', cand:'Neha G.', roll:'PCM2026100571', q:118, subject:'Mathematics', reason:'Multiple Correct Answers', sme:'Dr. M. Khan', status:'rejected', decision:'Only the keyed option satisfies the constraint', stamp:'25 Feb, 09:15'},
+    {id:'OBJ-90260', cand:'Vikram S.', roll:'PCM2026100804', q:41, subject:'Physics', reason:'Question is Incorrect', sme:null, status:'pending', decision:'', stamp:'25 Feb, 16:22'}
   ],
   // Normalization fixtures (shift-wise)
   shiftStats:[
-    {shift:'Shift 1 (Morning)', cnt:9180, mean:9.4, sd:3.1, topRaw:16},
-    {shift:'Shift 2 (Afternoon)', cnt:9222, mean:8.1, sd:3.4, topRaw:16}
+    {shift:'Shift 1', cnt:24980, mean:214, sd:39, topRaw:294},
+    {shift:'Shift 2', cnt:25120, mean:208, sd:41, topRaw:291},
+    {shift:'Shift 3', cnt:24890, mean:210, sd:40, topRaw:293},
+    {shift:'Shift 4', cnt:25040, mean:205, sd:42, topRaw:290},
+    {shift:'Shift 5', cnt:25210, mean:217, sd:38, topRaw:296},
+    {shift:'Shift 6', cnt:24760, mean:209, sd:40, topRaw:292},
+    {shift:'Shift 7', cnt:25090, mean:213, sd:39, topRaw:294},
+    {shift:'Shift 8', cnt:24930, mean:203, sd:43, topRaw:289}
   ],
   scores:{ raw:null, normalized:null, percentile:null, qualified:null, version:1 },
   scorecardReady:false,
-  reEvalDone:false, normDone:false
+  reEvalDone:false, normDone:false,
+  paperStep:0, consent:false,   // candidate question-paper gate: 0=cover, 1=instructions, 2=paper
+  qview:'card', focusIdx:0, paperSection:0   // paper view: 'card'/'focus', and selected section index
 };
+
+/* generate a sectioned paper: 3 sections × 50 questions */
+function genPaper(subjects){
+  const banks={
+    Physics:[
+      ['A body in uniform circular motion has constant',{A:'velocity',B:'speed',C:'acceleration',D:'momentum'},'B'],
+      ['The SI unit of electric resistance is the',{A:'henry',B:'farad',C:'ohm',D:'tesla'},'C'],
+      ['Escape velocity from Earth is approximately',{A:'7.9 km/s',B:'11.2 km/s',C:'9.8 km/s',D:'15 km/s'},'B'],
+      ['Which of these is a vector quantity?',{A:'Work',B:'Power',C:'Displacement',D:'Energy'},'C'],
+      ['Light bending around an edge is called',{A:'reflection',B:'refraction',C:'diffraction',D:'dispersion'},'C'],
+      ['Ohm’s law relates voltage, current and',{A:'power',B:'resistance',C:'charge',D:'energy'},'B'],
+      ['The dimensional formula of force is',{A:'MLT⁻¹',B:'MLT⁻²',C:'ML²T⁻²',D:'M⁰LT⁻²'},'B'],
+      ['Sound cannot travel through',{A:'solids',B:'liquids',C:'gases',D:'vacuum'},'D'],
+      ['The focal length of a plane mirror is',{A:'zero',B:'infinity',C:'positive',D:'negative'},'B'],
+      ['Power is the rate of doing',{A:'force',B:'work',C:'momentum',D:'impulse'},'B'],
+      ['The unit of magnetic flux is the',{A:'weber',B:'tesla',C:'gauss',D:'henry'},'A'],
+      ['Kinetic energy is proportional to the square of',{A:'mass',B:'velocity',C:'time',D:'force'},'B']
+    ],
+    Chemistry:[
+      ['The atomic number of carbon is',{A:'6',B:'12',C:'8',D:'14'},'A'],
+      ['The pH of a neutral solution at 25°C is',{A:'0',B:'7',C:'14',D:'1'},'B'],
+      ['Which gas evolves when a metal reacts with dilute acid?',{A:'Oxygen',B:'Hydrogen',C:'Nitrogen',D:'Chlorine'},'B'],
+      ['The most electronegative element is',{A:'Oxygen',B:'Fluorine',C:'Chlorine',D:'Nitrogen'},'B'],
+      ['Avogadro’s number is approximately',{A:'6.02×10²³',B:'3.14×10⁸',C:'1.6×10⁻¹⁹',D:'9.1×10⁻³¹'},'A'],
+      ['Common salt is chemically',{A:'NaCl',B:'KCl',C:'CaCO₃',D:'NaOH'},'A'],
+      ['Oxidation involves the loss of',{A:'protons',B:'electrons',C:'neutrons',D:'atoms'},'B'],
+      ['The bond within a water molecule is',{A:'ionic',B:'covalent',C:'metallic',D:'hydrogen only'},'B'],
+      ['Which of these is a noble gas?',{A:'Hydrogen',B:'Argon',C:'Oxygen',D:'Nitrogen'},'B'],
+      ['The number of moles in 18 g of water is',{A:'1',B:'2',C:'0.5',D:'18'},'A'],
+      ['Rusting of iron is an example of',{A:'reduction',B:'oxidation',C:'sublimation',D:'neutralisation'},'B'],
+      ['The valency of oxygen is',{A:'1',B:'2',C:'3',D:'4'},'B']
+    ],
+    Mathematics:[
+      ['The value of sin 90° is',{A:'0',B:'1',C:'½',D:'√3/2'},'B'],
+      ['If 2x + 3 = 11, then x equals',{A:'3',B:'4',C:'5',D:'6'},'B'],
+      ['The derivative of x² is',{A:'x',B:'2x',C:'x²',D:'2'},'B'],
+      ['The sum of interior angles of a triangle is',{A:'90°',B:'180°',C:'270°',D:'360°'},'B'],
+      ['log₁₀ 1000 equals',{A:'2',B:'3',C:'10',D:'100'},'B'],
+      ['The area of a circle of radius r is',{A:'2πr',B:'πr²',C:'πd',D:'2πr²'},'B'],
+      ['The next term in 2, 4, 8, 16, … is',{A:'24',B:'32',C:'20',D:'18'},'B'],
+      ['The roots of x² − 5x + 6 = 0 are',{A:'2, 3',B:'1, 6',C:'−2, −3',D:'3, 4'},'A'],
+      ['The probability of a head in one fair coin toss is',{A:'1',B:'½',C:'¼',D:'0'},'B'],
+      ['The slope of the line y = 3x + 2 is',{A:'2',B:'3',C:'1',D:'5'},'B'],
+      ['7! ÷ 5! equals',{A:'42',B:'7',C:'35',D:'12'},'A'],
+      ['The integral of 1 with respect to x is',{A:'0',B:'x + C',C:'1',D:'x²'},'B']
+    ],
+    Biology:[
+      ['The powerhouse of the cell is the',{A:'nucleus',B:'mitochondria',C:'ribosome',D:'lysosome'},'B'],
+      ['Photosynthesis occurs in the',{A:'mitochondria',B:'chloroplast',C:'nucleus',D:'vacuole'},'B'],
+      ['The basic structural unit of life is the',{A:'tissue',B:'cell',C:'organ',D:'atom'},'B'],
+      ['Blood is filtered in the human body by the',{A:'liver',B:'kidney',C:'lung',D:'heart'},'B'],
+      ['DNA is found mainly in the',{A:'cytoplasm',B:'nucleus',C:'membrane',D:'cell wall'},'B'],
+      ['Insulin is produced by the',{A:'liver',B:'pancreas',C:'kidney',D:'spleen'},'B'],
+      ['The human heart has how many chambers?',{A:'2',B:'3',C:'4',D:'1'},'C'],
+      ['The largest organ of the human body is the',{A:'liver',B:'skin',C:'brain',D:'lung'},'B'],
+      ['Cellular respiration mainly releases',{A:'oxygen',B:'energy',C:'glucose',D:'water only'},'B'],
+      ['Chlorophyll is predominantly which colour?',{A:'red',B:'green',C:'blue',D:'yellow'},'B'],
+      ['Red blood cells primarily carry',{A:'nutrients',B:'oxygen',C:'hormones',D:'enzymes'},'B'],
+      ['The study of heredity is called',{A:'ecology',B:'genetics',C:'botany',D:'zoology'},'B']
+    ]
+  };
+  const WRONG = new Set([2,3,5,7,53,104]);                              // candidate answered wrong (objectionable)
+  const UNATT = new Set([20,21,70,71,72,120,121,122,123,124]);         // unattempted
+  const nextOpt = k => ({A:'B',B:'C',C:'D',D:'A'}[k]);
+  let qs=[], n=0;
+  subjects.forEach(sub=>{
+    const bank=banks[sub]||banks.Physics;
+    for(let i=0;i<50;i++){
+      n++;
+      const t=bank[i % bank.length];
+      const q={ n, subject:sub, stmt:`Q${n}. ${t[0]}`, opts:t[1], key:t[2], chosen:t[2] };
+      if(UNATT.has(n)) q.chosen=null;
+      else if(WRONG.has(n)) q.chosen=nextOpt(t[2]);
+      qs.push(q);
+    }
+  });
+  return qs;
+}
+function maxMarks(){ return state.exam.totalQ*state.exam.marksPer; }
+/* standard-normal CDF (Abramowitz–Stegun erf) for percentile */
+function erf(x){ const s=x<0?-1:1; x=Math.abs(x); const t=1/(1+0.3275911*x);
+  const y=1-(((((1.061405429*t-1.453152027)*t+1.421413741)*t-0.284496736)*t+0.254829592)*t)*Math.exp(-x*x);
+  return s*y; }
+function normCdf(z){ return 0.5*(1+erf(z/Math.SQRT2)); }
+function myShiftStat(){ const all=state.shiftStats; return all.find(x=>x.shift.startsWith(state.me.shift.split(' ')[0]+' '+state.me.shift.split(' ')[1]))||all[2]; }
+function computePercentile(raw){ const my=myShiftStat(); const z=(raw-my.mean)/my.sd; return +Math.min(99.99,Math.max(0.01,normCdf(z)*100)).toFixed(2); }
 
 /* compute candidate raw score from current key vs chosen */
 function computeRaw(){
@@ -529,14 +842,19 @@ const NAV = {
       {id:'pipeline', t:'Data Pipeline', ic:ICN.flow}
     ]},
     {grp:'Objection Tracker', items:[
-      {id:'window', t:'Objection Window', ic:ICN.cfg},
-      {id:'fee', t:'Fee Configuration', ic:ICN.fee},
+      {id:'window', t:'Window &amp; Fee', ic:ICN.cfg},
       {id:'manage', t:'Objection Management', ic:ICN.list},
       {id:'assign', t:'SME Assignment', ic:ICN.assign}
     ]},
     {grp:'Result Engine', items:[
       {id:'normalize', t:'Normalization', ic:ICN.norm},
       {id:'publish', t:'Scorecard Publishing', ic:ICN.pub}
+    ]},
+    {grp:'Reports', items:[
+      {id:'reports', t:'Reports', ic:ICN.report}
+    ]},
+    {grp:'Administration', items:[
+      {id:'users', t:'User Management', ic:ICN.user}
     ]}
   ],
   sme:[
@@ -548,10 +866,106 @@ const NAV = {
 };
 const DEFAULT_SCREEN = { candidate:'dashboard', admin:'dashboard', sme:'assigned' };
 const USERS = {
-  candidate:{ name:'Aarav Sharma', meta:'NRE2026100482' },
+  candidate:{ name:'Aarav Sharma', meta:'PCM2026100482' },
   admin:{ name:'Control Room', meta:'Exam Authority' },
   sme:{ name:'Dr. R. Iyer', meta:'SME · Science' }
 };
+
+/* Selectable login profiles — each signs in as a specific person */
+const PROFILES = [
+  { id:'c-aarav', role:'candidate', name:'Aarav Sharma', org:'Roll PCM2026100482 · OBC', initials:'AS', color:'#1A4D8F', rk:'r-cand', rl:'Candidate',
+    me:{ name:'Aarav Sharma', roll:'PCM2026100482', reg:'REG-2026-77410', cat:'OBC', shift:'Shift 3', email:'aarav.s@****.in' } },
+  { id:'c-priya', role:'candidate', name:'Kavya Reddy', org:'Roll PCM2026100517 · EWS', initials:'KR', color:'#7A4FB0', rk:'r-cand', rl:'Candidate',
+    me:{ name:'Kavya Reddy', roll:'PCM2026100517', reg:'REG-2026-77882', cat:'EWS', shift:'Shift 1', email:'kavya.r@****.in' } },
+  { id:'c-rohan', role:'candidate', name:'Rohan Verma', org:'Roll PCM2026100644 · General', initials:'RV', color:'#0E7C86', rk:'r-cand', rl:'Candidate',
+    me:{ name:'Rohan Verma', roll:'PCM2026100644', reg:'REG-2026-78013', cat:'General', shift:'Shift 6', email:'rohan.v@****.in' } },
+  { id:'a-meera', role:'admin', name:'Meera Krishnan', org:'Hubblehox · Exam Authority', initials:'MK', color:'#102A4C', rk:'r-adm', rl:'Exam Controller',
+    session:{ name:'Meera Krishnan', sub:'Exam Controller · Hubblehox' } },
+  { id:'a-control', role:'admin', name:'Control Room', org:'Result Operations Desk', initials:'CR', color:'#3A4D66', rk:'r-adm', rl:'System Admin',
+    session:{ name:'Control Room', sub:'Result Operations' } },
+  { id:'s-iyer', role:'sme', name:'Dr. R. Iyer', org:'Subject Expert · Physics', initials:'RI', color:'#117A52', rk:'r-sme', rl:'Subject Expert', sme:'Dr. R. Iyer',
+    session:{ name:'Dr. R. Iyer', sub:'SME · Physics' } },
+  { id:'s-bose', role:'sme', name:'Prof. S. Bose', org:'Subject Expert · Mathematics', initials:'SB', color:'#A86A12', rk:'r-sme2', rl:'Subject Expert', sme:'Prof. S. Bose',
+    session:{ name:'Prof. S. Bose', sub:'SME · Mathematics' } },
+  { id:'s-khan', role:'sme', name:'Dr. M. Khan', org:'Subject Expert · Chemistry', initials:'MK', color:'#B23A33', rk:'r-sme3', rl:'Subject Expert', sme:'Dr. M. Khan',
+    session:{ name:'Dr. M. Khan', sub:'SME · Chemistry' } }
+];
+function buildProfiles(){
+  const el=$('#profileList'); if(!el) return;
+  const base = PROFILES.map(p=>`
+    <button class="profile-card" onclick="loginAs('${p.id}')">
+      <span class="p-av" style="background:${p.color}">${p.initials}</span>
+      <span class="p-meta"><span class="p-name">${p.name}</span><span class="p-org">${p.org}</span><span class="p-id">${LOGIN_IDS[p.id]}</span></span>
+      <span class="p-role ${p.rk}">${p.rl}</span>
+    </button>`).join('');
+  const extra = (state.users||[]).filter(u=>u.loginable).map(u=>`
+    <button class="profile-card" onclick="loginAsUser('${u.id}')">
+      <span class="p-av" style="background:${u.color}">${u.initials}</span>
+      <span class="p-meta"><span class="p-name">${u.name}</span><span class="p-org">${u.modules.length} modules · ${u.email}</span></span>
+      <span class="p-role r-sme2">${u.custom?'Custom':roleLabel(u.role)}</span>
+    </button>`).join('');
+  el.innerHTML = base + extra;
+}
+function loginAsUser(id){
+  const u=(state.users||[]).find(x=>x.id===id); if(!u) return;
+  if(u.status==='inactive'){ loginErr('This account is inactive.'); return; }
+  state.role=u.role;
+  state.paperStep=0; state.consent=false; state.qview='card'; state.focusIdx=0; state.paperSection=0; state.examGate={}; state.selectedExamId='pcm';
+  state.session={ name:u.name, sub:u.roleLabel, av:u.initials, color:u.color, modules:u.modules.slice() };
+  state.lastProfile[u.role]=u.id;
+  doLogin();
+}
+function applyProfile(p){
+  state.role = p.role;
+  if(p.me) state.me = {...p.me};
+  if(p.sme) state.smeUser = p.sme;
+  state.paperStep = 0; state.consent = false; state.qview='card'; state.focusIdx=0; state.paperSection=0; state.examGate={}; state.selectedExamId='pcm';
+  state.session = p.session
+    ? { name:p.session.name, sub:p.session.sub, av:p.initials, color:p.color }
+    : { name:p.name, sub:(p.me?p.me.roll:p.org), av:p.initials, color:p.color };
+  state.session.modules = permsFor(p.role);
+  state.lastProfile[p.role] = p.id;
+}
+/* ---- Authentication (demo credentials) ---- */
+const DEMO_PWD = 'demo@1234';
+const LOGIN_IDS = {
+  'c-aarav':'PCM2026100482', 'c-priya':'PCM2026100517', 'c-rohan':'PCM2026100644',
+  'a-meera':'ADM-CTRL-01', 'a-control':'ADM-OPS-02',
+  's-iyer':'SME-PHY-04', 's-bose':'SME-MAT-07', 's-khan':'SME-CHE-09'
+};
+function loginErr(m){ const e=$('#loginErr'); if(e){ e.textContent=m; e.style.display='block'; } }
+function submitLogin(){
+  const idv=($('#loginId').value||'').trim().toLowerCase();
+  const pw=($('#loginPwd').value||'');
+  if(!idv){ loginErr('Enter your login ID.'); return; }
+  const p=PROFILES.find(x=>(LOGIN_IDS[x.id]||'').toLowerCase()===idv || (x.me&&x.me.roll.toLowerCase()===idv));
+  if(!p){ loginErr('No account found for that login ID.'); return; }
+  if(pw!==DEMO_PWD){ loginErr('Incorrect password — demo password is '+DEMO_PWD); return; }
+  applyProfile(p); doLogin();
+}
+/* quick sign-in: fills credentials, then authenticates */
+function loginAs(id){
+  const p=PROFILES.find(x=>x.id===id); if(!p) return;
+  const a=$('#loginId'), b=$('#loginPwd'); if(a)a.value=LOGIN_IDS[id]||''; if(b)b.value=DEMO_PWD;
+  applyProfile(p); doLogin();
+}
+/* ---- RBAC ---- */
+function permsFor(role){ return (NAV[role]||[]).flatMap(g=>g.items.map(i=>i.id)); }
+function sessionModules(){ return (state.session && state.session.modules) ? state.session.modules : permsFor(state.role); }
+function canAccess(screen){ return sessionModules().includes(screen); }
+function firstAllowedScreen(){
+  for(const g of (NAV[state.role]||[])) for(const it of g.items) if(canAccess(it.id)) return it.id;
+  return state.screen;
+}
+function roleLabel(r){ return {candidate:'Candidate',admin:'Administrator',sme:'Subject Expert'}[r]||r; }
+function notAuthorized(){
+  return `<div class="page-head"><div class="eyebrow" style="color:var(--rose)">Access control</div>
+    <h1 class="title">403 · Not authorized</h1>
+    <p class="lede">Your role (${roleLabel(state.role)}) does not have permission to open this module. Sign out and sign in with an account that has access.</p></div>
+  <div class="card pad" style="display:flex;align-items:center;gap:13px">
+    <span style="color:var(--rose);flex:none">${svg('<circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/>','width="22" height="22"')}</span>
+    <div>Permission denied for screen "<b>${state.screen}</b>". This account is scoped to ${permsFor(state.role).length} module(s).</div></div>`;
+}
 
 /* ============================================================
    RENDER HELPERS
@@ -576,57 +990,52 @@ function doLogin(){
   $('#loginScreen').style.display='none';
   $('#appShell').style.display='grid';
   state.screen = DEFAULT_SCREEN[state.role];
+  if(!canAccess(state.screen)) state.screen = firstAllowedScreen();
   buildShell(); render();
 }
-let activeLoginRole='candidate';
-document.querySelectorAll('#loginTabs .login-tab').forEach(tab=>{
-  tab.onclick=()=>{
-    document.querySelectorAll('#loginTabs .login-tab').forEach(t=>t.classList.remove('active'));
-    tab.classList.add('active');
-    state.role=tab.dataset.role;
-    const lbl={candidate:'Roll Number',admin:'Admin ID',sme:'SME Login ID'}[state.role];
-    $('#idLabel').textContent=lbl;
-    const ph={candidate:'e.g. NRE2026100482',admin:'e.g. ADM-CTRL-01',sme:'e.g. SME-SCI-04'}[state.role];
-    $('#loginId').placeholder=ph;
-  };
-});
+buildProfiles();
 
 function buildShell(){
-  // role pills
-  $('#rolePills').innerHTML = Object.keys(T).map(r=>{
-    const u=USERS[r];
-    return `<button class="role-pill ${r===state.role?'active':''}" onclick="switchRole('${r}')">
-      <span class="ic">${svg(r==='candidate'?ICN.user:r==='admin'?ICN.dash:ICN.review)}</span>
-      <span>${T[r]}<small>${u.meta}</small></span>
-    </button>`;
-  }).join('');
+  const s=state.session||USERS[state.role];
+  // sidebar shows role + access scope only (name lives in the top-right chip)
+  const rt=$('#roleTag');
+  if(rt) rt.innerHTML = `${svg(state.role==='candidate'?ICN.user:state.role==='admin'?ICN.dash:ICN.review)} ${roleLabel(state.role)}`;
+  const n=sessionModules().length;
+  const sc=$('#suScope'); if(sc) sc.textContent = `Access scope · ${n} module${n>1?'s':''}`;
   buildNav();
   buildSpine();
-  const u=USERS[state.role];
-  $('#chipName').textContent=u.name; $('#chipMeta').textContent=u.meta;
-  $('#chipAv').textContent=u.name[0];
+  $('#chipName').textContent=s.name; $('#chipMeta').textContent=s.sub||s.meta||'';
+  const av=$('#chipAv'); av.textContent=s.av||(s.name||'?')[0]; if(s.color) av.style.background=s.color;
 }
-function switchRole(r){
-  state.role=r; state.screen=DEFAULT_SCREEN[r];
-  buildShell(); render(); toggleSidebar(false);
+function signOut(){
+  $('#appShell').style.display='none';
+  $('#loginScreen').style.display='grid';
+  state.screen=null;
+  ['#loginId','#loginPwd'].forEach(sel=>{const el=$(sel); if(el) el.value='';});
+  const e=$('#loginErr'); if(e){ e.textContent=''; e.style.display='none'; }
+  buildProfiles(); toggleSidebar(false); window.scrollTo(0,0);
 }
 function buildNav(){
   const groups=NAV[state.role];
-  $('#navList').innerHTML=groups.map(g=>`
-    <div class="grp">${g.grp}</div>
-    ${g.items.map(it=>{
+  $('#navList').innerHTML=groups.map(g=>{
+    const items=g.items.filter(it=>canAccess(it.id));
+    if(!items.length) return '';
+    return `<div class="grp">${g.grp}</div>`+items.map(it=>{
       let badgeHtml='';
       if(state.role==='admin' && it.id==='manage'){ const p=state.queue.filter(o=>o.status==='pending'||o.status==='review').length; if(p) badgeHtml=`<span class="badge">${p}</span>`; }
       if(state.role==='sme' && it.id==='assigned'){ const p=smeQueue().filter(o=>o.status==='review'||o.status==='pending').length; if(p) badgeHtml=`<span class="badge">${p}</span>`; }
       return `<button class="nav-item ${it.id===state.screen?'active':''}" onclick="goScreen('${it.id}')">
         <span class="ni">${svg(it.ic)}</span><span>${it.t}</span>${badgeHtml}</button>`;
-    }).join('')}
-  `).join('');
+    }).join('');
+  }).join('');
 }
-function goScreen(id){ state.screen=id; buildNav(); render(); toggleSidebar(false); window.scrollTo(0,0); }
+function goScreen(id){
+  if(!canAccess(id)){ toast('Access denied — your role cannot open that module.'); return; }
+  state.screen=id; buildNav(); render(); toggleSidebar(false); window.scrollTo(0,0); }
 function toggleSidebar(open){ $('#sidebar').classList.toggle('open',open); $('#scrim').classList.toggle('open',open); }
 
 function buildSpine(){
+  const el=$('#spine'); if(!el) return;   // spine removed from topbar → progress is now exam-level
   const p=state.pipeline;
   const stage=(k,label,sub,ic)=>{
     const cls=p[k]==='done'?'done':p[k]==='active'?'active':'';
@@ -638,10 +1047,33 @@ function buildSpine(){
     const flowing = state.pipeline[b]==='active' && state.pipeline[a]==='done';
     return `<div class="conn ${lit?'lit':''} ${flowing?'flowing':''}"><span class="flow"></span></div>`;
   };
-  $('#spine').innerHTML =
+  el.innerHTML =
     stage('objection','Objection Tracker','',ICN.obj)+conn('objection','normalization')+
     stage('normalization','Normalization','',ICN.norm)+conn('normalization','scorecard')+
     stage('scorecard','Scorecard','',ICN.card);
+}
+/* ---- per-exam pipeline progress (replaces the old global header spine) ---- */
+function examPipeline(ex){
+  if(ex.primary) return { objection:state.pipeline.objection, normalization:state.pipeline.normalization, scorecard:state.pipeline.scorecard };
+  const obj = ex.status==='window' ? 'active' : 'done';
+  const norm = ex.normDone ? 'done' : (obj==='done' ? 'active' : 'idle');
+  const card = ex.scorecardReady ? 'done' : 'idle';
+  return { objection:obj, normalization:norm, scorecard:card };
+}
+function examPipeMini(ex){
+  const p=examPipeline(ex);
+  const step=(k,label)=>{ const c=p[k]==='done'?'done':p[k]==='active'?'active':''; return `<span class="ep-step ${c}"><span class="ep-dot"></span>${label}</span>`; };
+  return `<div class="et-pipe">
+    ${step('objection','Objection')}<span class="ep-line ${p.objection==='done'?'lit':''}"></span>
+    ${step('normalization','Normalize')}<span class="ep-line ${p.normalization==='done'?'lit':''}"></span>
+    ${step('scorecard','Scorecard')}
+  </div>`;
+}
+function examPipelineList(){
+  return EXAMS.map(ex=>`<div class="epx-row">
+    <div class="epx-name">${ex.name}${ex.primary?' <span class="epx-tag">primary</span>':''}</div>
+    ${examPipeMini(ex)}
+  </div>`).join('');
 }
 
 /* ============================================================
@@ -649,6 +1081,9 @@ function buildSpine(){
    ============================================================ */
 function render(){
   const r=state.role, s=state.screen;
+  const shell=$('#appShell');
+  if(shell) shell.classList.toggle('immersive', r==='candidate' && s==='questions' && state.paperStep===2);
+  if(s && !canAccess(s)){ $('#screen').innerHTML = notAuthorized(); if(window._afterRender){window._afterRender=null;} return; }
   const fn = (PAGES[r]&&PAGES[r][s]) || (()=>`<div class="empty">${svg(ICN.list)}<div>Screen not found.</div></div>`);
   $('#screen').innerHTML = fn();
   if(window._afterRender){ window._afterRender(); window._afterRender=null; }
@@ -672,7 +1107,7 @@ PAGES.candidate.dashboard = ()=>{
 
   <div class="grid cols-4" style="margin-bottom:18px">
     <div class="kpi"><div class="k-top"><div><div class="k-lbl">Provisional raw score</div></div><div class="k-ic">${svg(ICN.norm)}</div></div>
-      <div class="k-val">${computeRaw()}<small>/16</small></div><div class="k-foot">Before objections</div></div>
+      <div class="k-val">${computeRaw()}<small>/${maxMarks()}</small></div><div class="k-foot">Before objections</div></div>
     <div class="kpi accent-a"><div class="k-top"><div class="k-lbl">Objection window</div><div class="k-ic">${svg(ICN.clock)}</div></div>
       <div class="k-val" style="font-size:18px;padding-top:8px">${state.windowOpen?'Open':'Closed'}</div><div class="k-foot">Closes ${state.windowEnd}</div></div>
     <div class="kpi accent-g"><div class="k-top"><div class="k-lbl">Objections raised</div><div class="k-ic">${svg(ICN.obj)}</div></div>
@@ -715,63 +1150,186 @@ function trkRow(stt,title,sub,stamp){
 }
 
 PAGES.candidate.questions = ()=>{
-  const basketCount = state.objections.length;
-  const rows = state.questions.map(q=>{
-    const inBasket = state.objections.find(o=>o.q===q.n);
-    const attempted = !!q.chosen;
-    return `
-    <div class="qcard">
-      <div class="qhead">
-        <span class="qnum">Q${q.n}</span>
-        <span style="font-size:11px;font-family:'IBM Plex Mono';color:var(--muted);text-transform:uppercase;letter-spacing:.5px">${q.subject}</span>
-        ${attempted?'':'<span class="badge-st st-pending"><span class="bd"></span>Not Attempted</span>'}
-        ${inBasket?'<span style="margin-left:auto">'+badge('submitted')+'</span>':''}
-      </div>
-      <div class="qbody">
-        <div class="qstmt">${q.stmt}</div>
-        <div class="opts">
-          ${Object.entries(q.opts).map(([k,v])=>{
-            const isKey=k===q.key, isChosen=k===q.chosen;
-            return `<div class="opt ${isKey?'is-key':''} ${isChosen&&!isKey?'is-chosen':''}">
-              <span class="ok">${k}</span><span>${v}</span>
-              ${isKey?'<span class="tag">Official key</span>':isChosen?'<span class="tag">Your answer</span>':''}
-            </div>`;
-          }).join('')}
-        </div>
-      </div>
-      <div class="qfoot">
-        ${q.chosen===q.key
-          ? '<span class="badge-st st-accepted"><span class="bd"></span>Matches key</span>'
-          : attempted ? '<span class="badge-st st-rejected"><span class="bd"></span>Does not match key</span>'
-          : '<span class="badge-st st-pending"><span class="bd"></span>Unattempted</span>'}
-        <div style="margin-left:auto">
-        ${state.objSubmitted
-          ? '<span class="badge-st st-info"><span class="bd"></span>Objections locked</span>'
-          : inBasket
-            ? `<button class="btn btn-ghost btn-sm btn-rose" onclick="removeObjection(${q.n})">Remove objection</button>`
-            : state.windowOpen
-              ? `<button class="btn btn-ghost btn-sm" onclick="openObjModal(${q.n})">${svg(ICN.obj)} Raise objection</button>`
-              : '<span class="badge-st st-pending"><span class="bd"></span>Window closed</span>'}
-        </div>
-      </div>
-    </div>`;
-  }).join('');
+  if(state.paperStep===0) return paperCover();
+  if(state.paperStep===1) return paperInstructions();
+  return paperGrid();
+};
+function openPaper(){ state.paperStep=1; render(); window.scrollTo(0,0); }
+function backToCover(){ state.paperStep=0; render(); window.scrollTo(0,0); }
+function setConsent(v){ state.consent=v; const b=$('#proceedBtn'); if(b) b.disabled=!v; }
+function proceedToPaper(){ if(!state.consent) return; state.paperStep=2; state.paperSection=0; state.focusIdx=0; render(); window.scrollTo(0,0); }
 
+/* Step 0 — exam cover card */
+function paperCover(){
+  const e=state.exam;
   return `
   <div class="page-head">
-    <div class="eyebrow">Objection Tracker · Step 2</div>
-    <h1 class="title">Question paper review</h1>
-    <p class="lede">Every question is shown in the exact sequence you attempted it during the CBT, with your response and the official answer key side by side.</p>
+    <div class="eyebrow">Objection Tracker · Question Paper</div>
+    <h1 class="title">Your question paper</h1>
+    <p class="lede">Open your provisional question paper and answer key to review your responses and raise objections within the window.</p>
   </div>
-  ${basketCount && !state.objSubmitted ? `
-  <div class="card pad" style="margin-bottom:18px;display:flex;align-items:center;gap:16px;border-color:var(--brand);background:var(--brand-soft)">
-    <div class="k-ic" style="background:var(--brand);width:40px;height:40px;border-radius:10px;display:grid;place-items:center">${svg(ICN.obj,'stroke="#fff"')}</div>
-    <div><div style="font-family:'Archivo';font-weight:700">${basketCount} objection${basketCount>1?'s':''} ready to submit</div>
-      <div style="font-size:12.5px;color:var(--ink-2)">Fee: ₹${state.fee} × ${basketCount} = <b>₹${state.fee*basketCount}</b></div></div>
-    <button class="btn btn-primary" style="margin-left:auto" onclick="openReviewSubmit()">Review & pay →</button>
-  </div>`:''}
-  <div class="grid" style="gap:14px">${rows}</div>`;
-};
+  <button class="exam-cover" onclick="openPaper()">
+    <div class="xc-shift">${state.me.shift}</div>
+    <div class="xc-crest">${svg(ICN.list,'stroke="#fff"')}</div>
+    <div class="xc-body">
+      <div class="xc-name">${e.name}</div>
+      <div class="xc-meta">
+        <span>${svg(ICN.cfg)} ${e.tier}</span>
+        <span>${svg(ICN.clock)} ${e.date}</span>
+        <span>${svg(ICN.list)} ${e.totalQ} questions · ${(e.sections||[]).length} sections × ${e.perSection||50}</span>
+      </div>
+      <div class="xc-cta">View question paper &amp; answer key <span>→</span></div>
+    </div>
+  </button>
+  <div class="note note-info" style="margin-top:18px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>The objection window is ${state.windowOpen?'<b>open</b> until '+state.windowEnd:'<b>closed</b>'}. Open the paper to review and ${state.windowOpen?'raise objections.':'view the official key.'}</span></div>`;
+}
+
+/* Step 1 — how to raise an objection + consent */
+function paperInstructions(){
+  return `
+  <div class="page-head">
+    <div class="eyebrow">Objection Tracker · Before you begin</div>
+    <h1 class="title">How to raise an objection</h1>
+    <p class="lede">Read the process and rules below, then accept the declaration to continue to your question paper.</p>
+  </div>
+  <div class="card pad">
+    <div class="sec-title">${svg(ICN.obj)} Objection process</div>
+    <ol class="steps-ol">
+      <li><b>Review each question</b> — your recorded answer is shown beside the official answer key.</li>
+      <li><b>Click “Raise objection”</b> on any question you wish to challenge.</li>
+      <li><b>Select a reason</b>, add your explanation and a supporting reference or document.</li>
+      <li><b>Add to basket</b> — you may object to more than one question.</li>
+      <li><b>Pay the fee</b> — ${state.feeModel==='flat'?'a one-time ₹'+state.fee+' per submission':'₹'+state.fee+' per objection'}; objections enter the review queue only after payment.</li>
+      <li><b>Track decisions</b> from the Objection Status tab — accepted objections update the key for everyone.</li>
+    </ol>
+    <div class="divider"></div>
+    <div class="sec-title">${svg(ICN.cfg)} Rules &amp; declaration</div>
+    <ul class="rules-ul">
+      <li>Objections may be raised only while the window is open (closes ${state.windowEnd}).</li>
+      <li>The fee is non-refundable for rejected objections; adjusted/refunded for accepted ones, per authority norms.</li>
+      <li>Once submitted and paid, objections are read-only to preserve audit integrity.</li>
+      <li>Frivolous or duplicate objections may be summarily rejected.</li>
+    </ul>
+    <label class="consent">
+      <input type="checkbox" id="consentChk" ${state.consent?'checked':''} onchange="setConsent(this.checked)">
+      <span>I have read and understood the objection process, the rules and the applicable fee. I declare that the information I submit will be true to the best of my knowledge.</span>
+    </label>
+    <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
+      <button class="btn btn-ghost" onclick="backToCover()">← Back</button>
+      <button class="btn btn-primary" id="proceedBtn" ${state.consent?'':'disabled'} onclick="proceedToPaper()" style="margin-left:auto">I agree — proceed to paper →</button>
+    </div>
+  </div>`;
+}
+
+/* Step 2 — the question paper (immersive: card / focus views) */
+function setQView(v){ state.qview=v; render(); window.scrollTo(0,0); }
+function sectionList(){ return state.exam.sections||[]; }
+function currentSectionQs(){ const s=sectionList()[state.paperSection]; return state.questions.filter(q=>q.subject===s); }
+function setSection(i){ state.paperSection=i; state.focusIdx=0; render(); window.scrollTo(0,0); }
+function focusNav(d){ const n=currentSectionQs().length; state.focusIdx=Math.max(0,Math.min(n-1,state.focusIdx+d)); render(); window.scrollTo(0,0); }
+function focusGo(i){ state.focusIdx=i; render(); window.scrollTo(0,0); }
+function exitPaper(){ goScreen('dashboard'); }
+
+function renderQCard(q){
+  const inBasket = state.objections.find(o=>o.q===q.n);
+  const attempted = !!q.chosen;
+  return `
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">Q${q.n}</span>
+      <span style="font-size:11px;font-family:'IBM Plex Mono';color:var(--muted);text-transform:uppercase;letter-spacing:.5px">${q.subject}</span>
+      ${attempted?'':'<span class="badge-st st-pending"><span class="bd"></span>Not Attempted</span>'}
+      ${inBasket?'<span style="margin-left:auto">'+badge('submitted')+'</span>':''}
+    </div>
+    <div class="qbody">
+      <div class="qstmt">${q.stmt}</div>
+      <div class="opts">
+        ${Object.entries(q.opts).map(([k,v])=>{
+          const isKey=k===q.key, isChosen=k===q.chosen;
+          return `<div class="opt ${isKey?'is-key':''} ${isChosen&&!isKey?'is-chosen':''}">
+            <span class="ok">${k}</span><span>${v}</span>
+            ${isKey?'<span class="tag">Official key</span>':isChosen?'<span class="tag">Your answer</span>':''}
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+    <div class="qfoot">
+      ${q.chosen===q.key
+        ? '<span class="badge-st st-accepted"><span class="bd"></span>Matches key</span>'
+        : attempted ? '<span class="badge-st st-rejected"><span class="bd"></span>Does not match key</span>'
+        : '<span class="badge-st st-pending"><span class="bd"></span>Unattempted</span>'}
+      <div style="margin-left:auto">
+      ${state.objSubmitted
+        ? '<span class="badge-st st-info"><span class="bd"></span>Objections locked</span>'
+        : inBasket
+          ? `<button class="btn btn-ghost btn-sm btn-rose" onclick="removeObjection(${q.n})">Remove objection</button>`
+          : state.windowOpen
+            ? `<button class="btn btn-ghost btn-sm" onclick="openObjModal(${q.n})">${svg(ICN.obj)} Raise objection</button>`
+            : '<span class="badge-st st-pending"><span class="bd"></span>Window closed</span>'}
+      </div>
+    </div>
+  </div>`;
+}
+
+function paperBar(basketCount){
+  const card=state.qview!=='focus';
+  return `
+  <div class="paper-bar">
+    <button class="pb-exit" onclick="exitPaper()">${svg('<path d="M19 12H5M12 19l-7-7 7-7"/>')} Exit</button>
+    <div class="pb-title">${state.exam.name}<small>Provisional key · ${state.me.shift}</small></div>
+    <div class="view-toggle">
+      <button class="${card?'on':''}" onclick="setQView('card')">${svg('<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>')} Card</button>
+      <button class="${!card?'on':''}" onclick="setQView('focus')">${svg('<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/>')} Focus</button>
+    </div>
+    <button class="btn btn-ghost btn-sm pb-rules" onclick="state.paperStep=1;render()">${svg(ICN.review)} Rules</button>
+    ${basketCount && !state.objSubmitted
+      ? `<button class="btn btn-primary btn-sm pb-pay" onclick="openReviewSubmit()">${svg(ICN.obj,'stroke="#fff"')} Basket (${basketCount}) · ₹${objectionTotal(basketCount)}</button>`
+      : ''}
+  </div>`;
+}
+
+function sectionTabs(){
+  const secs=sectionList();
+  return `<div class="sec-tabs">${secs.map((s,i)=>{
+    const qs=state.questions.filter(q=>q.subject===s);
+    const objs=state.objections.filter(o=>{const qq=state.questions.find(x=>x.n===o.q);return qq&&qq.subject===s;}).length;
+    return `<button class="sec-tab ${i===state.paperSection?'on':''}" onclick="setSection(${i})">
+      <span class="st-name">${s}</span>
+      <span class="st-meta">${qs.length} questions${objs?` · ${objs} objection${objs>1?'s':''}`:''}</span>
+    </button>`;
+  }).join('')}</div>`;
+}
+function cardView(){
+  return `<div class="q-grid">${currentSectionQs().map(renderQCard).join('')}</div>`;
+}
+function focusView(){
+  const qs=currentSectionQs(); const n=qs.length;
+  const i=Math.max(0,Math.min(n-1,state.focusIdx));
+  const q=qs[i];
+  const dots=qs.map((qq,idx)=>{
+    const ib=state.objections.find(o=>o.q===qq.n);
+    return `<button class="qdot ${idx===i?'cur':''} ${ib?'obj':''}" onclick="focusGo(${idx})">${qq.n}</button>`;
+  }).join('');
+  return `
+  <div class="focus-wrap">
+    <div class="focus-rail">${dots}</div>
+    <div class="focus-stage">
+      <div class="focus-count">${sectionList()[state.paperSection]} · Question ${i+1} <span>of ${n}</span></div>
+      ${renderQCard(q)}
+      <div class="focus-nav">
+        <button class="btn btn-ghost" ${i===0?'disabled':''} onclick="focusNav(-1)">${svg('<path d="M15 18l-6-6 6-6"/>')} Previous</button>
+        <div class="focus-prog">${i+1} / ${n}</div>
+        <button class="btn btn-ghost" ${i===n-1?'disabled':''} onclick="focusNav(1)">Next ${svg('<path d="M9 18l6-6-6-6"/>')}</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function paperGrid(){
+  const basketCount = state.objections.length;
+  const body = state.qview==='focus' ? focusView() : cardView();
+  return paperBar(basketCount) + sectionTabs() + body;
+}
 
 /* ----- objection modal ----- */
 let pendingQ=null, pendingFile=null;
@@ -835,7 +1393,7 @@ function closeModal(){ $('#overlay').classList.remove('open'); }
 /* ----- review & submit ----- */
 function openReviewSubmit(){
   const items=state.objections;
-  const total=items.length*state.fee;
+  const total=objectionTotal(items.length);
   $('#modal').innerHTML=`
     <div class="modal-head">
       <div class="mh-ic" style="background:var(--brand-soft)">${svg(ICN.fee,'stroke="var(--brand)"')}</div>
@@ -849,7 +1407,7 @@ function openReviewSubmit(){
       </table>
       <div class="card pad" style="background:var(--surface-2);box-shadow:none">
         <div class="kv"><span class="k">Total objections</span><span class="v">${items.length}</span></div>
-        <div class="kv"><span class="k">Objection fee per question</span><span class="v">₹${state.fee}</span></div>
+        <div class="kv"><span class="k">${feeModelLabel()}</span><span class="v">₹${state.fee}</span></div>
         <div class="kv" style="border-top:2px solid var(--line);margin-top:4px;padding-top:12px"><span class="k" style="font-weight:700;color:var(--ink)">Total payable</span><span class="v" style="font-size:17px;color:var(--brand)">₹${total}</span></div>
       </div>
       <div class="note note-warn" style="margin-top:16px">${svg('<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>')}<span>Once paid, objections become read-only to preserve audit integrity. You cannot edit or add to them afterwards.</span></div>
@@ -862,12 +1420,12 @@ function openReviewSubmit(){
 }
 let payMethod='UPI';
 function openPayment(){
-  const total=state.objections.length*state.fee;
+  const total=objectionTotal(state.objections.length);
   const methods=[['UPI','🇮🇳'],['Debit / Credit Card','💳'],['Net Banking','🏦'],['Wallet','👛']];
   $('#modal').innerHTML=`
     <div class="modal-head">
       <div class="mh-ic" style="background:var(--verify-soft)">${svg(ICN.money,'stroke="var(--verify)"')}</div>
-      <div><h3>Secure payment</h3><p>Payable: <b>₹${total}</b> · NREMS Payment Gateway</p></div>
+      <div><h3>Secure payment</h3><p>Payable: <b>₹${total}</b> · Hubblehox Payment Gateway</p></div>
       <button class="close" onclick="closeModal()">${svg('<path d="M18 6 6 18M6 6l12 12"/>')}</button>
     </div>
     <div class="modal-body">
@@ -901,7 +1459,7 @@ function completePayment(){
       <p style="color:var(--muted);font-size:13.5px;margin-top:6px">Your objections have been submitted for SME review.</p>
       <div class="card pad" style="text-align:left;margin-top:20px;background:var(--surface-2);box-shadow:none">
         <div class="kv"><span class="k">Objection ID</span><span class="v">${state.objId}</span></div>
-        <div class="kv"><span class="k">Amount paid</span><span class="v">₹${state.objections.length*state.fee}</span></div>
+        <div class="kv"><span class="k">Amount paid</span><span class="v">₹${objectionTotal(state.objections.length)}</span></div>
         <div class="kv"><span class="k">Method</span><span class="v" style="font-family:inherit">${payMethod}</span></div>
         <div class="kv"><span class="k">Status</span><span class="v" style="font-family:inherit">${badge('review')}</span></div>
       </div>
@@ -957,6 +1515,11 @@ PAGES.candidate.scorecard = ()=>{
     `<div class="card"><div class="empty">${svg(ICN.card)}<div style="font-weight:600;color:var(--ink)">Scorecard not yet available</div>
       <div style="margin-top:6px;max-width:42ch;margin-left:auto;margin-right:auto">The Exam Authority publishes scorecards after all objections are resolved and normalization is complete. You'll be notified here.</div></div></div>`;
   }
+  if(!state.scoreLive){
+    return pageHead('Final Result','My Scorecard','Your scorecard has been generated and is scheduled for release.')+
+    `<div class="card"><div class="empty">${svg(ICN.clock)}<div style="font-weight:600;color:var(--ink)">Scorecard goes live on ${state.scoreLiveStart}, ${state.scoreLiveStartTime}</div>
+      <div style="margin-top:6px;max-width:44ch;margin-left:auto;margin-right:auto">Your verified scorecard is ready and will become available to download at the scheduled go-live time.</div></div></div>`;
+  }
   const s=state.scores;
   return pageHead('Final Result','Your scorecard is available','Verified, digitally signed and downloadable.')+`
   <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap">
@@ -972,11 +1535,11 @@ function scorecardMarkup(s){
     <div class="sc-head">
       <div class="crest">${svg('<path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/>','stroke="#cfe0f5" stroke-width="1.4"')}</div>
       <div>
-        <div class="gov">Government of India · National Recruitment Authority</div>
+        <div class="gov">Examination Authority · Verified via Hubblehox OMS</div>
         <h2>Provisional Scorecard</h2>
         <div class="ex">${state.exam.name} · ${state.exam.tier}</div>
       </div>
-      <div class="ver">Version ${s.version}.0<br>Issued 28 Feb 2026<br>${state.objId||'NRE2026100482'}</div>
+      <div class="ver">Version ${s.version}.0<br>Issued 28 Feb 2026<br>${state.objId||'PCM2026100482'}</div>
     </div>
     <div class="sc-body">
       <div class="sc-sec-lbl">Candidate details</div>
@@ -1002,7 +1565,7 @@ function scorecardMarkup(s){
         <div class="qr"><div class="qrbox">${qrSvg()}</div><small>Scan to verify</small></div>
       </div>
     </div>
-    <div class="sc-foot">${svg(ICN.check)} Digitally signed by National Recruitment Authority · Verification ID NRA-${state.me.roll.slice(-6)}-V${s.version} · Tamper-evident QR enabled.</div>
+    <div class="sc-foot">${svg(ICN.check)} Digitally signed by the Examination Authority · Issued on Hubblehox OMS · Verification ID HBX-${state.me.roll.slice(-6)}-V${s.version} · Tamper-evident QR enabled.</div>
   </div>`;
 }
 function qrSvg(){
@@ -1037,9 +1600,9 @@ PAGES.admin.dashboard = ()=>{
   </div>
   <div class="grid cols-2">
     <div class="card pad">
-      <div class="sec-title">${svg(ICN.flow)} Pipeline status</div>
-      <div class="sec-sub">Where the result data currently sits.</div>
-      ${pipelineMini()}
+      <div class="sec-title">${svg(ICN.flow)} Pipeline by exam</div>
+      <div class="sec-sub">Objection → normalization → scorecard progress for each exam.</div>
+      ${examPipelineList()}
       <div class="divider"></div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <button class="btn btn-ghost btn-sm" onclick="goScreen('manage')">Manage objections</button>
@@ -1108,14 +1671,14 @@ PAGES.admin.pipeline = ()=>{
       <div class="tracker">
         ${trkRow(allResolved()?'done':'current','Resolve all objections', allResolved()?'Every objection has an SME decision.':pendCount()+' objection(s) still open.', '')}
         ${trkRow(state.reEvalDone?'done':'idle','Re-evaluate raw scores','Accepted key changes ripple to all impacted candidates.','')}
-        ${trkRow(state.normDone?'done':'idle','Run normalization','Equate scores across both shifts.','')}
+        ${trkRow(state.normDone?'done':'idle','Run normalization','Equate scores across all 8 shifts.','')}
         ${trkRow(state.scorecardReady?'done':'idle','Publish scorecards','Generate and release verified PDFs.','')}
       </div>
     </div>
     <div class="card pad">
       <div class="sec-title">${svg(ICN.cfg)} Single-shift behaviour</div>
       <div class="sec-sub">How the engine adapts to exam structure.</div>
-      <div class="note note-info" style="margin-bottom:12px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>This exam ran across <b>2 shifts</b>, so the Normalization Engine is engaged.</span></div>
+      <div class="note note-info" style="margin-bottom:12px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>This exam ran across <b>8 shifts</b>, so the Normalization Engine is engaged.</span></div>
       <div class="note note-warn">${svg('<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>')}<span>If an exam has only one shift, normalization is skipped and raw scores become final scores automatically.</span></div>
     </div>
   </div>`;
@@ -1123,53 +1686,130 @@ PAGES.admin.pipeline = ()=>{
 function allResolved(){ return state.queue.every(o=>o.status==='accepted'||o.status==='rejected'); }
 function pendCount(){ return state.queue.filter(o=>o.status==='pending'||o.status==='review').length; }
 
+/* ---- fee model helpers (candidate context = primary exam globals) ---- */
+function objectionTotal(count){ return state.feeModel==='flat' ? state.fee : state.fee*count; }
+function feeModelLabel(){ return state.feeModel==='flat' ? 'One-time flat fee' : 'Per-question fee'; }
+
+/* ---- multi-exam catalogue ----
+   The primary exam (nre) is the fully-wired one; its config lives in the global
+   state fields so the candidate flow stays consistent. Other exams carry their
+   own config so admins can manage at least four exams from one view. */
+const EXAMS = [
+  { id:'pcm', primary:true, name:state.exam.name, tier:state.exam.tier, date:state.exam.date, totalQ:state.exam.totalQ, marksPer:state.exam.marksPer, negMark:state.exam.negMark, sections:state.exam.sections, perSection:50, shifts:8, candidates:'2,00,000', status:'live' },
+  { id:'pcb', name:'PCB — Physics · Chemistry · Biology', tier:'Entrance · CBT', date:'15 Feb 2026', totalQ:150, marksPer:2, negMark:0.5, sections:['Physics','Chemistry','Biology'], perSection:50, shifts:8, candidates:'2,00,000', status:'window',
+    windowOpen:true, windowStart:'21 Feb 2026', windowEnd:'28 Feb 2026', windowStartTime:'10:00 AM', windowEndTime:'05:00 PM', fee:500, feeModel:'per', normDone:false,
+    scoreLiveStart:'05 Mar 2026', scoreLiveStartTime:'12:00 PM', scoreLiveEnd:'03 Apr 2026', scoreLiveEndTime:'11:59 PM', scoreLive:false, scorecardReady:false,
+    shiftStats:[
+      {shift:'Shift 1',cnt:25010,mean:212,sd:40,topRaw:293},{shift:'Shift 2',cnt:24870,mean:206,sd:42,topRaw:290},
+      {shift:'Shift 3',cnt:25140,mean:218,sd:38,topRaw:296},{shift:'Shift 4',cnt:24990,mean:204,sd:43,topRaw:289},
+      {shift:'Shift 5',cnt:25080,mean:211,sd:40,topRaw:292},{shift:'Shift 6',cnt:24820,mean:215,sd:39,topRaw:295},
+      {shift:'Shift 7',cnt:25160,mean:207,sd:41,topRaw:291},{shift:'Shift 8',cnt:24930,mean:202,sd:43,topRaw:288}
+    ] }
+];
+function selectedExam(){ return EXAMS.find(e=>e.id===state.selectedExamId)||EXAMS[0]; }
+/* config router: primary exam → global state, others → exam object */
+function getCfg(k){ const ex=selectedExam(); return ex.primary?state[k]:ex[k]; }
+function setCfg(k,v){ const ex=selectedExam(); if(ex.primary) state[k]=v; else ex[k]=v; }
+function examShifts(ex){ return ex.primary ? state.shiftStats : ex.shiftStats; }
+const EXAM_STATUS = {
+  live:['info','Pipeline active'], window:['info','Window open'], upcoming:['pending','Upcoming'],
+  normalize:['review','Normalization due'], published:['accepted','Published']
+};
+
+/* ---- admin: exam-card gate (grid of all exams) ---- */
+const ADMIN_GATE = {
+  window:{ eyebrow:'Objection Tracker · Configuration', title:'Select an exam', lede:'Choose an exam to configure its objection window (start/end date &amp; time) and fee — one-time or per-question.', cta:'Configure window &amp; fee', icon:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' },
+  normalize:{ eyebrow:'Result Engine · Product 02', title:'Select an exam', lede:'Choose an exam to run cross-shift score normalization.', cta:'Open normalization', icon:'<path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 5-6"/>' },
+  publish:{ eyebrow:'Result Engine · Product 03', title:'Select an exam', lede:'Choose an exam to set its scorecard live-release window and publish verified scorecards.', cta:'Open scorecard publishing', icon:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/>' },
+  reports:{ eyebrow:'Reports', title:'Select an exam', lede:'Choose an exam to view and download its objection, fee, normalization and result reports.', cta:'Open reports', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/>' }
+};
+function adminExamCard(screen){
+  const g=ADMIN_GATE[screen];
+  const cards = EXAMS.map(e=>{
+    const [bd,lbl]=EXAM_STATUS[e.status]||EXAM_STATUS.upcoming;
+    return `<button class="exam-tile" onclick="enterExam('${screen}','${e.id}')">
+      <div class="et-top"><span class="et-ic">${svg(g.icon,'stroke="#fff"')}</span>${badge(bd)}</div>
+      <div class="et-name">${e.name}</div>
+      <div class="et-meta">
+        <span>${svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>')} ${e.date}</span>
+        <span>${svg(ICN.list)} ${e.totalQ} Q · ${(e.sections||[]).length} sec</span>
+        <span>${svg(ICN.dash)} ${e.shifts} shifts</span>
+        <span>${svg(ICN.user)} ${e.candidates}</span>
+      </div>
+      ${examPipeMini(e)}
+      <div class="et-foot"><span class="et-tier">${e.tier}</span><span class="et-cta">${g.cta} →</span></div>
+    </button>`;
+  }).join('');
+  return pageHead(g.eyebrow,g.title,g.lede)+`<div class="exam-grid">${cards}</div>
+  <div class="note note-info" style="margin-top:18px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>${EXAMS.length} exams managed on Hubblehox OMS. Select any exam to ${screen==='normalize'?'open its normalization engine.':'edit its window and fee.'}</span></div>`;
+}
+function enterExam(s,id){ if(id) state.selectedExamId=id; state.examGate[s]=true; render(); window.scrollTo(0,0); }
+function backToExamCard(s){ state.examGate[s]=false; render(); window.scrollTo(0,0); }
+function examBackBar(screen){
+  return `<div style="display:flex;gap:10px;margin:-4px 0 16px;flex-wrap:wrap;align-items:center">
+    <button class="btn btn-ghost btn-sm" onclick="backToExamCard('${screen}')">${svg('<path d="M19 12H5M12 19l-7-7 7-7"/>')} All exams</button>
+    <span style="font-family:'Archivo';font-weight:700;font-size:13px;color:var(--ink)">${selectedExam().name}</span>
+  </div>`;
+}
+
 PAGES.admin.window = ()=>{
-  return pageHead('Objection Tracker · Config','Objection window','Open or close the objection window and set the active period.')+`
-  <div class="grid cols-2">
+  if(!state.examGate.window) return adminExamCard('window');
+  const perActive = getCfg('feeModel')!=='flat';
+  const ex=selectedExam();
+  return pageHead('Objection Tracker · Config','Window &amp; fee configuration','Set the objection window schedule and the fee charged to candidates.')+examBackBar('window')+`
+  <div class="grid cols-2" style="margin-bottom:18px">
     <div class="card pad">
       <div class="sec-title">${svg(ICN.clock)} Window control</div>
       <div class="sec-sub">Candidates can only raise objections while the window is open.</div>
       <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)">
-        <div><b style="font-family:'Archivo'">Objection window</b><div style="font-size:12px;color:var(--muted)">Currently ${state.windowOpen?'accepting objections':'closed'}</div></div>
-        <div class="toggle ${state.windowOpen?'on':''}" onclick="state.windowOpen=!state.windowOpen;render();buildShell();toast('Window '+(state.windowOpen?'opened':'closed')+'.')"></div>
+        <div><b style="font-family:'Archivo'">Objection window</b><div style="font-size:12px;color:var(--muted)">Currently ${getCfg('windowOpen')?'accepting objections':'closed'}</div></div>
+        <div class="toggle ${getCfg('windowOpen')?'on':''}" onclick="setCfg('windowOpen',!getCfg('windowOpen'));render();buildShell();toast('Window '+(getCfg('windowOpen')?'opened':'closed')+'.')"></div>
       </div>
-      <div class="field" style="margin-top:16px"><label>Start date</label><input class="inp" value="${state.windowStart}" onchange="state.windowStart=this.value"></div>
-      <div class="field"><label>End date</label><input class="inp" value="${state.windowEnd}" onchange="state.windowEnd=this.value"></div>
-      <button class="btn btn-primary" onclick="toast('Window schedule saved.')">Save schedule</button>
+      <div class="field" style="margin-top:16px"><label>Start date</label><input class="inp" value="${getCfg('windowStart')}" onchange="setCfg('windowStart',this.value)"></div>
+      <div class="field"><label>Start time</label><input class="inp" value="${getCfg('windowStartTime')}" onchange="setCfg('windowStartTime',this.value)"></div>
+      <div class="field"><label>End date</label><input class="inp" value="${getCfg('windowEnd')}" onchange="setCfg('windowEnd',this.value)"></div>
+      <div class="field"><label>End time</label><input class="inp" value="${getCfg('windowEndTime')}" onchange="setCfg('windowEndTime',this.value)"></div>
+      <button class="btn btn-primary" onclick="render();toast('Window schedule saved.')">Save schedule</button>
     </div>
     <div class="card pad">
-      <div class="sec-title">${svg(ICN.dash)} Current state</div>
-      <div class="sec-sub">What candidates see right now.</div>
-      <div class="kv"><span class="k">Status</span><span class="v" style="font-family:inherit">${state.windowOpen?badge('info'):badge('rejected')}</span></div>
-      <div class="kv"><span class="k">Active period</span><span class="v" style="font-size:12px">${state.windowStart} – ${state.windowEnd}</span></div>
-      <div class="kv"><span class="k">Objections received</span><span class="v">${state.queue.length}</span></div>
-      <div class="kv"><span class="k">Fee per question</span><span class="v">₹${state.fee}</span></div>
-      <div class="note note-info" style="margin-top:16px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>Closing the window immediately removes the “Raise objection” action from every candidate’s paper.</span></div>
-    </div>
-  </div>`;
-};
-
-PAGES.admin.fee = ()=>{
-  return pageHead('Objection Tracker · Config','Fee configuration','Set the per-question objection fee charged before SME review.')+`
-  <div class="grid cols-2">
-    <div class="card pad">
-      <div class="sec-title">${svg(ICN.fee)} Per-question fee</div>
-      <div class="sec-sub">Charged for each question a candidate objects to.</div>
-      <div class="field"><label>Fee amount (₹)</label>
-        <input class="inp mono" id="feeInp" type="number" value="${state.fee}" style="font-size:18px;font-weight:600"></div>
+      <div class="sec-title">${svg(ICN.fee)} Objection fee</div>
+      <div class="sec-sub">Choose how the objection fee is calculated.</div>
+      <div class="fee-modes">
+        <button class="fee-mode ${perActive?'on':''}" onclick="setCfg('feeModel','per');render()">
+          <div class="fm-t">Per question</div>
+          <div class="fm-d">Charge the fee for <b>each</b> question objected to. Total = fee × objections.</div>
+        </button>
+        <button class="fee-mode ${!perActive?'on':''}" onclick="setCfg('feeModel','flat');render()">
+          <div class="fm-t">One-time (flat)</div>
+          <div class="fm-d">A single flat fee per submission, regardless of number of objections.</div>
+        </button>
+      </div>
+      <div class="field" style="margin-top:18px"><label>${perActive?'Fee per question':'Flat submission fee'} (₹)</label>
+        <input class="inp mono" id="feeInp" type="number" value="${getCfg('fee')}" style="font-size:18px;font-weight:600"></div>
       <div style="display:flex;gap:8px;margin-bottom:16px">
         ${[200,500,750,1000].map(f=>`<button class="btn btn-ghost btn-sm" onclick="document.getElementById('feeInp').value=${f}">₹${f}</button>`).join('')}
       </div>
-      <button class="btn btn-primary" onclick="state.fee=+document.getElementById('feeInp').value||500;render();toast('Fee updated to ₹'+state.fee+'.')">Save fee</button>
+      <button class="btn btn-primary" onclick="setCfg('fee',+document.getElementById('feeInp').value||500);render();toast('Fee saved.')">Save fee</button>
     </div>
-    <div class="card pad">
-      <div class="sec-title">${svg(ICN.money)} Revenue projection</div>
-      <div class="sec-sub">Based on objections received so far.</div>
-      <div class="kv"><span class="k">Objections received</span><span class="v">${state.queue.length}</span></div>
-      <div class="kv"><span class="k">Current fee</span><span class="v">₹${state.fee}</span></div>
-      <div class="kv" style="border-top:2px solid var(--line);padding-top:12px"><span class="k" style="font-weight:700;color:var(--ink)">Revenue collected</span><span class="v" style="color:var(--brand);font-size:16px">₹${(state.queue.length*state.fee).toLocaleString('en-IN')}</span></div>
-      <div class="note note-info" style="margin-top:16px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>Payment is mandatory — objections enter the SME queue only after the fee is paid.</span></div>
+  </div>
+  <div class="card pad">
+    <div class="sec-title">${svg(ICN.dash)} Current configuration</div>
+    <div class="sec-sub">Live settings for ${ex.name}.</div>
+    <div class="grid cols-2" style="gap:0 30px">
+      <div>
+        <div class="kv"><span class="k">Window status</span><span class="v" style="font-family:inherit">${getCfg('windowOpen')?badge('info'):badge('rejected')}</span></div>
+        <div class="kv"><span class="k">Opens</span><span class="v" style="font-size:12px">${getCfg('windowStart')}, ${getCfg('windowStartTime')}</span></div>
+        <div class="kv"><span class="k">Closes</span><span class="v" style="font-size:12px">${getCfg('windowEnd')}, ${getCfg('windowEndTime')}</span></div>
+        <div class="kv"><span class="k">Candidates</span><span class="v">${ex.candidates}</span></div>
+      </div>
+      <div>
+        <div class="kv"><span class="k">Fee model</span><span class="v" style="font-family:inherit">${badge('info')}&nbsp;${getCfg('feeModel')==='flat'?'One-time flat fee':'Per-question fee'}</span></div>
+        <div class="kv"><span class="k">${perActive?'Fee per question':'Flat fee'}</span><span class="v">₹${getCfg('fee')}</span></div>
+        <div class="kv"><span class="k">Example · 3 objections</span><span class="v">₹${getCfg('feeModel')==='flat'?getCfg('fee'):getCfg('fee')*3}</span></div>
+        <div class="kv"><span class="k">Shifts</span><span class="v">${ex.shifts}</span></div>
+      </div>
     </div>
+    <div class="note note-info" style="margin-top:14px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>${ex.primary?'Closing the window removes the “Raise objection” action from every candidate\'s paper. Fee changes apply to new submissions.':'Settings for '+ex.name+' are saved on Hubblehox OMS.'}</span></div>
   </div>`;
 };
 
@@ -1229,9 +1869,13 @@ function assignSme(id){
 }
 
 PAGES.admin.normalize = ()=>{
+  if(!state.examGate.normalize) return adminExamCard('normalize');
+  return selectedExam().primary ? normalizePrimary() : normalizeOther(selectedExam());
+};
+function normalizePrimary(){
   const canRun = allResolved();
   const stats=state.shiftStats;
-  return pageHead('Result Engine · Product 02','Score normalization','Equate raw scores across shifts so candidates are judged fairly despite differing paper difficulty.')+`
+  return pageHead('Result Engine · Product 02','Score normalization','Equate raw scores across shifts so candidates are judged fairly despite differing paper difficulty.')+examBackBar('normalize')+`
   ${!canRun?`<div class="note note-warn" style="margin-bottom:18px">${svg('<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>')}<span><b>Normalization is locked.</b> ${pendCount()} objection(s) are still open. Resolve every objection so the answer key is final before running.</span></div>`:''}
   <div class="card pad" style="margin-bottom:18px">
     <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
@@ -1261,12 +1905,40 @@ PAGES.admin.normalize = ()=>{
           <td class="mono">${state.reEvalDone?computeRaw():computeRaw()}</td>
           <td class="mono">${state.normDone?computeNormalized(computeRaw()):'—'}</td>
           <td>${state.normDone?deltaTag(computeNormalized(computeRaw())-computeRaw()):'<span style="color:var(--muted)">pending</span>'}</td></tr>
-        <tr><td>Priya Nair</td><td>Shift 1 (Morning)</td><td class="mono">12.00</td><td class="mono">${state.normDone?'11.18':'—'}</td><td>${state.normDone?deltaTag(-0.82):'<span style="color:var(--muted)">pending</span>'}</td></tr>
-        <tr><td>Imran Q.</td><td>Shift 2 (Afternoon)</td><td class="mono">9.50</td><td class="mono">${state.normDone?'10.74':'—'}</td><td>${state.normDone?deltaTag(1.24):'<span style="color:var(--muted)">pending</span>'}</td></tr>
+        <tr><td>Priya Nair</td><td>Shift 1</td><td class="mono">248.00</td><td class="mono">${state.normDone?'239.40':'—'}</td><td>${state.normDone?deltaTag(-8.60):'<span style="color:var(--muted)">pending</span>'}</td></tr>
+        <tr><td>Imran Q.</td><td>Shift 5</td><td class="mono">231.00</td><td class="mono">${state.normDone?'242.10':'—'}</td><td>${state.normDone?deltaTag(11.10):'<span style="color:var(--muted)">pending</span>'}</td></tr>
       </tbody>
     </table>
   </div>`;
-};
+}
+function normalizeOther(ex){
+  const stats=ex.shiftStats||[];
+  const done=ex.normDone;
+  return pageHead('Result Engine · Product 02','Score normalization','Equate raw scores across shifts so candidates are judged fairly despite differing paper difficulty.')+examBackBar('normalize')+`
+  <div class="card pad" style="margin-bottom:18px">
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <div><div class="sec-title" style="margin-bottom:2px">${svg(ICN.norm)} Run the engine</div>
+        <div style="font-size:13px;color:var(--muted)">${ex.name} · ${ex.candidates} candidates across ${ex.shifts} shifts</div></div>
+      <button class="btn ${!done?'btn-green':'btn-ghost'}" ${done?'disabled':''} style="margin-left:auto" onclick="runNormalizationOther('${ex.id}')">
+        ${done?svg(ICN.check)+' Completed':svg(ICN.norm)+' Run normalization'}</button>
+    </div>
+    ${done?`<div class="note note-ok" style="margin-top:16px">${svg(ICN.check)}<span><b>Normalization complete.</b> Scores equated across ${stats.length} shifts for ${ex.name}.</span></div>`:`<div class="note note-info" style="margin-top:16px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>Running the engine equates raw scores across all ${ex.shifts} shifts to a common scale.</span></div>`}
+  </div>
+  <div class="grid cols-2" style="margin-bottom:18px">
+    ${stats.map(s=>`<div class="card pad">
+      <div style="font-family:'Archivo';font-weight:700;font-size:15px">${s.shift}</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:12px" class="mono">${s.cnt.toLocaleString('en-IN')} candidates</div>
+      <div class="kv"><span class="k">Mean raw</span><span class="v">${s.mean}</span></div>
+      <div class="kv"><span class="k">Std deviation</span><span class="v">${s.sd}</span></div>
+      <div class="kv"><span class="k">Top raw</span><span class="v">${s.topRaw}</span></div>
+    </div>`).join('')}
+  </div>`;
+}
+function runNormalizationOther(id){
+  const ex=EXAMS.find(e=>e.id===id); if(!ex) return;
+  toast('Normalization engine running…');
+  setTimeout(()=>{ ex.normDone=true; ex.status='published'; render(); toast('Normalization complete for '+ex.name+'.'); },1400);
+}
 function deltaTag(d){
   const up=d>=0; return `<span class="bardelta ${up?'up':'down'}">${up?'▲':'▼'} ${up?'+':''}${d.toFixed(2)}</span>`;
 }
@@ -1282,42 +1954,235 @@ function runNormalization(){
 }
 
 PAGES.admin.publish = ()=>{
+  if(!state.examGate.publish) return adminExamCard('publish');
+  return selectedExam().primary ? publishPrimary() : publishOther(selectedExam());
+};
+/* shared scorecard live-window config (routes to selected exam) */
+function scoreLiveCard(){
+  const ex=selectedExam();
+  return `<div class="card pad" style="margin-bottom:18px">
+    <div class="sec-title">${svg(ICN.clock)} Scorecard live window</div>
+    <div class="sec-sub">Set the period during which verified scorecards are available to candidates for ${ex.name}.</div>
+    <div class="grid cols-2" style="gap:0 30px">
+      <div>
+        <div class="field"><label>Live from — date</label><input class="inp" value="${getCfg('scoreLiveStart')}" onchange="setCfg('scoreLiveStart',this.value)"></div>
+        <div class="field"><label>Live from — time</label><input class="inp" value="${getCfg('scoreLiveStartTime')}" onchange="setCfg('scoreLiveStartTime',this.value)"></div>
+      </div>
+      <div>
+        <div class="field"><label>Live until — date</label><input class="inp" value="${getCfg('scoreLiveEnd')}" onchange="setCfg('scoreLiveEnd',this.value)"></div>
+        <div class="field"><label>Live until — time</label><input class="inp" value="${getCfg('scoreLiveEndTime')}" onchange="setCfg('scoreLiveEndTime',this.value)"></div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid var(--line);margin-top:6px">
+      <div><b style="font-family:'Archivo'">Scorecards live</b><div style="font-size:12px;color:var(--muted)">${getCfg('scoreLive')?'Visible to candidates now':'Hidden until go-live'}</div></div>
+      <div class="toggle ${getCfg('scoreLive')?'on':''}" onclick="setCfg('scoreLive',!getCfg('scoreLive'));render();toast('Scorecards '+(getCfg('scoreLive')?'set live':'hidden')+'.')"></div>
+    </div>
+    <div class="kv"><span class="k">Scheduled window</span><span class="v" style="font-size:12px">${getCfg('scoreLiveStart')}, ${getCfg('scoreLiveStartTime')} → ${getCfg('scoreLiveEnd')}, ${getCfg('scoreLiveEndTime')}</span></div>
+    <button class="btn btn-primary" style="margin-top:14px" onclick="render();toast('Scorecard live window saved for '+selectedExam().name+'.')">Save live window</button>
+  </div>`;
+}
+function publishPrimary(){
   const ready = state.normDone;
-  return pageHead('Result Engine · Product 03','Scorecard publishing','Generate verified scorecards from normalized scores and release them to candidates.')+`
+  return pageHead('Result Engine · Product 03','Scorecard publishing','Set the scorecard live window, then generate verified scorecards from normalized scores.')+examBackBar('publish')+
+  scoreLiveCard()+`
   ${!ready?`<div class="note note-warn" style="margin-bottom:18px">${svg('<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>')}<span><b>Publishing is locked.</b> Run the Normalization Engine first — scorecards need normalized scores.</span></div>`:''}
   <div class="card pad" style="margin-bottom:18px">
     <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-      <div><div class="sec-title" style="margin-bottom:2px">${svg(ICN.pub)} Generate & publish</div>
+      <div><div class="sec-title" style="margin-bottom:2px">${svg(ICN.pub)} Generate &amp; publish</div>
         <div style="font-size:13px;color:var(--muted)">Composes candidate details, normalized scores, cutoffs, QR verification.</div></div>
       <button class="btn ${ready&&!state.scorecardReady?'btn-green':'btn-ghost'}" ${(!ready||state.scorecardReady)?'disabled':''} style="margin-left:auto" onclick="publishScorecards()">
         ${state.scorecardReady?svg(ICN.check)+' Published':svg(ICN.pub)+' Publish scorecards'}</button>
     </div>
-    ${state.scorecardReady?`<div class="note note-ok" style="margin-top:16px">${svg(ICN.check)}<span><b>Scorecards published.</b> 18,402 candidates can now view and download. Switch to the Candidate role to see ${state.me.name}'s scorecard.</span></div>`:''}
+    ${state.scorecardReady?`<div class="note note-ok" style="margin-top:16px">${svg(ICN.check)}<span><b>Scorecards published.</b> Available ${state.scoreLive?'now':'from '+state.scoreLiveStart+', '+state.scoreLiveStartTime} until ${state.scoreLiveEnd}, ${state.scoreLiveEndTime} for 2,00,000 candidates. Switch to the Candidate role to see ${state.me.name}'s scorecard.</span></div>`:''}
   </div>
   <div class="grid cols-3" style="margin-bottom:18px">
-    ${kpi(ICN.user,'Candidates','18,402','scorecards to issue','')}
+    ${kpi(ICN.user,'Candidates','2,00,000','scorecards to issue','')}
     ${kpi(ICN.card,'Version',state.scores.version+'.0',state.scores.version>1?'regenerated':'first issue','')}
     ${kpi(ICN.check,'Status',state.scorecardReady?'Live':'Draft',state.scorecardReady?'available to download':'awaiting publish',state.scorecardReady?'accent-g':'accent-a')}
   </div>
   <div class="card pad">
-    <div class="sec-title">${svg(ICN.review)} Re-issue & version history</div>
+    <div class="sec-title">${svg(ICN.review)} Re-issue &amp; version history</div>
     <div class="sec-sub">Any post-result correction regenerates and republishes updated scorecards with version history.</div>
     <div class="kv"><span class="k">v1.0 — Initial publication</span><span class="v" style="font-family:inherit">${state.scorecardReady?badge('accepted'):badge('pending')}</span></div>
     ${state.scorecardReady?`<div style="margin-top:14px"><button class="btn btn-ghost btn-sm" onclick="regenerate()">${svg('<path d="M3 2v6h6M21 12a9 9 0 1 1-3-6.7L21 8"/>')} Regenerate (correction)</button></div>`:''}
   </div>`;
-};
+}
+function publishOther(ex){
+  const ready = ex.normDone;
+  return pageHead('Result Engine · Product 03','Scorecard publishing','Set the scorecard live window, then generate verified scorecards from normalized scores.')+examBackBar('publish')+
+  scoreLiveCard()+`
+  ${!ready?`<div class="note note-warn" style="margin-bottom:18px">${svg('<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>')}<span><b>Publishing is locked.</b> Run normalization for ${ex.name} first.</span></div>`:''}
+  <div class="card pad" style="margin-bottom:18px">
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <div><div class="sec-title" style="margin-bottom:2px">${svg(ICN.pub)} Generate &amp; publish</div>
+        <div style="font-size:13px;color:var(--muted)">${ex.name} · ${ex.candidates} candidates across ${ex.shifts} shifts</div></div>
+      <button class="btn ${ready&&!ex.scorecardReady?'btn-green':'btn-ghost'}" ${(!ready||ex.scorecardReady)?'disabled':''} style="margin-left:auto" onclick="publishOtherExam('${ex.id}')">
+        ${ex.scorecardReady?svg(ICN.check)+' Published':svg(ICN.pub)+' Publish scorecards'}</button>
+    </div>
+    ${ex.scorecardReady?`<div class="note note-ok" style="margin-top:16px">${svg(ICN.check)}<span><b>Scorecards published.</b> Available ${ex.scoreLive?'now':'from '+ex.scoreLiveStart+', '+ex.scoreLiveStartTime} until ${ex.scoreLiveEnd}, ${ex.scoreLiveEndTime} for ${ex.candidates} candidates.</span></div>`:''}
+  </div>
+  <div class="grid cols-3">
+    ${kpi(ICN.user,'Candidates',ex.candidates,'scorecards to issue','')}
+    ${kpi(ICN.norm,'Normalization',ex.normDone?'Done':'Pending',ex.normDone?'scores equated':'run engine first',ex.normDone?'accent-g':'accent-a')}
+    ${kpi(ICN.check,'Status',ex.scorecardReady?'Live':'Draft',ex.scorecardReady?'available to download':'awaiting publish',ex.scorecardReady?'accent-g':'accent-a')}
+  </div>`;
+}
+function publishOtherExam(id){
+  const ex=EXAMS.find(e=>e.id===id); if(!ex||!ex.normDone) return;
+  ex.scorecardReady=true; ex.status='published'; render();
+  toast('Scorecards published for '+ex.name+'.');
+}
 function publishScorecards(){
   // finalize scores
   const raw=computeRaw();
   const norm=computeNormalized(raw);
-  const pct=+(85+ Math.min(12, norm)).toFixed(2);
+  const pct=computePercentile(raw);
   const cutoff=92.00;
   state.scores={ raw:raw.toFixed(2), normalized:norm.toFixed(2), percentile:pct.toFixed(2), cutoff:cutoff.toFixed(2), qualified: pct>=cutoff, version:state.scores.version };
-  state.scorecardReady=true; state.pipeline.scorecard='done'; buildShell(); render();
+  state.scorecardReady=true; state.scoreLive=true; state.pipeline.scorecard='done'; buildShell(); render();
   toast('Scorecards published successfully.');
 }
 function regenerate(){
   state.scores.version++; render(); toast('Scorecards regenerated as v'+state.scores.version+'.0 with version history retained.');
+}
+
+/* ---- Reports (exam-wise downloads) ---- */
+PAGES.admin.reports = ()=>{
+  if(!state.examGate.reports) return adminExamCard('reports');
+  return reportsList(selectedExam());
+};
+function reportsFor(ex){
+  const norm = ex.primary ? state.normDone : ex.normDone;
+  const pub  = ex.primary ? state.scorecardReady : ex.scorecardReady;
+  const objCount = ex.primary ? state.queue.length : Math.round(parseInt(ex.candidates.replace(/[^0-9]/g,''))*0.012);
+  return [
+    {name:'Objection Summary',        desc:`All ${objCount.toLocaleString('en-IN')} objections raised — by question, subject and decision status.`, fmt:'XLSX', size:'1.2 MB', ready:true},
+    {name:'SME Decision Audit',       desc:'Every accept / reject / clarify decision with SME, rationale and timestamp.', fmt:'PDF', size:'860 KB', ready:true},
+    {name:'Fee Collection Report',    desc:'Objection fee transactions, fee model and revenue reconciliation.', fmt:'XLSX', size:'540 KB', ready:true},
+    {name:'Shift-wise Statistics',    desc:`Mean, standard deviation and top score across all ${ex.shifts} shifts.`, fmt:'XLSX', size:'320 KB', ready:true},
+    {name:'Normalization Report',     desc:'Raw vs normalized scores with equating parameters for every shift.', fmt:'PDF', size:'1.5 MB', ready:norm, gate:'Run normalization to enable'},
+    {name:'Result & Scorecard Report',desc:'Final normalized scores, category cutoffs and qualified-candidate counts.', fmt:'PDF', size:'2.1 MB', ready:pub, gate:'Publish scorecards to enable'},
+    {name:'Candidate Master Data',    desc:'Registrations, categories and shift allocation for all candidates.', fmt:'CSV', size:'4.8 MB', ready:true}
+  ];
+}
+function reportsList(ex){
+  const reports=reportsFor(ex);
+  const rows=reports.map((r,i)=>`
+    <div class="report-row">
+      <div class="rr-ic">${svg(ICN.report)}</div>
+      <div class="rr-body">
+        <div class="rr-name">${r.name} <span class="rr-fmt">${r.fmt}</span></div>
+        <div class="rr-desc">${r.desc}</div>
+      </div>
+      <div class="rr-meta">${r.size}</div>
+      ${r.ready
+        ? `<button class="btn btn-ghost btn-sm" onclick="downloadReport(${i})">${svg('<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>')} Download</button>`
+        : `<span class="badge-st st-pending" title="${r.gate||''}"><span class="bd"></span>Pending</span>`}
+    </div>`).join('');
+  const avail=reports.filter(r=>r.ready).length;
+  return pageHead('Reports','Exam reports','Download objection, fee, normalization and result reports for this exam.')+examBackBar('reports')+`
+  <div class="grid cols-3" style="margin-bottom:18px">
+    ${kpi(ICN.report,'Reports available',avail+' / '+reports.length,'ready to download','accent-g')}
+    ${kpi(ICN.user,'Candidates',ex.candidates,'in this exam','')}
+    ${kpi(ICN.dash,'Shifts',ex.shifts,'covered','')}
+  </div>
+  <div class="report-list">${rows}</div>
+  <div class="note note-info" style="margin-top:18px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>Reports are generated exam-wise. Normalization and result reports unlock once those stages are complete for ${ex.name}.</span></div>`;
+}
+function downloadReport(i){
+  const ex=selectedExam(); const r=reportsFor(ex)[i]; if(!r) return;
+  toast('Downloading: '+r.name+' ('+r.fmt+') — '+ex.name);
+}
+
+/* ---- User Management (module-based RBAC) ---- */
+function moduleLabel(id){ const m=MODULES.find(x=>x.id===id); return m?m.label:(id==='assigned'?'Assigned Objections':id==='history'?'Decision History':id); }
+PAGES.admin.users = ()=>{
+  const us=state.users||[];
+  const admins=us.filter(u=>u.role==='admin'&&!u.custom).length;
+  const customs=us.filter(u=>u.custom).length;
+  const smes=us.filter(u=>u.role==='sme').length;
+  const rows=us.map(userRow).join('');
+  return pageHead('Administration','User management','Add users and assign module-based access. Custom users can be scoped to any combination of modules.')+`
+  <div class="grid cols-4" style="margin-bottom:18px">
+    ${kpi(ICN.user,'Total users',us.length,'on the platform','')}
+    ${kpi(ICN.dash,'Administrators',admins,'full access','')}
+    ${kpi(ICN.cfg,'Custom users',customs,'module-scoped','accent-a')}
+    ${kpi(ICN.review,'Subject experts',smes,'review desk','accent-g')}
+  </div>
+  <div style="display:flex;align-items:center;margin-bottom:14px">
+    <div class="sec-title" style="margin:0">${svg(ICN.user)} All users</div>
+    <button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="openAddUser()">${svg('<path d="M12 5v14M5 12h14"/>')} Add user</button>
+  </div>
+  <div class="user-list">${rows}</div>`;
+};
+function userRow(u){
+  const chips = u.custom
+    ? u.modules.map(id=>`<span class="ur-chip">${moduleLabel(id)}</span>`).join('')
+    : `<span class="ur-chip">${u.role==='sme'?'Review Desk':'All modules'}</span>`;
+  return `<div class="user-row ${u.status==='inactive'?'off':''}">
+    <span class="ur-av" style="background:${u.color}">${u.initials}</span>
+    <div class="ur-body">
+      <div class="ur-name">${u.name} <span class="p-role ${u.custom?'r-sme2':u.role==='sme'?'r-sme':'r-adm'}">${u.custom?'Custom':u.roleLabel}</span></div>
+      <div class="ur-email">${u.email}</div>
+      <div class="ur-chips">${chips}</div>
+    </div>
+    <div class="ur-actions">
+      <span class="badge-st ${u.status==='active'?'st-accepted':'st-pending'}"><span class="bd"></span>${u.status==='active'?'Active':'Inactive'}</span>
+      <button class="btn btn-ghost btn-sm" onclick="toggleUser('${u.id}')">${u.status==='active'?'Deactivate':'Activate'}</button>
+    </div>
+  </div>`;
+}
+function toggleUser(id){ const u=state.users.find(x=>x.id===id); if(!u)return; u.status=u.status==='active'?'inactive':'active'; render(); toast(u.name+' '+(u.status==='active'?'activated':'deactivated')+'.'); }
+function openAddUser(){
+  $('#modal').innerHTML=`
+    <div class="modal-head">
+      <div class="mh-ic" style="background:var(--brand-soft)">${svg(ICN.user,'stroke="var(--brand)"')}</div>
+      <div><h3>Add user</h3><p>Create a user and assign module-based access</p></div>
+      <button class="close" onclick="closeModal()">${svg('<path d="M18 6 6 18M6 6l12 12"/>')}</button>
+    </div>
+    <div class="modal-body">
+      <div class="field"><label>Full name</label><input class="inp" id="nuName" placeholder="e.g. Sunita Rao"></div>
+      <div class="field"><label>Email / login ID</label><input class="inp" id="nuEmail" placeholder="name@hubblehox.io"></div>
+      <div class="field"><label>Role</label>
+        <select class="inp" id="nuRole" onchange="onUserRoleChange()">
+          <option value="admin">Administrator — full access</option>
+          <option value="sme">Subject Expert — review desk</option>
+          <option value="custom" selected>Custom — choose modules</option>
+        </select></div>
+      <div id="nuSmeNote" class="note note-info" style="display:none">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>Subject experts get the SME Review Desk (Assigned Objections &amp; Decision History).</span></div>
+      <label style="font-size:12px;font-weight:700;color:var(--ink-2);display:block;margin:8px 0 8px">Module access</label>
+      <div class="mod-grid" id="nuModules">
+        ${MODULES.map(m=>`<label class="mod-check"><input type="checkbox" value="${m.id}" checked>${m.label}</label>`).join('')}
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveUser()">Add user</button>
+    </div>`;
+  $('#overlay').classList.add('open');
+  onUserRoleChange();
+}
+function onUserRoleChange(){
+  const role=$('#nuRole').value; const grid=$('#nuModules'); const note=$('#nuSmeNote');
+  if(role==='sme'){ grid.style.display='none'; note.style.display='flex'; return; }
+  grid.style.display='grid'; note.style.display='none';
+  grid.querySelectorAll('input').forEach(b=>{ if(role==='admin'){ b.checked=true; b.disabled=true; } else { b.disabled=false; } });
+}
+function saveUser(){
+  const name=($('#nuName').value||'').trim(); const email=($('#nuEmail').value||'').trim(); const role=$('#nuRole').value;
+  if(!name){ toast('Enter a name.'); return; }
+  let modules;
+  if(role==='sme') modules=['assigned','history'];
+  else if(role==='admin') modules=ALL_ADMIN_MODULES.slice();
+  else modules=[...$('#nuModules').querySelectorAll('input:checked')].map(b=>b.value);
+  if(role!=='sme' && !modules.length){ toast('Select at least one module.'); return; }
+  const initials=name.split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  const colors=['#1A4D8F','#117A52','#A86A12','#B23A33','#7A4FB0','#0E7C86'];
+  state.users.push({ id:'u-'+Date.now(), name,
+    email: email || (name.toLowerCase().replace(/\s+/g,'.')+'@hubblehox.io'),
+    role, roleLabel: role==='admin'?'Administrator':role==='sme'?'Subject Expert':'Custom user',
+    modules, status:'active', initials, color:colors[state.users.length%colors.length], custom: role==='custom', loginable:true });
+  closeModal(); render(); toast('User “'+name+'” added with '+modules.length+' module'+(modules.length>1?'s':'')+'.');
 }
 
 /* ============================================================
