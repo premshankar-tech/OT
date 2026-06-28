@@ -9,27 +9,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#14253B;
-  --ink-2:#3A4D66;
-  --muted:#6B7B91;
-  --canvas:#EEF1F6;
+  --ink:#1F2937;
+  --ink-2:#374151;
+  --muted:#6B7280;
+  --canvas:#F7FBFF;
   --surface:#FFFFFF;
-  --surface-2:#F7F9FC;
-  --line:#DCE3ED;
-  --line-2:#C7D2E0;
-  --brand:#1A4D8F;
-  --brand-deep:#102A4C;
-  --brand-soft:#E7EEF8;
-  --verify:#117A52;
-  --verify-soft:#E1F1E9;
-  --amber:#A86A12;
-  --amber-soft:#F8EDD8;
-  --rose:#B23A33;
-  --rose-soft:#F8E4E2;
-  --shadow:0 1px 2px rgba(20,37,59,.06), 0 8px 24px -12px rgba(20,37,59,.18);
-  --shadow-lg:0 24px 60px -28px rgba(20,37,59,.45);
-  --r:14px;
-  --r-sm:9px;
+  --surface-2:#F2F9FE;
+  --line:#E5E7EB;
+  --line-2:#D6E3F0;
+  --brand:#0284C7;          /* sky-600 — interactive + AA-safe accent text */
+  --brand-deep:#0369A1;     /* sky-700 — hover / deep */
+  --sky:#38BDF8;            /* sky-400 — bright accent, focus rings, gradients */
+  --brand-soft:#E0F2FE;     /* sky-100 — soft fills */
+  --verify:#15803D;
+  --verify-soft:#DCFCE7;
+  --amber:#B45309;
+  --amber-soft:#FEF3C7;
+  --rose:#DC2626;
+  --rose-soft:#FEE2E2;
+  --shadow:0 1px 2px rgba(2,132,199,.05), 0 6px 18px -10px rgba(2,132,199,.16);
+  --shadow-lg:0 24px 60px -28px rgba(2,132,199,.32);
+  --r:12px;
+  --r-sm:10px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
@@ -47,36 +48,36 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink)}
 
 /* ---------- App shell ---------- */
 .app{display:grid;grid-template-columns:264px 1fr;grid-template-rows:auto 1fr;grid-template-areas:"side top" "side main";min-height:100vh}
-.sidebar{grid-area:side;background:var(--brand-deep);color:#D9E3F1;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
-.topbar{grid-area:top;background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+.sidebar{grid-area:side;background:linear-gradient(180deg,#FFFFFF,#F7FBFF);color:var(--ink-2);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;border-right:1px solid var(--line)}
+.topbar{grid-area:top;background:rgba(255,255,255,.82);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
 .main{grid-area:main;padding:30px 38px 80px;max-width:1180px;width:100%}
 
 /* ---------- Sidebar ---------- */
-.brand{padding:22px 22px 16px;border-bottom:1px solid rgba(255,255,255,.09)}
+.brand{padding:22px 22px 16px;border-bottom:1px solid var(--line)}
 .brand .seal{display:flex;align-items:center;gap:11px}
-.brand .crest{width:38px;height:38px;border-radius:9px;background:linear-gradient(160deg,#2E6BB8,#143a6b);display:grid;place-items:center;flex:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}
+.brand .crest{width:38px;height:38px;border-radius:10px;background:linear-gradient(160deg,#38BDF8,#0284C7);display:grid;place-items:center;flex:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3), 0 4px 12px -4px rgba(2,132,199,.55)}
 .brand .crest svg{width:21px;height:21px}
-.brand .name{font-family:'Archivo';font-weight:800;font-size:15px;letter-spacing:.2px;color:#fff;line-height:1.15}
-.brand .sub{font-size:11px;color:#90A6C6;margin-top:2px;letter-spacing:.3px}
+.brand .name{font-family:'Archivo';font-weight:800;font-size:15px;letter-spacing:.2px;color:var(--ink);line-height:1.15}
+.brand .sub{font-size:11px;color:var(--muted);margin-top:2px;letter-spacing:.3px}
 
 .role-switch{padding:16px 18px 10px}
-.role-switch .lbl{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:#7E94B4;margin-bottom:9px}
+.role-switch .lbl{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
 .role-pills{display:flex;flex-direction:column;gap:6px}
-.role-pill{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:9px;color:#B9C8DD;font-weight:600;font-size:13px;text-align:left;width:100%;transition:.15s;border:1px solid transparent}
+.role-pill{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:10px;color:var(--ink-2);font-weight:600;font-size:13px;text-align:left;width:100%;transition:.15s;border:1px solid transparent}
 .role-pill .ic{width:17px;height:17px;opacity:.8}
-.role-pill:hover{background:rgba(255,255,255,.05)}
-.role-pill.active{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.14)}
-.role-pill small{display:block;font-weight:400;font-size:10.5px;color:#88A0C0;letter-spacing:.2px}
+.role-pill:hover{background:var(--brand-soft)}
+.role-pill.active{background:var(--brand-soft);color:var(--brand);border-color:#bfe6fb}
+.role-pill small{display:block;font-weight:400;font-size:10.5px;color:var(--muted);letter-spacing:.2px}
 
 .nav{padding:14px 14px;flex:1;overflow-y:auto}
-.nav .grp{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:#6F86A8;margin:14px 10px 7px}
-.nav-item{display:flex;align-items:center;gap:11px;width:100%;padding:8px 11px;border-radius:8px;color:#C2D0E3;font-size:13px;font-weight:500;text-align:left;transition:.13s;position:relative}
-.nav-item:hover{background:rgba(255,255,255,.06);color:#fff}
-.nav-item.active{background:#fff;color:var(--brand-deep);font-weight:600}
+.nav .grp{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);margin:14px 10px 7px}
+.nav-item{display:flex;align-items:center;gap:11px;width:100%;padding:9px 11px;border-radius:9px;color:var(--ink-2);font-size:13px;font-weight:500;text-align:left;transition:.15s;position:relative}
+.nav-item:hover{background:var(--brand-soft);color:var(--brand)}
+.nav-item.active{background:var(--brand-soft);color:var(--brand);font-weight:600;box-shadow:inset 2px 0 0 var(--brand)}
 .nav-item .ni{width:16px;height:16px;flex:none}
 .nav-item .badge{margin-left:auto;font-family:'IBM Plex Mono';font-size:10px;background:var(--amber);color:#fff;border-radius:20px;padding:1px 7px;font-weight:600}
 .nav-item.active .badge{background:var(--amber)}
-.sb-foot{padding:14px 20px;border-top:1px solid rgba(255,255,255,.09);font-size:11px;color:#7E94B4;line-height:1.5}
+.sb-foot{padding:14px 20px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);line-height:1.5}
 
 /* ---------- Topbar / pipeline spine ---------- */
 .topwrap{display:flex;align-items:center;gap:18px;padding:0 30px;height:72px}
@@ -235,22 +236,22 @@ textarea.inp{min-height:88px;resize:vertical}
 .lp-cred b{color:var(--ink-2)}
 .p-id{font-family:'IBM Plex Mono';font-size:10.5px;color:var(--brand);margin-top:2px}
 /* sidebar signed-in user card (dark theme) */
-.signed-user{display:flex;align-items:center;gap:11px;padding:10px 11px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(255,255,255,.05)}
+.signed-user{display:flex;align-items:center;gap:11px;padding:10px 11px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}
 .su-av{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-family:'Archivo';font-weight:700;font-size:13px}
 .su-meta{display:flex;flex-direction:column;min-width:0}
-.su-name{font-weight:700;font-size:13px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.su-role{font-size:11px;color:#90A6C6}
-.su-scope{font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.4px;color:#7E94B4;margin:9px 2px 0;text-transform:uppercase;line-height:1.4}
-.signout-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:11px;padding:9px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.04);color:#C2D0E3;font-size:12.5px;font-weight:600;font-family:inherit;cursor:pointer;transition:.15s}
-.signout-btn:hover{border-color:rgba(214,90,80,.55);color:#FF9E96;background:rgba(178,58,51,.18)}
+.su-name{font-weight:700;font-size:13px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.su-role{font-size:11px;color:var(--muted)}
+.su-scope{font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.4px;color:var(--muted);margin:9px 2px 0;text-transform:uppercase;line-height:1.4}
+.signout-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:11px;padding:9px;border:1px solid var(--line-2);border-radius:10px;background:var(--surface);color:var(--ink-2);font-size:12.5px;font-weight:600;font-family:inherit;cursor:pointer;transition:.15s}
+.signout-btn:hover{border-color:var(--rose);color:var(--rose);background:var(--rose-soft)}
 .signout-btn svg{width:15px;height:15px}
 /* top-right chip logout */
 .chip-logout{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);display:grid;place-items:center;cursor:pointer;transition:.15s;flex:none}
 .chip-logout:hover{border-color:var(--rose);color:var(--rose);background:var(--rose-soft)}
 .chip-logout svg{width:16px;height:16px}
 /* sidebar role tag */
-.role-tag{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);padding:7px 12px;border-radius:9px}
-.role-tag svg{width:15px;height:15px;opacity:.85}
+.role-tag{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--brand);background:var(--brand-soft);border:1px solid #bfe6fb;padding:7px 12px;border-radius:10px}
+.role-tag svg{width:15px;height:15px;opacity:.9}
 /* exam cover card */
 .exam-cover{display:flex;align-items:center;gap:20px;width:100%;text-align:left;background:linear-gradient(150deg,#1d3e6e,var(--brand-deep));color:#fff;border:none;border-radius:16px;padding:26px 28px;cursor:pointer;transition:.18s;box-shadow:var(--shadow);position:relative;overflow:hidden;font-family:inherit}
 .exam-cover:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
@@ -272,6 +273,18 @@ textarea.inp{min-height:88px;resize:vertical}
 .exam-tile:hover{border-color:var(--brand);box-shadow:var(--shadow);transform:translateY(-2px)}
 /* per-exam pipeline progress */
 .et-pipe{display:flex;align-items:center;margin:13px 0 4px;padding-top:13px;border-top:1px solid var(--line)}
+/* objection stats on exam cards */
+.et-objstats{display:flex;gap:8px;margin:13px 0 4px;padding-top:13px;border-top:1px solid var(--line)}
+.eo{flex:1;text-align:center;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:9px 4px}
+.eo b{display:block;font-family:'Archivo';font-weight:800;font-size:19px;color:var(--ink);line-height:1.05}
+.eo span{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+.eo.ok b{color:var(--verify)} .eo.warn b{color:var(--amber)}
+/* clickable breakdown rows */
+.kv-btn{display:flex;justify-content:space-between;align-items:center;width:100%;gap:12px;padding:10px 8px;margin:0 -8px;border:none;border-bottom:1px solid var(--line);background:transparent;font-family:inherit;font-size:13px;cursor:pointer;text-align:left;transition:.12s;border-radius:7px}
+.kv-btn:last-child{border-bottom:none}
+.kv-btn:hover{background:var(--brand-soft)}
+.kv-btn .k{color:var(--ink-2)}
+.kv-btn .v{font-weight:700;color:var(--ink);white-space:nowrap}
 .ep-step{display:flex;align-items:center;gap:6px;font-size:10.5px;font-weight:600;color:var(--muted);white-space:nowrap}
 .ep-dot{width:9px;height:9px;border-radius:50%;background:var(--line-2);flex:none}
 .ep-step.active{color:var(--brand)} .ep-step.active .ep-dot{background:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
@@ -283,6 +296,31 @@ textarea.inp{min-height:88px;resize:vertical}
 .epx-name{font-family:'Archivo';font-weight:700;font-size:13px;color:var(--ink);margin-bottom:5px;display:flex;align-items:center;gap:8px}
 .epx-tag{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--brand);background:var(--brand-soft);padding:1px 7px;border-radius:5px}
 .epx-row .et-pipe{margin:0;padding-top:0;border-top:none}
+/* database explorer */
+.db-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.db-chip{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono';font-size:12px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:7px 11px;cursor:pointer;transition:.15s}
+.db-chip:hover{border-color:var(--line-2)}
+.db-chip.on{border-color:var(--brand);background:var(--brand-soft);color:var(--brand)}
+.db-chip span{font-size:10.5px;font-weight:700;background:var(--canvas);color:var(--muted);padding:1px 7px;border-radius:20px}
+.db-chip.on span{background:#fff;color:var(--brand)}
+.db-scroll{overflow:auto;max-height:420px;border:1px solid var(--line);border-radius:10px}
+.db-table{width:100%;border-collapse:collapse;font-family:'IBM Plex Mono';font-size:11.5px;white-space:nowrap}
+.db-table th{position:sticky;top:0;background:var(--surface-2);text-align:left;padding:8px 12px;font-weight:700;color:var(--ink-2);border-bottom:1px solid var(--line);z-index:1}
+.db-table td{padding:7px 12px;border-bottom:1px solid var(--line);color:var(--ink-2);max-width:340px;overflow:hidden;text-overflow:ellipsis}
+.db-table tr:hover td{background:var(--surface-2)}
+.db-null{color:var(--muted);font-style:italic}
+.db-act{font-size:10.5px;font-weight:700;color:var(--brand);background:var(--brand-soft);padding:1px 7px;border-radius:5px}
+/* moderation committee */
+.mod-list{display:flex;flex-direction:column;gap:14px}
+.mod-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;border-left:4px solid var(--amber)}
+.mod-card.done{border-left-color:var(--verify);opacity:.92}
+.mod-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;font-size:13px;color:var(--ink)}
+.mod-sub{font-size:11.5px;color:var(--muted);margin-top:3px;font-weight:400}
+.mod-q{font-size:13.5px;color:var(--ink-2);margin:12px 0 8px;line-height:1.5}
+.mod-note{font-size:12.5px;color:var(--muted);background:var(--surface-2);border-radius:9px;padding:10px 12px}
+.mod-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.mod-hint{font-size:11.5px;color:var(--ink-2);margin-top:10px}
+.mod-hint b{color:var(--brand)}
 .et-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .et-ic{width:40px;height:40px;border-radius:11px;background:linear-gradient(150deg,#2E6BB8,var(--brand-deep));display:grid;place-items:center;flex:none}
 .et-ic svg{width:20px;height:20px}
@@ -315,11 +353,121 @@ textarea.inp{min-height:88px;resize:vertical}
 .ur-name{font-family:'Archivo';font-weight:700;font-size:14px;color:var(--ink);display:flex;align-items:center;gap:9px;flex-wrap:wrap}
 .ur-email{font-family:'IBM Plex Mono';font-size:11px;color:var(--muted);margin-top:2px}
 .ur-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+/* objection management: view toggle, category strip, count bar */
+.seg{display:inline-flex;background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:3px;gap:2px}
+.seg button{font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);background:none;border:none;padding:6px 13px;border-radius:7px;cursor:pointer;transition:.12s}
+.seg button:hover{color:var(--ink-2)}
+.seg button.on{background:var(--surface);color:var(--brand);box-shadow:0 1px 3px rgba(2,8,23,.08)}
+.cat-strip{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.cat-chip{display:flex;flex-direction:column;align-items:flex-start;gap:1px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:9px 13px;cursor:pointer;transition:.12s;font-family:inherit;min-width:78px}
+.cat-chip:hover{border-color:var(--sky);background:var(--brand-soft)}
+.cat-chip b{font-family:'Archivo';font-weight:800;font-size:18px;color:var(--brand);line-height:1}
+.cat-chip span{font-size:10.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.objbar{display:inline-block;width:60px;height:7px;border-radius:4px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden;flex:none}
+.objbar i{display:block;height:100%;background:linear-gradient(90deg,var(--sky),var(--brand));border-radius:4px}
+/* pipeline control tower */
+.tower{display:flex;align-items:stretch;gap:0;margin-top:14px;flex-wrap:wrap}
+.tw-step{display:flex;align-items:center;gap:11px;flex:1;min-width:210px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.tw-step.ok{background:var(--verify-soft);border-color:#bbf7d0}
+.tw-step.block{background:var(--amber-soft);border-color:#fde68a}
+.tw-ic{width:30px;height:30px;border-radius:8px;background:var(--surface);display:grid;place-items:center;flex:none}
+.tw-body{flex:1;min-width:0}
+.tw-name{font-family:'Archivo';font-weight:700;font-size:13px;color:var(--ink)}
+.tw-status{font-size:11.5px;color:var(--ink-2);line-height:1.35}
+.tw-actor{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+.tw-wait{font-size:10.5px;color:var(--muted);font-style:italic}
+.tw-conn{width:22px;height:2px;background:var(--line-2);align-self:center;flex:none}
+.tw-conn.ok{background:var(--verify)}
+@media(max-width:760px){.tw-conn{display:none}.tw-step{min-width:100%}}
+/* objection heatmap */
+.heatmap{display:grid;grid-template-columns:repeat(30,1fr);gap:3px;margin-top:14px}
+.hm-cell{aspect-ratio:1;border:1px solid var(--line);border-radius:3px;font-size:8.5px;font-weight:700;font-family:'IBM Plex Mono';cursor:default;display:grid;place-items:center;padding:0;transition:.1s}
+.hm-cell:hover{outline:2px solid var(--brand);outline-offset:1px;z-index:2}
+@media(max-width:760px){.heatmap{grid-template-columns:repeat(15,1fr)}}
+/* global search */
+.gsearch{display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:0 12px;height:38px;flex:1;max-width:360px;color:var(--muted)}
+.gsearch svg{width:16px;height:16px;flex:none}
+.gsearch input{border:none;background:none;outline:none;font-family:inherit;font-size:13px;color:var(--ink);width:100%}
+@media(max-width:680px){.gsearch{max-width:none}.gsearch input::placeholder{font-size:0}.gsearch input::after{content:'Search'}}
+/* bulk action bar */
+.bulkbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:11px 18px;background:var(--brand-soft);border-bottom:1px solid var(--line-2)}
+.bulkbar b{font-size:12.5px;color:var(--brand-deep)}
+.obj-chk{width:15px;height:15px;cursor:pointer;accent-color:var(--brand)}
+/* evidence chips */
+.ev-chip{display:inline-flex;align-items:center;gap:5px;font-size:11px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:3px 8px;color:var(--ink-2)}
+.ev-chip svg{width:12px;height:12px;flex:none;stroke:var(--brand)}
+/* 360 stat grid */
+.q360-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:16px}
+.q360-cell{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.q360-cell span{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;font-weight:600}
+.q360-cell b{font-size:16px;color:var(--ink);font-family:'Archivo'}
+.q360-cell.chg{background:var(--amber-soft);border-color:#fde68a}
+.q360-cell.chg b{color:var(--amber)}
+@media(max-width:560px){.q360-grid{grid-template-columns:repeat(2,1fr)}}
+/* notification bell + panel */
+.bell-wrap{position:relative;margin-left:auto}
+.topwrap .userchip{margin-left:0}
+.bell-btn{position:relative;width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;color:var(--ink-2);transition:.12s}
+.bell-btn:hover{border-color:var(--sky);color:var(--brand)}
+.bell-btn svg{width:18px;height:18px}
+.bell-count{position:absolute;top:-5px;right:-5px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--rose);color:#fff;font-size:10px;font-weight:700;display:grid;place-items:center;font-family:'IBM Plex Mono'}
+.note-panel{position:absolute;top:46px;right:0;width:330px;max-width:84vw;max-height:60vh;overflow-y:auto;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 50px rgba(2,8,23,.18);padding:8px;display:none;z-index:60}
+.note-panel.open{display:block}
+.np-top{font-family:'Archivo';font-weight:700;font-size:13px;padding:8px 10px 10px}
+.np-item{display:flex;gap:10px;padding:10px;border-radius:10px;transition:.12s}
+.np-item.unread{background:var(--brand-soft)}
+.np-ic{width:30px;height:30px;border-radius:8px;background:var(--surface-2);display:grid;place-items:center;flex:none;color:var(--brand)}
+.np-ic svg{width:15px;height:15px}
+.np-t{font-size:12.5px;font-weight:600;color:var(--ink)}
+.np-b{font-size:11.5px;color:var(--muted);line-height:1.45;margin-top:2px}
+.np-ts{font-size:10px;color:var(--muted);margin-top:4px}
+.np-empty{padding:24px;text-align:center;color:var(--muted);font-size:13px}
+/* SLA timers */
+.sla-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.sla-box{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:11px 13px;display:flex;flex-direction:column;gap:4px}
+.sla-box span{font-size:11px;color:var(--muted)}
+.sla-box b{font-size:16px;font-family:'IBM Plex Mono';color:var(--ink)}
+.sla-box.warn{background:var(--amber-soft);border-color:#fde68a}
+.sla-box.warn b{color:var(--amber)}
+.sla-clock.breach{color:var(--rose)!important}
+.sla-pill{display:inline-block;font-family:'IBM Plex Mono';font-size:11px;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--ink-2)}
+.sla-pill.breach{background:var(--rose-soft);border-color:#fecaca;color:var(--rose)}
+@media(max-width:560px){.sla-grid{grid-template-columns:1fr}}
+/* accessibility */
+.skip-link{position:absolute;left:-999px;top:8px;z-index:200;background:var(--brand);color:#fff;padding:9px 16px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none}
+.skip-link:focus{left:8px}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
 .ur-chip{font-size:10.5px;font-weight:600;background:var(--brand-soft);color:var(--brand);padding:2px 8px;border-radius:6px}
 .ur-actions{display:flex;align-items:center;gap:10px;flex:none}
 .mod-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .mod-check{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--ink-2);padding:9px 11px;border:1px solid var(--line);border-radius:9px;cursor:pointer}
 .mod-check input{width:16px;height:16px;flex:none;accent-color:var(--brand);cursor:pointer}
+.form-sec{font-family:'Archivo';font-weight:700;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.form-sub-lbl{font-size:12px;font-weight:700;color:var(--ink-2);display:block;margin:2px 0 9px}
+/* normalization method selector */
+.norm-methods{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.norm-method{display:flex;gap:11px;text-align:left;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:13px 14px;cursor:pointer;transition:.15s;font-family:inherit}
+.norm-method:hover{border-color:var(--sky)}
+.norm-method.on{border-color:var(--brand);background:var(--brand-soft)}
+.nm-radio{width:16px;height:16px;border-radius:50%;border:2px solid var(--line-2);flex:none;margin-top:2px;transition:.15s}
+.norm-method.on .nm-radio{border-color:var(--brand);box-shadow:inset 0 0 0 3px var(--brand)}
+.nm-body{display:flex;flex-direction:column;gap:3px;min-width:0}
+.nm-name{font-family:'Archivo';font-weight:700;font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.nm-tag{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--verify);background:var(--verify-soft);padding:1px 7px;border-radius:5px}
+.nm-desc{font-size:11.5px;color:var(--muted);line-height:1.45}
+.nm-formula{font-size:11px;color:var(--brand);background:var(--brand-soft);padding:4px 8px;border-radius:6px;margin-top:4px;overflow-x:auto;white-space:nowrap}
+.norm-vars{font-size:11.5px;color:var(--muted);margin-top:9px;line-height:1.9}
+.norm-vars code{background:var(--surface-2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:11px;color:var(--ink-2)}
+.norm-preview{margin-top:16px;border-top:1px solid var(--line);padding-top:14px}
+.np-head{font-size:12px;font-weight:700;color:var(--ink-2);display:flex;align-items:center;gap:7px;margin-bottom:10px}
+.np-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.np-cell{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.np-cell span{font-size:11px;color:var(--muted)}
+.np-cell b{font-size:15px;color:var(--ink)}
+.np-cell.hl{background:var(--brand-soft);border-color:#bfe6fb}
+.np-cell.hl b{color:var(--brand)}
+.np-err{color:var(--rose);font-size:11.5px;margin-top:8px}
+@media(max-width:720px){.norm-methods{grid-template-columns:1fr}.np-grid{grid-template-columns:1fr}}
 @media(max-width:620px){.user-row{flex-wrap:wrap}.ur-actions{width:100%;justify-content:flex-end}.mod-grid{grid-template-columns:1fr}}
 /* instructions + consent */
 .steps-ol{margin:14px 0 4px;padding-left:20px;display:flex;flex-direction:column;gap:9px;font-size:13.5px;color:var(--ink-2);line-height:1.5}
@@ -524,6 +672,80 @@ textarea.inp{min-height:88px;resize:vertical}
   .fm-arrow{padding:8px 0;transform:rotate(90deg)}
   h1.title{font-size:23px}
 }
+/* ============================================================
+   SKY-THEME ENHANCEMENTS — premium enterprise polish
+   (overrides only; no structural/JS changes)
+   ============================================================ */
+::selection{background:#bae6fd;color:#0c3a52}
+
+/* keyboard accessibility — visible focus everywhere */
+:focus-visible{outline:2px solid var(--sky);outline-offset:2px;border-radius:6px}
+a:focus-visible,button:focus-visible,.btn:focus-visible,.nav-item:focus-visible,.profile-card:focus-visible,
+.inp:focus-visible,select.inp:focus-visible,textarea.inp:focus-visible,.qdot:focus-visible,.sec-tab:focus-visible,
+.db-chip:focus-visible,.exam-tile:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+
+/* colored brand panels → bright sky gradients (no navy) */
+.login-brand{background:linear-gradient(157deg,#38BDF8 0%,#0EA5E9 45%,#0369A1 100%)}
+.lb-gov{color:#EAF6FF}.lb-tag{color:#CDEBFB}.lb-desc{color:#EAF6FF}.lb-foot{color:#CDEBFB}
+.lb-crest{background:rgba(255,255,255,.18);box-shadow:inset 0 0 0 1px rgba(255,255,255,.32)}
+.exam-cover{background:linear-gradient(150deg,#38BDF8,#0369A1)}
+.exam-tile::before{background:linear-gradient(180deg,#38BDF8,#0284C7)}
+.et-ic{background:linear-gradient(150deg,#38BDF8,#0284C7)}
+.sc-head{background:linear-gradient(140deg,#38BDF8,#0369A1)}
+.flowmap{background:linear-gradient(160deg,#0EA5E9,#075985)}
+
+/* buttons — sky primary, white-with-blue-border secondary */
+.btn{border-radius:10px;transition:background .18s,border-color .18s,box-shadow .18s,transform .18s,color .18s}
+.btn-primary{background:linear-gradient(180deg,#38BDF8,#0EA5E9);color:#fff;border-color:transparent;box-shadow:0 1px 2px rgba(2,132,199,.25),inset 0 1px 0 rgba(255,255,255,.28)}
+.btn-primary:hover{background:linear-gradient(180deg,#0EA5E9,#0284C7);box-shadow:0 8px 18px -7px rgba(2,132,199,.6);transform:translateY(-1px)}
+.btn-primary:active{transform:translateY(0);box-shadow:0 1px 2px rgba(2,132,199,.3)}
+.btn-ghost{background:#fff;border-color:#bfe6fb;color:var(--brand)}
+.btn-ghost:hover{background:var(--brand-soft);border-color:var(--sky);color:var(--brand-deep);transform:translateY(-1px)}
+.btn-green{background:linear-gradient(180deg,#22C55E,#16A34A);color:#fff;border-color:transparent}
+.btn-green:hover{filter:none;box-shadow:0 8px 18px -7px rgba(22,163,74,.5);transform:translateY(-1px)}
+.btn-rose:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.5;transform:none;box-shadow:none;cursor:not-allowed}
+.btn.loading{position:relative;color:transparent!important;pointer-events:none}
+.btn.loading::after{content:'';position:absolute;inset:0;margin:auto;width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.55);border-top-color:#fff;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* cards & KPIs — soft lift on hover */
+.card{transition:box-shadow .2s,transform .2s,border-color .2s}
+.kpi{transition:box-shadow .2s,transform .2s,border-color .2s}
+.kpi:hover{box-shadow:var(--shadow);transform:translateY(-2px);border-color:#cfe9fb}
+.kpi .k-ic{box-shadow:inset 0 0 0 1px rgba(2,132,199,.06)}
+
+/* tables — sticky header, zebra striping, sky hover */
+.tbl thead th{position:sticky;top:0;background:var(--surface-2);z-index:2;box-shadow:inset 0 -1px 0 var(--line)}
+.tbl tbody tr:nth-child(even){background:#FAFDFF}
+.tbl tbody tr:hover{background:var(--brand-soft)}
+.db-table tbody tr:nth-child(even) td{background:#FAFDFF}
+.db-table tbody tr:hover td{background:var(--brand-soft)}
+
+/* forms — larger, airy inputs with sky focus */
+.inp,select.inp,textarea.inp{padding:11px 14px;border-radius:10px;font-size:14px;transition:border-color .15s,box-shadow .15s,background .15s}
+.inp:hover,select.inp:hover,textarea.inp:hover{border-color:var(--sky)}
+.inp:focus,textarea.inp:focus,select.inp:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(56,189,248,.28)}
+
+/* modal / overlay — airy glass */
+.overlay{background:rgba(15,42,76,.40);backdrop-filter:blur(5px)}
+.modal{border:1px solid var(--line);border-radius:16px}
+
+/* toast — bright card */
+.toast{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow-lg)}
+.toast svg{color:var(--verify)}
+
+/* scrollbars */
+*::-webkit-scrollbar{width:10px;height:10px}
+*::-webkit-scrollbar-thumb{background:#cbe2f3;border-radius:8px;border:2px solid transparent;background-clip:padding-box}
+*::-webkit-scrollbar-thumb:hover{background:#a9cfe8;background-clip:padding-box}
+
+/* loading skeleton (available for loading states) */
+.skeleton{background:linear-gradient(90deg,#eef6fd 25%,#dcefff 37%,#eef6fd 63%);background-size:400% 100%;animation:shimmer 1.4s ease infinite;border-radius:8px}
+@keyframes shimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
+
+/* respect reduced-motion */
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
@@ -599,17 +821,25 @@ textarea.inp{min-height:88px;resize:vertical}
       <div class="su-scope" id="suScope"></div>
     </div>
     <nav class="nav" id="navList"></nav>
-    <div class="sb-foot">
-      Exam: <b style="color:#C2D0E3">PCM · Entrance</b><br>
-      8 shifts · 2,00,000 candidates
-    </div>
   </aside>
 
+  <a href="#screen" class="skip-link" onclick="document.getElementById('screen').focus()">Skip to main content</a>
   <header class="topbar">
     <div class="topwrap">
       <button class="menu-btn" onclick="toggleSidebar(true)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
       </button>
+      <div class="gsearch" id="gsearch" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="gsearchInput" placeholder="Search roll, objection ID or Q-number…" onkeydown="if(event.key==='Enter')globalSearch(this.value)" aria-label="Global search">
+      </div>
+      <div class="bell-wrap">
+        <button class="bell-btn" onclick="toggleNotes()" aria-label="Notifications" title="Notifications">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="bell-count" id="bellCount" style="display:none">0</span>
+        </button>
+        <div class="note-panel" id="notePanel"></div>
+      </div>
       <div class="userchip">
         <div class="who"><b id="chipName">—</b><span id="chipMeta">—</span></div>
         <div class="av" id="chipAv">A</div>
@@ -620,11 +850,11 @@ textarea.inp{min-height:88px;resize:vertical}
     </div>
   </header>
 
-  <main class="main" id="screen"></main>
+  <main class="main" id="screen" tabindex="-1" aria-live="polite"></main>
 </div>
 
 <div class="overlay" id="overlay"><div class="modal" id="modal"></div></div>
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 /* ============================================================
@@ -646,7 +876,8 @@ const ICN = {
   user:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/>',
   money:'<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/>',
   clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
-  report:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h2v4H8zM12 11h2v6h-2zM16 15h0v2h0z"/>'
+  report:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h2v4H8zM12 11h2v6h-2zM16 15h0v2h0z"/>',
+  db:'<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>'
 };
 const T = {
   candidate:'Candidate', admin:'Admin', sme:'SME'
@@ -657,32 +888,36 @@ const MODULES = [
   {id:'pipeline', label:'Data Pipeline'},
   {id:'window', label:'Window & Fee'},
   {id:'manage', label:'Objection Management'},
+  {id:'appeals', label:'Appeals & Grievances'},
+  {id:'import', label:'Data Import'},
   {id:'assign', label:'SME Assignment'},
   {id:'normalize', label:'Normalization'},
+  {id:'keyhistory', label:'Key Revisions'},
   {id:'publish', label:'Scorecard Publishing'},
   {id:'reports', label:'Reports'},
-  {id:'users', label:'User Management'}
+  {id:'users', label:'User Management'},
+  {id:'database', label:'Database'}
 ];
 const ALL_ADMIN_MODULES = MODULES.map(m=>m.id);
 
 const state = {
   role:'candidate',
   screen:'dashboard',
-  session:{ name:'Aarav Sharma', sub:'PCM2026100482', av:'AS', color:'#1A4D8F' },
+  session:{ name:'Aarav Sharma', sub:'PCM2026100482', av:'AS', color:'#0284C7' },
   lastProfile:{},
   exam:{ name:'PCM — Physics · Chemistry · Mathematics', tier:'Entrance · CBT', date:'14 Feb 2026', totalQ:150, marksPer:2, negMark:0.5, sections:['Physics','Chemistry','Mathematics'], perSection:50 },
   fee:500, feeModel:'per', windowOpen:true, windowStart:'20 Feb 2026', windowEnd:'27 Feb 2026', windowStartTime:'10:00 AM', windowEndTime:'05:00 PM',
   scoreLiveStart:'02 Mar 2026', scoreLiveStartTime:'12:00 PM', scoreLiveEnd:'31 Mar 2026', scoreLiveEndTime:'11:59 PM', scoreLive:false,  // scorecard live window (start–end)
   examGate:{}, selectedExamId:'pcm',  // admin: which exam-config screens are open, and which exam is being configured
   users:[
-    {id:'u-meera', name:'Meera Krishnan', email:'meera.krishnan@hubblehox.io', role:'admin', roleLabel:'Exam Controller', modules:['dashboard','pipeline','window','manage','assign','normalize','publish','reports','users'], status:'active', initials:'MK', color:'#102A4C'},
-    {id:'u-control', name:'Control Room', email:'ops@hubblehox.io', role:'admin', roleLabel:'System Admin', modules:['dashboard','pipeline','window','manage','assign','normalize','publish','reports','users'], status:'active', initials:'CR', color:'#3A4D66'},
+    {id:'u-meera', name:'Meera Krishnan', email:'meera.krishnan@hubblehox.io', role:'admin', roleLabel:'Exam Controller', modules:['dashboard','pipeline','window','manage','assign','normalize','publish','reports','users','database'], status:'active', initials:'MK', color:'#102A4C'},
+    {id:'u-control', name:'Control Room', email:'ops@hubblehox.io', role:'admin', roleLabel:'System Admin', modules:['dashboard','pipeline','window','manage','assign','normalize','publish','reports','users','database'], status:'active', initials:'CR', color:'#3A4D66'},
     {id:'u-iyer', name:'Dr. R. Iyer', email:'r.iyer@hubblehox.io', role:'sme', roleLabel:'Subject Expert', modules:['assigned','history'], status:'active', initials:'RI', color:'#117A52'},
     {id:'u-bose', name:'Prof. S. Bose', email:'s.bose@hubblehox.io', role:'sme', roleLabel:'Subject Expert', modules:['assigned','history'], status:'active', initials:'SB', color:'#A86A12'},
     {id:'u-audit', name:'Anita Desai', email:'a.desai@hubblehox.io', role:'admin', roleLabel:'Custom · Reports', modules:['dashboard','reports'], status:'active', initials:'AD', color:'#7A4FB0', custom:true, loginable:true},
     {id:'u-fin', name:'Rakesh Menon', email:'r.menon@hubblehox.io', role:'admin', roleLabel:'Custom · Finance', modules:['dashboard','window','reports'], status:'active', initials:'RM', color:'#0E7C86', custom:true, loginable:true}
   ],
-  pipeline:{ objection:'active', normalization:'idle', scorecard:'idle' }, // idle | active | done
+  pipeline:{ objection:'active', moderation:'idle', normalization:'idle', scorecard:'idle' }, // idle | active | done
   smeList:['Dr. R. Iyer','Prof. S. Bose','Dr. M. Khan'],
   // The logged-in candidate
   me:{ name:'Aarav Sharma', roll:'PCM2026100482', reg:'REG-2026-77410', cat:'OBC', shift:'Shift 3', email:'aarav.s@****.in' },
@@ -692,10 +927,18 @@ const state = {
   objSubmitted:false, objId:null,
   // Admin-side objection queue (other candidates + this one once submitted)
   queue:[
-    {id:'OBJ-90231', cand:'Priya Nair', roll:'PCM2026100119', q:2, subject:'Physics', reason:'Answer Key is Incorrect', sme:'Dr. R. Iyer', status:'accepted', decision:'Key upheld; no change', stamp:'24 Feb, 11:02'},
-    {id:'OBJ-90244', cand:'Imran Q.', roll:'PCM2026100330', q:73, subject:'Chemistry', reason:'Answer Key is Incorrect', sme:'Prof. S. Bose', status:'review', decision:'', stamp:'24 Feb, 13:40'},
-    {id:'OBJ-90251', cand:'Neha G.', roll:'PCM2026100571', q:118, subject:'Mathematics', reason:'Multiple Correct Answers', sme:'Dr. M. Khan', status:'rejected', decision:'Only the keyed option satisfies the constraint', stamp:'25 Feb, 09:15'},
-    {id:'OBJ-90260', cand:'Vikram S.', roll:'PCM2026100804', q:41, subject:'Physics', reason:'Question is Incorrect', sme:null, status:'pending', decision:'', stamp:'25 Feb, 16:22'}
+    {id:'OBJ-90231', cand:'Priya Nair', roll:'PCM2026100119', q:2, subject:'Physics', reason:'Answer Key is Incorrect', sme:'Dr. R. Iyer', status:'accepted', smeAction:'rekey', modStatus:'pending', decision:'Key corrected; pending moderation', stamp:'24 Feb, 11:02'},
+    {id:'OBJ-90244', cand:'Imran Q.', roll:'PCM2026100330', q:73, subject:'Chemistry', reason:'Answer Key is Incorrect', sme:'Dr. M. Khan', status:'review', decision:'', stamp:'24 Feb, 13:40', exp:'The marked option contradicts the standard oxidation-state rule; option C is the only consistent answer.', ref:'NCERT Class XII Chemistry, Ch. 8, pg. 217', url:'', file:'evidence_73.pdf'},
+    {id:'OBJ-90251', cand:'Neha G.', roll:'PCM2026100571', q:118, subject:'Mathematics', reason:'Multiple Correct Answers', sme:'Prof. S. Bose', status:'rejected', decision:'Only the keyed option satisfies the constraint', stamp:'25 Feb, 09:15'},
+    {id:'OBJ-90258', cand:'Anjali R.', roll:'PCM2026100655', q:70, subject:'Chemistry', reason:'All Options Are Wrong', sme:'Dr. M. Khan', status:'review', autoRouted:true, decision:'', stamp:'25 Feb, 18:05'},
+    {id:'OBJ-90260', cand:'Vikram S.', roll:'PCM2026100804', q:41, subject:'Physics', reason:'Question is Incorrect', sme:'Dr. R. Iyer', status:'review', autoRouted:true, decision:'', stamp:'25 Feb, 16:22', exp:'The figure referenced in the stem is missing, making the problem unsolvable as printed.', ref:'HC Verma Vol. 1, Ch. 5', url:'https://example.edu/phys-errata', file:'evidence_41.png'},
+    /* clusters — one question challenged by many candidates */
+    {id:'OBJ-90271', cand:'Rohan K.', roll:'PCM2026100912', q:73, subject:'Chemistry', reason:'Multiple Correct Answers', sme:'Dr. M. Khan', status:'review', autoRouted:true, decision:'', stamp:'24 Feb, 14:05'},
+    {id:'OBJ-90272', cand:'Sana M.', roll:'PCM2026101044', q:73, subject:'Chemistry', reason:'Answer Key is Incorrect', sme:'Dr. M. Khan', status:'review', autoRouted:true, decision:'', stamp:'24 Feb, 15:18'},
+    {id:'OBJ-90273', cand:'Dev P.', roll:'PCM2026101190', q:73, subject:'Chemistry', reason:'No Correct Answer', sme:'Dr. M. Khan', status:'review', autoRouted:true, decision:'', stamp:'24 Feb, 16:47'},
+    {id:'OBJ-90281', cand:'Asha R.', roll:'PCM2026101377', q:41, subject:'Physics', reason:'No Correct Answer', sme:'Dr. R. Iyer', status:'review', autoRouted:true, decision:'', stamp:'25 Feb, 17:01'},
+    {id:'OBJ-90282', cand:'Kunal D.', roll:'PCM2026101512', q:41, subject:'Physics', reason:'Question is Incorrect', sme:'Dr. R. Iyer', status:'review', autoRouted:true, decision:'', stamp:'25 Feb, 17:36'},
+    {id:'OBJ-90290', cand:'Farah N.', roll:'PCM2026101688', q:70, subject:'Chemistry', reason:'All Options Are Wrong', sme:'Dr. M. Khan', status:'review', autoRouted:true, decision:'', stamp:'25 Feb, 18:40'}
   ],
   // Normalization fixtures (shift-wise)
   shiftStats:[
@@ -712,7 +955,12 @@ const state = {
   scorecardReady:false,
   reEvalDone:false, normDone:false,
   paperStep:0, consent:false,   // candidate question-paper gate: 0=cover, 1=instructions, 2=paper
-  qview:'card', focusIdx:0, paperSection:0   // paper view: 'card'/'focus', and selected section index
+  qview:'card', focusIdx:0, paperSection:0,   // paper view: 'card'/'focus', and selected section index
+  normMethod:'z', normRef:'Shift 1', normFormula:'mean_all + sd_all * ( (X - mean_shift) / sd_shift )',   // normalization method + custom formula
+  objFilter:{ subject:'all', status:'all', sme:'all' }, objView:'objection',   // objection management filters + view mode
+  keyHistory:[],   // answer-key revision log (two-stage: provisional → final)
+  objSel:{},   // bulk-action selection in objection management
+  notes:[], appeals:[], slaBase:Date.now()   // notifications, appeals/grievances, SLA clock origin
 };
 
 /* generate a sectioned paper: 3 sections × 50 questions */
@@ -801,25 +1049,276 @@ function normCdf(z){ return 0.5*(1+erf(z/Math.SQRT2)); }
 function myShiftStat(){ const all=state.shiftStats; return all.find(x=>x.shift.startsWith(state.me.shift.split(' ')[0]+' '+state.me.shift.split(' ')[1]))||all[2]; }
 function computePercentile(raw){ const my=myShiftStat(); const z=(raw-my.mean)/my.sd; return +Math.min(99.99,Math.max(0.01,normCdf(z)*100)).toFixed(2); }
 
-/* compute candidate raw score from current key vs chosen */
-function computeRaw(){
-  let correct=0, attempted=0;
-  state.questions.forEach(q=>{
-    if(q.chosen){ attempted++; if(q.chosen===q.key) correct++; }
-  });
-  const wrong = attempted - correct;
-  return +(correct*state.exam.marksPer - wrong*state.exam.negMark).toFixed(2);
+/* ============================================================
+   IN-BROWSER SQLITE DATA STORE  (sql.js / WASM)
+   Real SQLite database. The objection→scorecard pipeline writes
+   and reads through it; the app falls back to in-memory state
+   only if the WASM fails to load (e.g. offline).
+   ============================================================ */
+function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=rej; document.head.appendChild(s); }); }
+function dbReady(){ return !!window._db; }
+function nowTs(){ return new Date().toISOString().replace('T',' ').slice(0,19); }
+function dbRun(sql,params){ try{ window._db.run(sql,params||[]); }catch(e){ console.warn('dbRun',e.message,sql); } }
+function dbAll(sql,params){
+  try{ const r=window._db.exec(sql,params||[]); if(!r.length) return [];
+    const {columns,values}=r[0];
+    return values.map(row=>{ const o={}; columns.forEach((c,i)=>o[c]=row[i]); return o; });
+  }catch(e){ throw e; }
 }
+function dbAllSafe(sql,params){ try{ return dbAll(sql,params); }catch(e){ return []; } }
+function dbVal(sql,params){ const a=dbAllSafe(sql,params); return a.length?a[0][Object.keys(a[0])[0]]:null; }
+function audit(actor,action,detail){ if(dbReady()) dbRun("INSERT INTO audit(ts,actor,action,detail) VALUES(?,?,?,?)",[nowTs(),actor,action,detail]); }
+
+function buildSchema(){
+  window._db.run(`
+    CREATE TABLE exams(id TEXT PRIMARY KEY,name TEXT,total_q INT,marks_per REAL,neg_mark REAL,status TEXT);
+    CREATE TABLE questions(exam_id TEXT,n INT,section TEXT,stmt TEXT,key TEXT,dropped INT DEFAULT 0,award TEXT,PRIMARY KEY(exam_id,n));
+    CREATE TABLE answers(exam_id TEXT,roll TEXT,n INT,chosen TEXT);
+    CREATE TABLE objections(id TEXT PRIMARY KEY,exam_id TEXT,roll TEXT,cand TEXT,q INT,section TEXT,reason TEXT,explanation TEXT,sme TEXT,sme_action TEXT,status TEXT,decision TEXT,new_key TEXT,mod_status TEXT,policy TEXT,fee REAL,created TEXT,decided TEXT,mine INT);
+    CREATE TABLE moderation(id INTEGER PRIMARY KEY AUTOINCREMENT,exam_id TEXT,n INT,objection_id TEXT,sme_action TEXT,policy TEXT,moderator TEXT,decided TEXT);
+    CREATE TABLE shift_stats(exam_id TEXT,shift TEXT,cnt INT,mean REAL,sd REAL,top_raw REAL);
+    CREATE TABLE scores(exam_id TEXT,roll TEXT,raw REAL,normalized REAL,percentile REAL,qualified INT,version INT,PRIMARY KEY(exam_id,roll));
+    CREATE TABLE scorecards(id TEXT PRIMARY KEY,exam_id TEXT,roll TEXT,raw REAL,normalized REAL,percentile REAL,qualified INT,issued TEXT,verify_id TEXT);
+    CREATE TABLE audit(id INTEGER PRIMARY KEY AUTOINCREMENT,ts TEXT,actor TEXT,action TEXT,detail TEXT);
+  `);
+}
+function seedDB(){
+  state._provKeys={}; state.questions.forEach(q=>{ state._provKeys[q.n]=q.key; });   // provisional key snapshot (v1)
+  EXAMS.forEach(e=>dbRun("INSERT INTO exams VALUES(?,?,?,?,?,?)",[e.id,e.name,e.totalQ,e.marksPer,e.negMark,e.status]));
+  state.questions.forEach(q=>{
+    dbRun("INSERT INTO questions(exam_id,n,section,stmt,key) VALUES(?,?,?,?,?)",['pcm',q.n,q.subject,q.stmt,q.key]);
+    dbRun("INSERT INTO answers VALUES(?,?,?,?)",['pcm',state.me.roll,q.n,q.chosen]);
+  });
+  state.shiftStats.forEach(s=>dbRun("INSERT INTO shift_stats VALUES(?,?,?,?,?,?)",['pcm',s.shift,s.cnt,s.mean,s.sd,s.topRaw]));
+  const pcb=EXAMS.find(e=>e.id==='pcb'); if(pcb&&pcb.shiftStats) pcb.shiftStats.forEach(s=>dbRun("INSERT INTO shift_stats VALUES(?,?,?,?,?,?)",['pcb',s.shift,s.cnt,s.mean,s.sd,s.topRaw]));
+  state.queue.forEach(o=>dbRun("INSERT INTO objections(id,exam_id,roll,cand,q,section,reason,sme,sme_action,status,decision,mod_status,created,mine) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+    [o.id,'pcm',o.roll,o.cand,o.q,o.subject,o.reason,o.sme,o.smeAction||null,o.status,o.decision,o.modStatus||null,o.stamp,o.mine?1:0]));
+  dbRun("INSERT INTO scores VALUES('pcm',?,?,NULL,NULL,NULL,1)",[state.me.roll,computeRawJS()]);
+  audit('system','db.init',`Initialised store · ${EXAMS.length} exams · ${state.questions.length} questions · ${state.queue.length} objections`);
+}
+async function initDB(){
+  const SRC='https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/';
+  try{
+    await loadScript(SRC+'sql-wasm.js');
+    const SQL=await initSqlJs({ locateFile:f=>SRC+f });
+    window._db=new SQL.Database();
+    buildSchema(); seedDB();
+    if(state.screen) render();
+    toast('SQLite ready · '+dbVal('SELECT COUNT(*) FROM questions')+' questions stored');
+  }catch(e){ console.warn('SQLite init failed — using in-memory state',e); window._db=null; }
+}
+
+/* ---- pipeline operations executed against SQLite ---- */
+function dbRaiseObjection(objId,o,owner){
+  if(!dbReady()) return;
+  const subject=(state.questions.find(x=>x.n===o.q)||{}).subject;
+  dbRun("INSERT INTO objections(id,exam_id,roll,cand,q,section,reason,explanation,sme,status,decision,fee,created,mine) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,1)",
+    [objId+'-'+o.q,'pcm',state.me.roll,state.me.name,o.q,subject,o.reason,o.explanation||'',owner||null,owner?'review':'pending','',state.fee,nowTs()]);
+  audit('candidate','objection.raise',`${objId}-${o.q} · Q${o.q} · ${o.reason}`);
+  if(owner) audit('system','objection.autoroute',`${objId}-${o.q} → ${owner} (${subject})`);
+}
+function dbDecide(o,decision,newKey,remark,smeAction){
+  if(decision==='accept' && smeAction==='rekey' && newKey){
+    const oldKey=(state._provKeys&&state._provKeys[o.q]);
+    // log a key revision (maker = SME; checker = Moderation Committee, set on moderation)
+    if(!state.keyHistory.some(k=>k.q===o.q)) state.keyHistory.push({ q:o.q, subject:o.subject, prov:oldKey||'?', revised:newKey, maker:o.sme||'SME', checker:'—', stage:'Pending moderation', objId:o.id, reason:remark||'Key correction', ts:'26 Feb' });
+    else { const k=state.keyHistory.find(k=>k.q===o.q); k.revised=newKey; k.stage='Pending moderation'; }
+  }
+  if(!dbReady()) return;
+  if(decision==='accept' && smeAction==='rekey' && newKey){
+    dbRun("UPDATE questions SET key=? WHERE exam_id='pcm' AND n=?",[newKey,o.q]);
+    audit('SME','key.update',`Q${o.q} key → ${newKey} (via ${o.id})`);
+  }
+  const st=decision==='accept'?'accepted':decision==='reject'?'rejected':'clarify';
+  dbRun("UPDATE objections SET status=?,decision=?,new_key=?,sme_action=?,mod_status=?,sme=?,decided=? WHERE id=?",
+    [st,remark,newKey||null,smeAction||null,decision==='accept'?'pending':null,o.sme||'SME',nowTs(),o.id]);
+  audit('SME','objection.'+decision,`${o.id} · ${remark}`);
+}
+function dbModerate(o,policy,moderator){
+  if(!dbReady()) return;
+  if(policy==='ALL'||policy==='ATTEMPTED'){
+    dbRun("UPDATE questions SET dropped=1,award=? WHERE exam_id='pcm' AND n=?",[policy,o.q]);
+  } else { // REKEY — corrected key already applied; ensure not dropped
+    dbRun("UPDATE questions SET dropped=0,award=NULL WHERE exam_id='pcm' AND n=?",[o.q]);
+  }
+  dbRun("UPDATE objections SET mod_status='moderated',policy=? WHERE id=?",[policy,o.id]);
+  dbRun("INSERT INTO moderation(exam_id,n,objection_id,sme_action,policy,moderator,decided) VALUES('pcm',?,?,?,?,?,?)",
+    [o.q,o.id,o.smeAction||'',policy,moderator,nowTs()]);
+  audit('moderator','moderate',`${o.id} · Q${o.q} · policy ${policy}`);
+}
+function dbReeval(){
+  if(!dbReady()) return;
+  const raw=computeRawDB();
+  dbRun("UPDATE scores SET raw=?,version=version+1 WHERE exam_id='pcm' AND roll=?",[raw,state.me.roll]);
+  audit('system','reeval',`Raw score recalculated from final key + award policy → ${raw}/${maxMarks()}`);
+}
+function dbNormalize(){
+  if(!dbReady()) return;
+  const raw=computeRawDB(), norm=computeNormalized(raw), pct=computePercentile(raw);
+  dbRun("UPDATE scores SET normalized=?,percentile=?,qualified=? WHERE exam_id='pcm' AND roll=?",[norm,pct,pct>=92?1:0,state.me.roll]);
+  audit('system','normalize',`Method: ${NORM_METHODS[state.normMethod||'z'].label} · normalized ${norm} · percentile ${pct}`);
+}
+function dbPublishScorecard(){
+  if(!dbReady()) return null;
+  const r=dbAllSafe("SELECT * FROM scores WHERE exam_id='pcm' AND roll=?",[state.me.roll])[0]||{};
+  const vid='HBX-'+Math.random().toString(36).slice(2,8).toUpperCase();
+  const id='SC-'+state.me.roll;
+  dbRun("DELETE FROM scorecards WHERE id=?",[id]);
+  dbRun("INSERT INTO scorecards VALUES(?,?,?,?,?,?,?,?,?)",[id,'pcm',state.me.roll,r.raw,r.normalized,r.percentile,r.qualified,nowTs(),vid]);
+  audit('admin','scorecard.publish',`${id} issued · verify ${vid} · ${r.qualified?'QUALIFIED':'not qualified'}`);
+  return vid;
+}
+
+/* award-policy-aware raw score — SQLite when available, else in-memory */
+function qContribJS(q){
+  const m=state.exam.marksPer, neg=state.exam.negMark;
+  if(q.award==='ALL') return m;
+  if(q.award==='ATTEMPTED') return q.chosen?m:0;
+  if(!q.chosen) return 0;
+  return q.chosen===q.key ? m : -neg;
+}
+function computeRawJS(){
+  let raw=0; state.questions.forEach(q=>{ raw+=qContribJS(q); });
+  return +raw.toFixed(2);
+}
+function computeRawDB(){
+  const m=state.exam.marksPer, neg=state.exam.negMark;
+  const r=dbAllSafe(`SELECT SUM(
+      CASE
+        WHEN q.award='ALL' THEN ${m}
+        WHEN q.award='ATTEMPTED' THEN (CASE WHEN a.chosen IS NOT NULL THEN ${m} ELSE 0 END)
+        WHEN a.chosen IS NULL THEN 0
+        WHEN a.chosen=q.key THEN ${m}
+        ELSE ${-neg} END) raw
+    FROM answers a JOIN questions q ON a.exam_id=q.exam_id AND a.n=q.n
+    WHERE a.exam_id='pcm' AND a.roll=?`,[state.me.roll])[0]||{raw:0};
+  return +(+(r.raw||0)).toFixed(2);
+}
+function computeRaw(){ return dbReady()? computeRawDB() : computeRawJS(); }
 /* normalization: shift-equating to overall mean/sd (illustrative) */
+/* ============================================================
+   NORMALIZATION METHODS  (implemented from normalization spec)
+   1) Single-Batch Percentile   2) Equi-Percentile Equating
+   3) Multi-Shift Z-Score       + user-defined custom formula
+   ============================================================ */
+const NORM_METHODS = {
+  z:{ label:'Multi-Shift Z-Score', tag:'Recommended',
+      desc:'Rescales every candidate onto a common scale using their own shift’s mean & SD (population SD, sd=0 guarded, clamped).',
+      formula:'mean_all + sd_all · ( (X − mean_shift) / sd_shift )' },
+  percentile:{ label:'Single-Batch Percentile',
+      desc:'Ranks candidates by relative standing in one pooled batch. Mid-rank convention (tie-fair).',
+      formula:'( count_at_or_below / n ) · 100' },
+  equipercentile:{ label:'Equi-Percentile Equating',
+      desc:'Maps each candidate’s percentile onto a chosen reference batch’s score scale (interpolated quantile).',
+      formula:'equated = referenceScoreAtPercentile( percentile_in_own_batch )' },
+  custom:{ label:'Custom formula',
+      desc:'Define your own equating expression from the available variables.',
+      formula:'your expression' }
+};
+function pooledStats(){ // mean_all, sd_all across ALL candidates (population, law of total variance)
+  const s=state.shiftStats; let N=0,sum=0,sumsq=0;
+  s.forEach(sh=>{ N+=sh.cnt; sum+=sh.cnt*sh.mean; sumsq+=sh.cnt*(sh.sd*sh.sd + sh.mean*sh.mean); });
+  const mean=sum/N; const variance=Math.max(0, sumsq/N - mean*mean);
+  return { mean, sd:Math.sqrt(variance), N };
+}
+function invNorm(p){ // inverse standard-normal CDF (Acklam) — for equi-percentile quantile lookup
+  if(p<=0) return -6; if(p>=1) return 6;
+  const a=[-39.6968302866538,220.946098424521,-275.928510446969,138.357751867269,-30.6647980661472,2.50662827745924];
+  const b=[-54.4760987982241,161.585836858041,-155.698979859887,66.8013118877197,-13.2806815528857];
+  const c=[-0.00778489400243029,-0.322396458041136,-2.40075827716184,-2.54973253934373,4.37466414146497,2.93816398269878];
+  const d=[0.00778469570904146,0.32246712907004,2.445134137143,3.75440866190742];
+  const plow=0.02425, phigh=1-plow; let q,r;
+  if(p<plow){ q=Math.sqrt(-2*Math.log(p)); return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1); }
+  if(p<=phigh){ q=p-0.5; r=q*q; return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q/(((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1); }
+  q=Math.sqrt(-2*Math.log(1-p)); return -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
+}
+function clampMark(x){ return Math.max(0, Math.min(maxMarks(), x)); }
+function normVars(raw){ // variables exposed to every method + the custom formula
+  const my=myShiftStat(); const pool=pooledStats();
+  const sd_shift=my.sd; const z=sd_shift? (raw-my.mean)/sd_shift : 0;
+  return { X:raw, mean_shift:my.mean, sd_shift, mean_all:pool.mean, sd_all:pool.sd, n:pool.N, z, percentile:computePercentile(raw), maxMarks:maxMarks() };
+}
+function normZ(raw){ const v=normVars(raw); if(!v.sd_shift) return +v.mean_all.toFixed(2); return +clampMark(v.mean_all + v.sd_all*v.z).toFixed(2); }
+function normPercentile(raw){ return computePercentile(raw); }   // Method 1 — output IS the percentile
+function normEqui(raw){
+  const v=normVars(raw);
+  const ref=state.shiftStats.find(s=>s.shift===(state.normRef||'Shift 1'))||state.shiftStats[0];
+  const p=Math.min(0.9999, Math.max(0.0001, v.percentile/100));
+  return +clampMark(ref.mean + ref.sd*invNorm(p)).toFixed(2);     // reference quantile at percentile p
+}
+function evalFormula(expr, vars){
+  expr=(expr||'').trim();
+  if(!expr) throw new Error('Formula is empty.');
+  if(!/^[\sA-Za-z0-9_.+\-*/%(),]+$/.test(expr)) throw new Error('Illegal character. Use variables, numbers and + − * / % ( ) only.');
+  const fns=['sqrt','abs','min','max','pow','log','exp','round','floor','ceil','PI','E'];
+  const allowed=new Set([...Object.keys(vars), ...fns, 'Math']);
+  for(const id of (expr.match(/[A-Za-z_][A-Za-z0-9_]*/g)||[])){
+    if(!allowed.has(id)) throw new Error('Unknown name “'+id+'”. Allowed variables: '+Object.keys(vars).join(', '));
+  }
+  const fn=new Function('__v','"use strict";const {'+Object.keys(vars).join(',')+'}=__v;const {sqrt,abs,min,max,pow,log,exp,round,floor,ceil,PI,E}=Math;return ('+expr+');');
+  const out=fn(vars);
+  if(typeof out!=='number' || !isFinite(out)) throw new Error('Formula did not return a finite number.');
+  return out;
+}
+function normCustom(raw){ try{ return +evalFormula(state.normFormula||'', normVars(raw)).toFixed(2); }catch(e){ return null; } }
 function computeNormalized(raw){
-  const all = state.shiftStats;
-  const totalN = all.reduce((s,x)=>s+x.cnt,0);
-  const omean = all.reduce((s,x)=>s+x.mean*x.cnt,0)/totalN;
-  const osd = Math.sqrt(all.reduce((s,x)=>s+(x.sd*x.sd)*x.cnt,0)/totalN);
-  const my = all.find(x=>x.shift.startsWith(state.me.shift.split(' ')[0]+' '+state.me.shift.split(' ')[1])) || all[1];
-  const z = (raw - my.mean)/my.sd;
-  const norm = omean + z*osd;
-  return +Math.max(0, norm).toFixed(2);
+  const m=state.normMethod||'z';
+  if(m==='percentile') return normPercentile(raw);
+  if(m==='equipercentile') return normEqui(raw);
+  if(m==='custom'){ const c=normCustom(raw); return c==null? normZ(raw) : c; }
+  return normZ(raw);
+}
+function normUnit(){ return (state.normMethod==='percentile') ? ' pct' : ' / '+maxMarks(); }
+function escFormula(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+/* method-selector handlers + live preview */
+function setNormMethod(m){ state.normMethod=m; window._normErr=null; render(); }
+function setNormRef(v){ state.normRef=v; render(); }
+function applyNormFormula(){
+  const box=$('#normFormulaBox'); if(box) state.normFormula=box.value;
+  try{ evalFormula(state.normFormula||'', normVars(computeRaw())); window._normErr=null; toast('Formula is valid.'); }
+  catch(e){ window._normErr=e.message; toast('Formula error — see details.'); }
+  render();
+}
+function normPreviewRow(){
+  const raw=computeRaw(); let val, ok=true, err='';
+  try{ val = state.normMethod==='custom' ? evalFormula(state.normFormula||'', normVars(raw)) : computeNormalized(raw); }
+  catch(e){ ok=false; err=e.message; }
+  return `<div class="np-head">${svg(ICN.dash)} Live preview — ${state.me.name} · ${state.me.shift}</div>
+    <div class="np-grid">
+      <div class="np-cell"><span>Raw (X)</span><b class="mono">${raw}</b></div>
+      <div class="np-cell"><span>Method</span><b>${NORM_METHODS[state.normMethod||'z'].label}</b></div>
+      <div class="np-cell hl"><span>Normalized output</span><b class="mono">${ok?(+val).toFixed(2)+normUnit():'error'}</b></div>
+    </div>${ok?'':`<div class="np-err mono">${err}</div>`}`;
+}
+function normMethodCard(){
+  return `<div class="card pad" style="margin-bottom:18px">
+    <div class="sec-title">${svg(ICN.norm)} Normalization method</div>
+    <div class="sec-sub">Choose how raw scores are equated — implemented from the approved methods specification.</div>
+    <div class="norm-methods">
+      ${Object.entries(NORM_METHODS).map(([k,m])=>`
+        <button class="norm-method ${ (state.normMethod||'z')===k?'on':''}" onclick="setNormMethod('${k}')">
+          <span class="nm-radio"></span>
+          <span class="nm-body">
+            <span class="nm-name">${m.label}${m.tag?`<span class="nm-tag">${m.tag}</span>`:''}</span>
+            <span class="nm-desc">${m.desc}</span>
+            <span class="nm-formula mono">${m.formula}</span>
+          </span>
+        </button>`).join('')}
+    </div>
+    ${state.normMethod==='equipercentile'?`
+      <div class="field" style="margin-top:14px;max-width:300px"><label>Reference batch (immutable scale)</label>
+        <select class="inp" onchange="setNormRef(this.value)">${state.shiftStats.map(s=>`<option ${s.shift===(state.normRef||'Shift 1')?'selected':''}>${s.shift}</option>`).join('')}</select>
+        <div class="hint">Everyone is mapped onto this batch’s scale; the reference itself is not changed.</div></div>`:''}
+    ${state.normMethod==='custom'?`
+      <div style="margin-top:16px">
+        <label class="form-sub-lbl">Custom formula</label>
+        <textarea class="inp" id="normFormulaBox" rows="2" style="font-family:'IBM Plex Mono';font-size:13px;resize:vertical">${escFormula(state.normFormula||'')}</textarea>
+        <div class="norm-vars">Variables: ${['X','mean_shift','sd_shift','mean_all','sd_all','n','z','percentile','maxMarks'].map(v=>`<code>${v}</code>`).join(' ')}<br>Functions: <code>sqrt</code> <code>abs</code> <code>min</code> <code>max</code> <code>pow</code> <code>log</code> <code>exp</code> <code>round</code></div>
+        <button class="btn btn-ghost btn-sm" style="margin-top:11px" onclick="applyNormFormula()">${svg(ICN.check)} Validate &amp; preview</button>
+        ${window._normErr?`<div class="note note-warn" style="margin-top:11px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>')}<span class="mono">${window._normErr}</span></div>`:''}
+      </div>`:''}
+    <div class="norm-preview">${normPreviewRow()}</div>
+  </div>`;
 }
 
 /* ============================================================
@@ -844,9 +1343,11 @@ const NAV = {
     {grp:'Objection Tracker', items:[
       {id:'window', t:'Window &amp; Fee', ic:ICN.cfg},
       {id:'manage', t:'Objection Management', ic:ICN.list},
-      {id:'assign', t:'SME Assignment', ic:ICN.assign}
+      {id:'assign', t:'SME Assignment', ic:ICN.assign},
+      {id:'appeals', t:'Appeals &amp; Grievances', ic:ICN.review}
     ]},
     {grp:'Result Engine', items:[
+      {id:'keyhistory', t:'Key Revisions', ic:ICN.review},
       {id:'normalize', t:'Normalization', ic:ICN.norm},
       {id:'publish', t:'Scorecard Publishing', ic:ICN.pub}
     ]},
@@ -854,7 +1355,9 @@ const NAV = {
       {id:'reports', t:'Reports', ic:ICN.report}
     ]},
     {grp:'Administration', items:[
-      {id:'users', t:'User Management', ic:ICN.user}
+      {id:'import', t:'Data Import', ic:ICN.db},
+      {id:'users', t:'User Management', ic:ICN.user},
+      {id:'database', t:'Database', ic:ICN.db}
     ]}
   ],
   sme:[
@@ -862,18 +1365,24 @@ const NAV = {
       {id:'assigned', t:'Assigned Objections', ic:ICN.list},
       {id:'history', t:'Decision History', ic:ICN.review}
     ]}
+  ],
+  moderator:[
+    {grp:'Moderation Committee', items:[
+      {id:'modqueue', t:'Award Moderation', ic:ICN.assign},
+      {id:'modhistory', t:'Moderation History', ic:ICN.review}
+    ]}
   ]
 };
-const DEFAULT_SCREEN = { candidate:'dashboard', admin:'dashboard', sme:'assigned' };
+const DEFAULT_SCREEN = { candidate:'dashboard', admin:'dashboard', sme:'assigned', moderator:'modqueue' };
 const USERS = {
   candidate:{ name:'Aarav Sharma', meta:'PCM2026100482' },
   admin:{ name:'Control Room', meta:'Exam Authority' },
-  sme:{ name:'Dr. R. Iyer', meta:'SME · Science' }
+  sme:{ name:'Dr. R. Iyer', meta:'SME · Physics' }
 };
 
 /* Selectable login profiles — each signs in as a specific person */
 const PROFILES = [
-  { id:'c-aarav', role:'candidate', name:'Aarav Sharma', org:'Roll PCM2026100482 · OBC', initials:'AS', color:'#1A4D8F', rk:'r-cand', rl:'Candidate',
+  { id:'c-aarav', role:'candidate', name:'Aarav Sharma', org:'Roll PCM2026100482 · OBC', initials:'AS', color:'#0284C7', rk:'r-cand', rl:'Candidate',
     me:{ name:'Aarav Sharma', roll:'PCM2026100482', reg:'REG-2026-77410', cat:'OBC', shift:'Shift 3', email:'aarav.s@****.in' } },
   { id:'c-priya', role:'candidate', name:'Kavya Reddy', org:'Roll PCM2026100517 · EWS', initials:'KR', color:'#7A4FB0', rk:'r-cand', rl:'Candidate',
     me:{ name:'Kavya Reddy', roll:'PCM2026100517', reg:'REG-2026-77882', cat:'EWS', shift:'Shift 1', email:'kavya.r@****.in' } },
@@ -888,7 +1397,9 @@ const PROFILES = [
   { id:'s-bose', role:'sme', name:'Prof. S. Bose', org:'Subject Expert · Mathematics', initials:'SB', color:'#A86A12', rk:'r-sme2', rl:'Subject Expert', sme:'Prof. S. Bose',
     session:{ name:'Prof. S. Bose', sub:'SME · Mathematics' } },
   { id:'s-khan', role:'sme', name:'Dr. M. Khan', org:'Subject Expert · Chemistry', initials:'MK', color:'#B23A33', rk:'r-sme3', rl:'Subject Expert', sme:'Dr. M. Khan',
-    session:{ name:'Dr. M. Khan', sub:'SME · Chemistry' } }
+    session:{ name:'Dr. M. Khan', sub:'SME · Chemistry' } },
+  { id:'m-rao', role:'moderator', name:'Sunita Rao', org:'Moderation Committee · Result Authority', initials:'SR', color:'#8A5A2B', rk:'r-sme2', rl:'Moderation Committee',
+    session:{ name:'Sunita Rao', sub:'Moderation Committee · Chair' } }
 ];
 function buildProfiles(){
   const el=$('#profileList'); if(!el) return;
@@ -910,6 +1421,7 @@ function loginAsUser(id){
   const u=(state.users||[]).find(x=>x.id===id); if(!u) return;
   if(u.status==='inactive'){ loginErr('This account is inactive.'); return; }
   state.role=u.role;
+  if(u.role==='sme') state.smeUser=u.name;
   state.paperStep=0; state.consent=false; state.qview='card'; state.focusIdx=0; state.paperSection=0; state.examGate={}; state.selectedExamId='pcm';
   state.session={ name:u.name, sub:u.roleLabel, av:u.initials, color:u.color, modules:u.modules.slice() };
   state.lastProfile[u.role]=u.id;
@@ -931,7 +1443,8 @@ const DEMO_PWD = 'demo@1234';
 const LOGIN_IDS = {
   'c-aarav':'PCM2026100482', 'c-priya':'PCM2026100517', 'c-rohan':'PCM2026100644',
   'a-meera':'ADM-CTRL-01', 'a-control':'ADM-OPS-02',
-  's-iyer':'SME-PHY-04', 's-bose':'SME-MAT-07', 's-khan':'SME-CHE-09'
+  's-iyer':'SME-PHY-04', 's-bose':'SME-MAT-07', 's-khan':'SME-CHE-09',
+  'm-rao':'MOD-RES-01'
 };
 function loginErr(m){ const e=$('#loginErr'); if(e){ e.textContent=m; e.style.display='block'; } }
 function submitLogin(){
@@ -957,7 +1470,7 @@ function firstAllowedScreen(){
   for(const g of (NAV[state.role]||[])) for(const it of g.items) if(canAccess(it.id)) return it.id;
   return state.screen;
 }
-function roleLabel(r){ return {candidate:'Candidate',admin:'Administrator',sme:'Subject Expert'}[r]||r; }
+function roleLabel(r){ return {candidate:'Candidate',admin:'Administrator',sme:'Subject Expert',moderator:'Moderation Committee'}[r]||r; }
 function notAuthorized(){
   return `<div class="page-head"><div class="eyebrow" style="color:var(--rose)">Access control</div>
     <h1 class="title">403 · Not authorized</h1>
@@ -999,13 +1512,15 @@ function buildShell(){
   const s=state.session||USERS[state.role];
   // sidebar shows role + access scope only (name lives in the top-right chip)
   const rt=$('#roleTag');
-  if(rt) rt.innerHTML = `${svg(state.role==='candidate'?ICN.user:state.role==='admin'?ICN.dash:ICN.review)} ${roleLabel(state.role)}`;
+  if(rt) rt.innerHTML = `${svg(state.role==='candidate'?ICN.user:state.role==='admin'?ICN.dash:state.role==='moderator'?ICN.assign:ICN.review)} ${roleLabel(state.role)}`;
   const n=sessionModules().length;
   const sc=$('#suScope'); if(sc) sc.textContent = `Access scope · ${n} module${n>1?'s':''}`;
   buildNav();
   buildSpine();
   $('#chipName').textContent=s.name; $('#chipMeta').textContent=s.sub||s.meta||'';
   const av=$('#chipAv'); av.textContent=s.av||(s.name||'?')[0]; if(s.color) av.style.background=s.color;
+  const gs=$('#gsearch'); if(gs) gs.style.display = state.role==='candidate' ? 'none' : 'flex';
+  paintBell();
 }
 function signOut(){
   $('#appShell').style.display='none';
@@ -1053,18 +1568,29 @@ function buildSpine(){
     stage('scorecard','Scorecard','',ICN.card);
 }
 /* ---- per-exam pipeline progress (replaces the old global header spine) ---- */
+function primaryPipeline(){
+  const objection = allResolved()? 'done':'active';
+  let moderation;
+  if(!hasAccepted()) moderation = allResolved()?'done':'idle';
+  else moderation = allModerated()? 'done' : (allResolved()?'active':'idle');
+  const normalization = state.normDone?'done':(objection==='done'&&moderation==='done'?'active':'idle');
+  const scorecard = state.scorecardReady?'done':(state.normDone?'active':'idle');
+  return { objection, moderation, normalization, scorecard };
+}
 function examPipeline(ex){
-  if(ex.primary) return { objection:state.pipeline.objection, normalization:state.pipeline.normalization, scorecard:state.pipeline.scorecard };
+  if(ex.primary) return primaryPipeline();
   const obj = ex.status==='window' ? 'active' : 'done';
-  const norm = ex.normDone ? 'done' : (obj==='done' ? 'active' : 'idle');
+  const moderation = obj==='done' ? 'done' : 'idle';
+  const norm = ex.normDone ? 'done' : (moderation==='done' ? 'active' : 'idle');
   const card = ex.scorecardReady ? 'done' : 'idle';
-  return { objection:obj, normalization:norm, scorecard:card };
+  return { objection:obj, moderation, normalization:norm, scorecard:card };
 }
 function examPipeMini(ex){
   const p=examPipeline(ex);
   const step=(k,label)=>{ const c=p[k]==='done'?'done':p[k]==='active'?'active':''; return `<span class="ep-step ${c}"><span class="ep-dot"></span>${label}</span>`; };
   return `<div class="et-pipe">
     ${step('objection','Objection')}<span class="ep-line ${p.objection==='done'?'lit':''}"></span>
+    ${step('moderation','Moderation')}<span class="ep-line ${p.moderation==='done'?'lit':''}"></span>
     ${step('normalization','Normalize')}<span class="ep-line ${p.normalization==='done'?'lit':''}"></span>
     ${step('scorecard','Scorecard')}
   </div>`;
@@ -1092,7 +1618,7 @@ function render(){
 /* ============================================================
    CANDIDATE PAGES
    ============================================================ */
-const PAGES = { candidate:{}, admin:{}, sme:{} };
+const PAGES = { candidate:{}, admin:{}, sme:{}, moderator:{} };
 
 PAGES.candidate.dashboard = ()=>{
   const raised = state.objections.length;
@@ -1354,7 +1880,7 @@ function openObjModal(n){
       </div>
       <div class="field">
         <label>Supporting reference <span class="req">*</span></label>
-        <input class="inp" id="objRef" placeholder="e.g. NCERT Class XI Geography, Ch. 4, pg. 62">
+        <input class="inp" id="objRef" placeholder="e.g. NCERT Class XI Physics, Ch. 4, pg. 62">
       </div>
       <div class="field">
         <label>Upload document / PDF / image</label>
@@ -1444,10 +1970,15 @@ function selectPay(m){ payMethod=m; document.querySelectorAll('#payMethods .pay-
 function completePayment(){
   state.objId='OBJ-'+(90300+Math.floor(Math.random()*99));
   state.objSubmitted=true;
-  // push candidate's objections into admin queue
+  // push candidate's objections into admin queue — auto-routed to the subject's SME
   state.objections.forEach(o=>{
+    const subject=state.questions.find(x=>x.n===o.q).subject;
+    const owner=smeOwnerForSubject(subject);            // null if no expert owns this subject
     state.queue.push({ id:state.objId+'-'+o.q, cand:state.me.name, roll:state.me.roll, q:o.q,
-      subject:state.questions.find(x=>x.n===o.q).subject, reason:o.reason, sme:null, status:'pending', decision:'', stamp:'26 Feb, 10:14', mine:true });
+      subject, reason:o.reason, sme:owner||null, status:owner?'review':'pending',
+      autoRouted:!!owner, decision:'', stamp:'26 Feb, 10:14', mine:true,
+      exp:o.exp||'', ref:o.ref||'', url:o.url||'', file:o.file||'' });   // evidence carried through
+    dbRaiseObjection(state.objId,o,owner);   // → INSERT INTO objections (SQLite)
   });
   closeModal();
   // success screen
@@ -1483,8 +2014,9 @@ PAGES.candidate.status = ()=>{
   const lifecycle = [
     ['Submitted','Objection received with evidence and fee.', 'done'],
     ['Under SME review','Subject expert is examining your challenge.', state.smeReviewed?'done':'current'],
-    ['Answer key finalised', state.reEvalDone?'Master key updated; scores recalculated.':'Pending all decisions.', state.reEvalDone?'done':'idle'],
-    ['Normalization', state.normDone?'Scores equated across shifts.':'Runs after key is final.', state.normDone?'done':'idle'],
+    ['Award moderation', allModerated()&&hasAccepted()?'Committee set the marking policy for accepted items.':'Committee decides who is awarded marks for accepted items.', (allModerated()&&hasAccepted())?'done':(state.smeReviewed?'current':'idle')],
+    ['Answer key finalised', state.reEvalDone?'Key + award policy applied; scores recalculated.':'Pending all decisions.', state.reEvalDone?'done':'idle'],
+    ['Normalization', state.normDone?'Scores equated across shifts.':'Runs after key & policy are final.', state.normDone?'done':'idle'],
     ['Scorecard published', state.scorecardReady?'Your final scorecard is ready to download.':'Awaiting result generation.', state.scorecardReady?'done':'idle']
   ];
   return pageHead('Objection Tracker · Step 4','Objection status','Receipt '+state.objId+' · '+mine.length+' objection'+(mine.length>1?'s':'')+' under review.')+`
@@ -1499,9 +2031,12 @@ PAGES.candidate.status = ()=>{
       <div class="sec-sub">Read-only after payment — full audit trail retained.</div>
       ${mine.map(o=>{
         const d = o.status==='accepted'? badge('accepted'): o.status==='rejected'? badge('rejected'): o.status==='review'? badge('review'): badge('pending');
+        const ap=state.appeals.find(a=>a.objId===o.id);
+        const decided=o.status==='accepted'||o.status==='rejected';
         return `<div style="padding:13px 0;border-bottom:1px solid var(--line)">
           <div style="display:flex;align-items:center;gap:10px"><b class="mono">Q${o.q}</b><span style="font-size:12.5px;color:var(--muted)">${o.reason}</span><span style="margin-left:auto">${d}</span></div>
           ${o.decision?`<div style="font-size:12px;color:var(--ink-2);margin-top:6px;padding-left:2px"><b style="color:var(--muted);font-family:'IBM Plex Mono';font-size:10.5px">SME REMARK</b><br>${o.decision}</div>`:''}
+          ${decided?(ap?`<div style="margin-top:8px"><span class="badge-st ${ap.status==='open'?'st-pending':ap.status==='upheld'?'st-accepted':'st-rejected'}"><span class="bd"></span>Grievance ${ap.status}</span></div>`:`<button class="btn btn-ghost btn-sm" style="margin-top:8px" onclick="openAppeal('${o.id}')">${svg(ICN.review)} File grievance</button>`):''}
         </div>`;
       }).join('')}
     </div>
@@ -1527,8 +2062,10 @@ PAGES.candidate.scorecard = ()=>{
     <button class="btn btn-ghost" onclick="toast('Sent to printer.')">${svg('<path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/>')} Print</button>
     <button class="btn btn-ghost" onclick="toast('Verification link copied.')">${svg('<path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/>')} Verify online</button>
   </div>
+  ${myRefund().count?refundNote():''}
   ${scorecardMarkup(s)}`;
 };
+function refundNote(){ const r=myRefund(); return `<div class="note note-ok" style="margin-bottom:18px">${svg(ICN.fee)}<span><b>Objection fee refunded.</b> ${r.count} of your objection${r.count>1?'s were':' was'} upheld — ₹${r.amount} credited back to your original payment method.</span></div>`; }
 function scorecardMarkup(s){
   return `<div class="scorecard">
     <div class="sc-watermark">${svg('<path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/>','stroke="#14253B" stroke-width="0.6"')}</div>
@@ -1590,13 +2127,15 @@ PAGES.admin.dashboard = ()=>{
   const q=state.queue;
   const tot=q.length, pend=q.filter(o=>o.status==='pending'||o.status==='review').length;
   const acc=q.filter(o=>o.status==='accepted').length, rej=q.filter(o=>o.status==='rejected').length;
-  const revenue=q.length*state.fee;
+  const L=refundLedger();
   return pageHead('Exam Authority · Control Room','Objection dashboard','Live operational view of the objection cycle before scores are finalised.')+`
+  ${controlTower()}
+  ${slaCard()}
   <div class="grid cols-4" style="margin-bottom:18px">
     ${kpi(ICN.obj,'Total objections',tot,'across all subjects','')}
     ${kpi(ICN.clock,'Pending review',pend,'awaiting SME decision','accent-a')}
-    ${kpi(ICN.check,'Accepted',acc,'key updates applied','accent-g')}
-    ${kpi(ICN.fee,'Revenue collected','₹'+revenue.toLocaleString('en-IN'),tot+' × ₹'+state.fee,'')}
+    ${kpi(ICN.check,'Accepted',acc,'fees refundable','accent-g')}
+    ${kpi(ICN.fee,'Net fee retained','₹'+L.net.toLocaleString('en-IN'),'₹'+L.collected.toLocaleString('en-IN')+' − ₹'+L.refunded.toLocaleString('en-IN')+' refunded','')}
   </div>
   <div class="grid cols-2">
     <div class="card pad">
@@ -1617,8 +2156,9 @@ PAGES.admin.dashboard = ()=>{
       ${breakdownBar('Accepted',acc,tot,'var(--verify)')}
       ${breakdownBar('Rejected',rej,tot,'var(--rose)')}
       <div class="divider"></div>
+      <div class="kv"><span class="k">Fee collected</span><span class="v mono">₹${L.collected.toLocaleString('en-IN')}</span></div>
+      <div class="kv"><span class="k">Refunded (upheld)</span><span class="v mono" style="color:var(--verify)">₹${L.refunded.toLocaleString('en-IN')}</span></div>
       <div class="kv"><span class="k">Objection window</span><span class="v" style="font-family:inherit">${state.windowOpen?badge('info'):badge('rejected')}</span></div>
-      <div class="kv"><span class="k">Closes</span><span class="v">${state.windowEnd}</span></div>
     </div>
   </div>`;
 };
@@ -1685,6 +2225,344 @@ PAGES.admin.pipeline = ()=>{
 };
 function allResolved(){ return state.queue.every(o=>o.status==='accepted'||o.status==='rejected'); }
 function pendCount(){ return state.queue.filter(o=>o.status==='pending'||o.status==='review').length; }
+/* ---- moderation gating ---- */
+/* ============================================================
+   PER-QUESTION AGGREGATION  (one question ↔ many objections)
+   Real-case handling: the question is the unit of review. One ruling
+   covers every objector, and re-evaluation applies to ALL candidates.
+   ============================================================ */
+const OBJ_CATEGORIES=['Question is Incorrect','Answer Key is Incorrect','Multiple Correct Answers','No Correct Answer','Typographical Error','Translation Error','Technical Issue','Other'];
+const CAT_SHORT={'Question is Incorrect':'Q incorrect','Answer Key is Incorrect':'Key incorrect','Multiple Correct Answers':'Multiple correct','No Correct Answer':'No correct','Typographical Error':'Typo','Translation Error':'Translation','Technical Issue':'Technical','Other':'Other'};
+function aggStatus(items){
+  if(items.some(o=>o.status==='accepted')) return 'accepted';
+  if(items.some(o=>o.status==='rejected')) return 'rejected';
+  if(items.some(o=>o.status==='clarify')) return 'clarify';
+  if(items.some(o=>o.status==='review')) return 'review';
+  return 'pending';
+}
+function questionAgg(list){
+  const m={};
+  list.forEach(o=>{ const g=(m[o.q]=m[o.q]||{q:o.q,subject:o.subject,items:[],types:{},cands:new Set(),smes:new Set()});
+    g.items.push(o); g.types[o.reason]=(g.types[o.reason]||0)+1; g.cands.add(o.roll||o.cand); if(o.sme)g.smes.add(o.sme); });
+  return Object.values(m).map(g=>({ q:g.q, subject:g.subject, count:g.items.length, types:g.types,
+    candidates:g.cands.size, smes:[...g.smes], items:g.items, rep:g.items[0], status:aggStatus(g.items),
+    policy:(g.items.find(o=>o.modPolicy)||{}).modPolicy||null }))
+    .sort((a,b)=> b.count-a.count || a.q-b.q);
+}
+function categoryTotals(list){ const m={}; OBJ_CATEGORIES.forEach(c=>m[c]=0); list.forEach(o=>{ m[o.reason]=(m[o.reason]||0)+1; }); return m; }
+function dedupeByQuestion(list){ const seen={}; const out=[]; list.forEach(o=>{ if(!seen[o.q]){ seen[o.q]=1; out.push(o); } }); return out; }
+function qObjCount(q){ return state.queue.filter(o=>o.q===q).length; }
+/* real CSV download */
+function downloadCSV(filename, rows){
+  const csv=rows.map(r=>r.map(c=>{ const s=String(c==null?'':c); return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; }).join(',')).join('\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob); const a=document.createElement('a');
+  a.href=url; a.download=filename; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function downloadQuestionReport(){
+  const ex=selectedExam(); const agg=questionAgg(state.queue); const tot=categoryTotals(state.queue);
+  const header=['Question','Subject','Total objections','Distinct candidates','Assigned SME(s)','Ruling',...OBJ_CATEGORIES.map(c=>CAT_SHORT[c])];
+  const rows=[header];
+  agg.forEach(g=>rows.push(['Q'+g.q,g.subject,g.count,g.candidates,g.smes.join(' / ')||'—',g.status,...OBJ_CATEGORIES.map(c=>g.types[c]||0)]));
+  rows.push([]);
+  rows.push(['TOTALS','',state.queue.length,new Set(state.queue.map(o=>o.roll||o.cand)).size,'','',...OBJ_CATEGORIES.map(c=>tot[c]||0)]);
+  downloadCSV('objection-question-report-'+ex.id+'.csv', rows);
+  toast('Question-wise report downloaded · '+agg.length+' questions, '+state.queue.length+' objections.');
+  audit('admin','report.questionwise',`Question-wise objection CSV · ${agg.length} questions · ${state.queue.length} objections`);
+}
+function setObjView(v){ state.objView=v; render(); }
+
+/* ============================================================
+   SLA TIMERS  (live countdowns + breach tracking)
+   ============================================================ */
+const SLA={ window: 2*864e5, review: 36*36e5, publish: 5*864e5 };  // ms offsets from slaBase
+function slaDeadline(kind){ return state.slaBase + (SLA[kind]||0); }
+function slaRemain(deadline){
+  let ms=deadline-Date.now(); const breached=ms<0; ms=Math.abs(ms);
+  const d=Math.floor(ms/864e5), h=Math.floor(ms%864e5/36e5), m=Math.floor(ms%36e5/6e4), s=Math.floor(ms%6e4/1e3);
+  const text=(d?d+'d ':'')+(h<10?'0':'')+h+'h '+(m<10?'0':'')+m+'m '+(s<10?'0':'')+s+'s';
+  return { ms, breached, text };
+}
+function slaClock(kind, label){
+  const dl=slaDeadline(kind);
+  return `<span class="sla-clock" data-deadline="${dl}" data-label="${label||''}">${slaRemain(dl).text}</span>`;
+}
+function objSLA(o){
+  // per-objection review SLA: deadline = slaBase + review window (some seeded older → near breach)
+  const age=(o._slaOffset!=null)?o._slaOffset:(o._slaOffset=Math.floor(Math.random()*30)*36e5);
+  return state.slaBase + SLA.review - age;
+}
+function startSLAClock(){
+  if(window._slaTimer) return;
+  window._slaTimer=setInterval(()=>{
+    document.querySelectorAll('.sla-clock[data-deadline]').forEach(el=>{
+      const r=slaRemain(+el.getAttribute('data-deadline'));
+      el.textContent=(r.breached?'breached · ':'')+r.text;
+      el.classList.toggle('breach', r.breached);
+    });
+  },1000);
+}
+
+/* ============================================================
+   NOTIFICATIONS  (event-driven, role-scoped)
+   ============================================================ */
+let _noteId=1;
+function notify(role, title, body, icon, forRoll){
+  state.notes.unshift({ id:_noteId++, role, for:forRoll||null, title, body, icon:icon||ICN.obj, ts:'just now', read:false });
+  paintBell();
+}
+function seedNotes(){
+  if(state.notes.length) return;
+  notify('candidate','Objection window open','Raise challenges on the provisional key until '+state.windowEnd+'.',ICN.obj, state.me.roll);
+  notify('admin','New objections received',state.queue.length+' objections are in the queue across '+(state.exam.sections||[]).length+' subjects.',ICN.list);
+  notify('sme','Items routed to you','Subject objections have been auto-routed to your review desk.',ICN.review);
+}
+function myNotes(){ return state.notes.filter(n=> n.role===state.role && (!n.for || (state.me && n.for===state.me.roll))); }
+function unreadCount(){ return myNotes().filter(n=>!n.read).length; }
+function paintBell(){ const b=$('#bellCount'); if(!b) return; const c=unreadCount(); b.textContent=c; b.style.display=c?'grid':'none'; }
+function toggleNotes(){
+  const p=$('#notePanel'); if(!p) return;
+  const open=p.classList.toggle('open');
+  if(open){ renderNotes(); myNotes().forEach(n=>n.read=true); setTimeout(paintBell,1200); }
+}
+function renderNotes(){
+  const p=$('#notePanel'); if(!p) return; const list=myNotes();
+  p.innerHTML=`<div class="np-top">Notifications${list.length?` <span class="mono" style="color:var(--muted);font-weight:400">${list.length}</span>`:''}</div>
+    ${list.length?list.map(n=>`<div class="np-item ${n.read?'':'unread'}">
+      <div class="np-ic">${svg(n.icon)}</div>
+      <div class="np-bd"><div class="np-t">${n.title}</div><div class="np-b">${n.body}</div><div class="np-ts">${n.ts}</div></div>
+    </div>`).join(''):`<div class="np-empty">No notifications.</div>`}`;
+}
+
+/* ============================================================
+   APPEALS / GRIEVANCE  (post-decision escalation)
+   ============================================================ */
+let _appId=1;
+function fileAppeal(objId, reason){
+  const o=state.queue.find(x=>x.id===objId); if(!o) return;
+  state.appeals.push({ id:'APP-'+(2600+_appId++), objId, q:o.q, subject:o.subject, roll:o.roll, cand:o.cand, reason, status:'open', ts:'28 Feb' });
+  audit('candidate','appeal.file',`${objId} · Q${o.q}`);
+  notify('admin','New grievance filed','A candidate has appealed the ruling on Q'+o.q+'.',ICN.review);
+  render(); toast('Grievance submitted for review.');
+}
+function resolveAppeal(id, outcome){
+  const a=state.appeals.find(x=>x.id===id); if(!a) return;
+  a.status=outcome; a.resolvedTs='28 Feb';
+  audit('admin','appeal.'+outcome,`${a.id} · Q${a.q}`);
+  notify('candidate','Grievance '+outcome,'Your appeal on Q'+a.q+' was '+outcome+'.',ICN.review, a.roll);
+  render(); toast('Grievance '+outcome+'.');
+}
+function openAppeal(objId){
+  const o=state.queue.find(x=>x.id===objId); if(!o) return;
+  $('#modal').innerHTML=`
+    <div class="modal-head"><div class="mh-ic" style="background:var(--amber-soft)">${svg(ICN.review,'stroke="var(--amber)"')}</div>
+      <div><h3>File a grievance — Q${o.q}</h3><p>${o.subject} · ruling: ${o.status}</p></div>
+      <button class="close" onclick="closeModal()">${svg('<path d="M18 6 6 18M6 6l12 12"/>')}</button></div>
+    <div class="modal-body">
+      <div class="note note-info" style="margin-bottom:14px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>A grievance escalates a decided objection to the Exam Authority for a final review.</span></div>
+      <div class="field" style="margin-bottom:0"><label>Grounds for appeal <span class="req">*</span></label>
+        <textarea class="inp" id="appealReason" placeholder="Explain why the ruling should be reconsidered…"></textarea></div>
+    </div>
+    <div class="modal-foot"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="(function(){var r=document.getElementById('appealReason').value.trim(); if(!r){toast('Please state your grounds.');return;} closeModal(); fileAppeal('${o.id}', r);})()">${svg(ICN.review)} Submit grievance</button></div>`;
+  $('#overlay').classList.add('open');
+}
+
+/* ============================================================
+   DATA INGESTION  (real in-browser CSV import)
+   ============================================================ */
+function parseCSV(text){
+  const rows=[]; const lines=(text||'').trim().split(/\r?\n/);
+  for(const line of lines){ if(!line.trim()) continue;
+    const cells=[]; let cur='',q=false;
+    for(let i=0;i<line.length;i++){ const c=line[i];
+      if(q){ if(c==='"'){ if(line[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=c; }
+      else { if(c==='"') q=true; else if(c===','){ cells.push(cur); cur=''; } else cur+=c; }
+    }
+    cells.push(cur); rows.push(cells.map(s=>s.trim()));
+  }
+  return rows;
+}
+const IMPORT_SAMPLES={
+  shiftstats:'shift,candidates,mean,sd,top\nShift 1,24980,214,39,288\nShift 2,25120,208,41,284\nShift 3,24890,210,40,286\nShift 4,25040,205,42,281',
+  answerkey:'question,key\n2,C\n3,A\n5,D\n41,B\n73,C',
+  responses:'roll,question,answer\nPCM2026100482,2,B\nPCM2026100482,3,A\nPCM2026100482,5,C'
+};
+function loadImportSample(kind){ const el=$('#imp_'+kind); if(el){ el.value=IMPORT_SAMPLES[kind]; window['_imp_'+kind+'_preview']=null; render(); } }
+function runImport(kind){
+  const el=$('#imp_'+kind); if(!el){ return; }
+  const rows=parseCSV(el.value); if(rows.length<2){ toast('Provide a header row and at least one data row.'); return; }
+  const head=rows[0].map(h=>h.toLowerCase()); const body=rows.slice(1);
+  try{
+    if(kind==='shiftstats'){
+      const stats=body.map(r=>({ shift:r[head.indexOf('shift')], cnt:+r[head.indexOf('candidates')], mean:+r[head.indexOf('mean')], sd:+r[head.indexOf('sd')], topRaw:+r[head.indexOf('top')] })).filter(s=>s.shift);
+      if(!stats.length) throw new Error('No valid shift rows.');
+      state.shiftStats=stats; audit('admin','import.shiftstats',stats.length+' shifts ingested');
+      toast(stats.length+' shifts imported — normalization inputs updated.');
+    } else if(kind==='answerkey'){
+      let n=0; body.forEach(r=>{ const qn=+r[head.indexOf('question')]; const k=r[head.indexOf('key')]; const q=state.questions.find(x=>x.n===qn); if(q&&k){ q.key=k; if(dbReady())dbRun("UPDATE questions SET key=? WHERE exam_id='pcm' AND n=?",[k,qn]); n++; } });
+      audit('admin','import.answerkey',n+' keys ingested'); toast(n+' answer keys imported (provisional v1).');
+    } else if(kind==='responses'){
+      let n=0; body.forEach(r=>{ const roll=r[head.indexOf('roll')]; const qn=+r[head.indexOf('question')]; const a=r[head.indexOf('answer')]; if(state.me.roll===roll){ const q=state.questions.find(x=>x.n===qn); if(q){ q.chosen=a; n++; } } });
+      audit('admin','import.responses',n+' responses ingested'); toast(n+' candidate responses imported for '+state.me.roll+'.');
+    }
+    window['_imp_'+kind+'_preview']={head:rows[0], body:body.slice(0,5), total:body.length};
+  }catch(e){ toast('Import failed: '+e.message); }
+  render();
+}
+
+/* ============================================================
+   CATEGORY-WISE RESULTS
+   ============================================================ */
+const CUTOFFS={ General:93, EWS:91, OBC:92, SC:85, ST:82, PwD:80 };   // category percentile cutoffs (OBC=92 drives the demo candidate)
+const CAT_SHARE={ General:0.40, EWS:0.10, OBC:0.27, SC:0.15, ST:0.075, PwD:0.005 };  // population mix
+function categoryCutoff(cat){ return CUTOFFS[cat]!=null?CUTOFFS[cat]:92; }
+function totalCandidates(){ return parseInt(String(selectedExam().candidates).replace(/[^0-9]/g,''))||200000; }
+function categoryResultRows(){
+  const N=totalCandidates();
+  return Object.keys(CUTOFFS).map(cat=>{
+    const pop=Math.round(N*(CAT_SHARE[cat]||0));
+    const qual=Math.round(pop*(1-categoryCutoff(cat)/100)); // % above cutoff
+    return { cat, cutoff:categoryCutoff(cat), candidates:pop, qualified:qual, rate:pop?(qual/pop*100):0 };
+  });
+}
+
+/* ============================================================
+   FEE & REFUND LEDGER  (refund on upheld objections)
+   ============================================================ */
+function objFee(){ return state.fee; }
+function refundLedger(){
+  const q=state.queue; const fee=objFee();
+  const collected=q.length*fee;
+  const refundable=q.filter(o=>o.status==='accepted').length;   // accepted ⇒ fee returned
+  const refunded=refundable*fee;
+  return { count:q.length, fee, collected, refundableCount:refundable, refunded, net:collected-refunded };
+}
+function myRefund(){ // candidate's own refundable objections
+  const mine=state.queue.filter(o=>o.mine && o.status==='accepted');
+  return { count:mine.length, amount:mine.length*objFee() };
+}
+
+/* ============================================================
+   IMPACT SIMULATION  (what-if: how many candidates flip)
+   ============================================================ */
+function impactRows(){
+  // accepted/dropped questions and the estimated population affected
+  const agg=questionAgg(state.queue.filter(o=>o.status==='accepted'));
+  const N=totalCandidates();
+  return agg.map(g=>{
+    const qn=state.questions.find(x=>x.n===g.q)||{};
+    const action=qn.dropped?('Award '+(qn.award==='ALL'?'all':qn.award==='ATTEMPTED'?'attempted':'')):'Re-key';
+    // crude population estimate: ~ all candidates affected by a key change; newly-qualified ~ those near the cutoff band
+    const affected = qn.dropped ? N : Math.round(N*0.62);     // re-key affects those who picked old/new key
+    const flips = Math.round(affected*0.018);                  // ~1.8% sit in the cutoff band
+    return { q:g.q, subject:g.subject, objections:g.count, action, affected, flips };
+  });
+}
+function impactSummary(){
+  const rows=impactRows();
+  return { questions:rows.length, affected:rows.reduce((s,r)=>s+r.affected,0), flips:rows.reduce((s,r)=>s+r.flips,0) };
+}
+
+/* ============================================================
+   SME PERFORMANCE / SLA
+   ============================================================ */
+function smePerfRows(){
+  return state.smeList.map((sme,i)=>{
+    const list=state.queue.filter(o=>o.sme===sme);
+    const acc=list.filter(o=>o.status==='accepted').length;
+    const rej=list.filter(o=>o.status==='rejected').length;
+    const pend=list.filter(isPending).length;
+    const decided=acc+rej;
+    return { sme, subject:subjectForSme(sme)||'—', assigned:list.length, accepted:acc, rejected:rej, pending:pend,
+      acceptRate: decided?Math.round(acc/decided*100):0, avgTAT:(6+i*3)+'h', overturned:i===1?1:0 };  // synthetic TAT/overturn for demo
+  }).filter(r=>r.assigned>0);
+}
+
+/* ============================================================
+   PIPELINE CONTROL TOWER  (what is blocking publish)
+   ============================================================ */
+function pipelineBlockers(){
+  const b=[];
+  const unresolved=state.queue.filter(isPending).length;
+  b.push({ stage:'Objection review', ok:unresolved===0, status: unresolved===0?'All objections resolved':unresolved+' awaiting SME decision', screen:'manage', actor:'You' });
+  const modP=modPending().length;
+  b.push({ stage:'Award moderation', ok:modP===0, status: modP===0?'Every accepted question moderated':modP+' accepted question(s) awaiting policy', screen:null, actor:'Moderation Committee' });
+  b.push({ stage:'Normalization', ok:state.normDone, status: state.normDone?'Scores equated ('+NORM_METHODS[state.normMethod||'z'].label+')':'Not run yet', screen:'normalize', actor:'You' });
+  b.push({ stage:'Scorecard publish', ok:state.scorecardReady, status: state.scorecardReady?'Published':'Not published', screen:'publish', actor:'You' });
+  return b;
+}
+function slaCard(){
+  const breaches=state.queue.filter(isPending).filter(o=>slaRemain(objSLA(o)).breached).length;
+  return `<div class="card pad" style="margin-bottom:18px">
+    <div class="sec-title">${svg(ICN.clock)} SLA &amp; deadlines</div>
+    <div class="sec-sub">Live countdowns to statutory deadlines — the clock ticks in real time.</div>
+    <div class="sla-grid">
+      <div class="sla-box"><span>Objection window closes in</span><b>${slaClock('window')}</b></div>
+      <div class="sla-box"><span>SME review SLA</span><b>${slaClock('review')}</b></div>
+      <div class="sla-box ${breaches?'warn':''}"><span>Reviews breaching SLA</span><b>${breaches} pending</b></div>
+    </div>
+  </div>`;
+}
+function controlTower(){
+  const b=pipelineBlockers();
+  const firstBlock=b.find(x=>!x.ok);
+  return `<div class="card pad" style="margin-bottom:18px">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <div><div class="sec-title" style="margin:0">${svg(ICN.flow)} Pipeline control tower</div>
+        <div class="sec-sub" style="margin-top:2px">${firstBlock?('Next blocker: <b>'+firstBlock.stage+'</b> — '+firstBlock.status):'<b style="color:var(--verify)">Clear to publish.</b> Every gate is green.'}</div></div>
+    </div>
+    <div class="tower">${b.map((x,i)=>`
+      <div class="tw-step ${x.ok?'ok':'block'}">
+        <div class="tw-ic">${x.ok?svg(ICN.check,'stroke="var(--verify)"'):svg(ICN.clock,'stroke="var(--amber)"')}</div>
+        <div class="tw-body"><div class="tw-name">${x.stage}</div><div class="tw-status">${x.status}</div><div class="tw-actor">${x.actor}</div></div>
+        ${x.screen?`<button class="btn btn-ghost btn-sm" onclick="goScreen('${x.screen}')">Open</button>`:`<span class="tw-wait">awaiting</span>`}
+      </div>${i<b.length-1?`<div class="tw-conn ${x.ok?'ok':''}"></div>`:''}`).join('')}
+    </div>
+  </div>`;
+}
+
+/* ============================================================
+   OBJECTION HEATMAP  (paper-wide objection volume)
+   ============================================================ */
+function objectionHeatmap(){
+  const counts={}; state.queue.forEach(o=>counts[o.q]=(counts[o.q]||0)+1);
+  const max=Math.max(1,...Object.values(counts));
+  const total=selectedExam().totalQ||150;
+  const cells=[];
+  for(let n=1;n<=total;n++){
+    const c=counts[n]||0; const intensity=c?(0.18+0.82*(c/max)):0;
+    const bg=c?`rgba(2,132,199,${intensity.toFixed(2)})`:'var(--surface-2)';
+    const col=c && intensity>0.55?'#fff':'var(--muted)';
+    cells.push(`<button class="hm-cell" title="Q${n} · ${c} objection${c!==1?'s':''}" style="background:${bg};color:${col}" onclick="${c?`setObjView('question')`:''}">${c||''}</button>`);
+  }
+  const hot=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([q,c])=>`Q${q} (${c})`).join(', ');
+  return `<div class="card pad" style="margin-bottom:18px">
+    <div class="sec-title">${svg(ICN.dash)} Objection heatmap</div>
+    <div class="sec-sub">All ${total} questions, shaded by objection volume.${hot?` Hottest: <b>${hot}</b>.`:''}</div>
+    <div class="heatmap">${cells.join('')}</div>
+  </div>`;
+}
+
+function acceptedQueue(){ return state.queue.filter(o=>o.status==='accepted'); }
+function hasAccepted(){ return acceptedQueue().length>0; }
+function modPending(){ return acceptedQueue().filter(o=>o.modStatus!=='moderated'); }
+function allModerated(){ return acceptedQueue().every(o=>o.modStatus==='moderated'); }
+function pipelineReady(){ return allResolved() && allModerated(); }
+function policyLabel(p){ return p==='ALL'?'Award to all candidates':p==='ATTEMPTED'?'Award to attempted only':'Re-evaluate (corrected key)'; }
+function moderate(objId,policy){
+  const o=state.queue.find(x=>x.id===objId); if(!o) return;
+  const q=state.questions.find(x=>x.n===o.q);
+  if(q){ if(policy==='ALL'||policy==='ATTEMPTED'){ q.dropped=true; q.award=policy; } else { q.dropped=false; q.award=null; } }
+  // one policy per question → apply to every accepted objection on this question
+  const group=state.queue.filter(x=>x.q===o.q && x.status==='accepted');
+  group.forEach(s=>{ s.modStatus='moderated'; s.modPolicy=policy; dbModerate(s,policy,(state.session&&state.session.name)||'Moderator'); });
+  const kh=state.keyHistory.find(k=>k.q===o.q);
+  if(kh){ kh.checker=(state.session&&state.session.name)||'Moderation Committee'; kh.stage='Finalised (v2)'; kh.policy=policyLabel(policy); }
+  if(pipelineReady()){ state.reEvalDone=true; dbReeval(); }
+  render();
+  toast('Q'+o.q+' — '+policyLabel(policy)+(group.length>1?' · applied to '+group.length+' objections':'')+'.');
+}
 
 /* ---- fee model helpers (candidate context = primary exam globals) ---- */
 function objectionTotal(count){ return state.feeModel==='flat' ? state.fee : state.fee*count; }
@@ -1718,15 +2596,23 @@ const EXAM_STATUS = {
 
 /* ---- admin: exam-card gate (grid of all exams) ---- */
 const ADMIN_GATE = {
+  manage:{ eyebrow:'Objection Tracker', title:'Select an exam', lede:'Choose an exam to review its objections — totals, resolved and pending — broken down by subject and Subject Expert.', cta:'Open objection management', icon:'<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/>' },
   window:{ eyebrow:'Objection Tracker · Configuration', title:'Select an exam', lede:'Choose an exam to configure its objection window (start/end date &amp; time) and fee — one-time or per-question.', cta:'Configure window &amp; fee', icon:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' },
   normalize:{ eyebrow:'Result Engine · Product 02', title:'Select an exam', lede:'Choose an exam to run cross-shift score normalization.', cta:'Open normalization', icon:'<path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 5-6"/>' },
   publish:{ eyebrow:'Result Engine · Product 03', title:'Select an exam', lede:'Choose an exam to set its scorecard live-release window and publish verified scorecards.', cta:'Open scorecard publishing', icon:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/>' },
   reports:{ eyebrow:'Reports', title:'Select an exam', lede:'Choose an exam to view and download its objection, fee, normalization and result reports.', cta:'Open reports', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/>' }
 };
+function examObjStats(ex){
+  if(!ex.primary) return { total:0, resolved:0, pending:0 };
+  const q=state.queue;
+  const resolved=q.filter(o=>o.status==='accepted'||o.status==='rejected').length;
+  return { total:q.length, resolved, pending:q.length-resolved };
+}
 function adminExamCard(screen){
   const g=ADMIN_GATE[screen];
   const cards = EXAMS.map(e=>{
     const [bd,lbl]=EXAM_STATUS[e.status]||EXAM_STATUS.upcoming;
+    const st=examObjStats(e);
     return `<button class="exam-tile" onclick="enterExam('${screen}','${e.id}')">
       <div class="et-top"><span class="et-ic">${svg(g.icon,'stroke="#fff"')}</span>${badge(bd)}</div>
       <div class="et-name">${e.name}</div>
@@ -1736,14 +2622,20 @@ function adminExamCard(screen){
         <span>${svg(ICN.dash)} ${e.shifts} shifts</span>
         <span>${svg(ICN.user)} ${e.candidates}</span>
       </div>
-      ${examPipeMini(e)}
+      ${screen==='manage'
+        ? `<div class="et-objstats">
+            <div class="eo"><b>${st.total}</b><span>Objections</span></div>
+            <div class="eo ok"><b>${st.resolved}</b><span>Resolved</span></div>
+            <div class="eo warn"><b>${st.pending}</b><span>Pending</span></div>
+          </div>`
+        : examPipeMini(e)}
       <div class="et-foot"><span class="et-tier">${e.tier}</span><span class="et-cta">${g.cta} →</span></div>
     </button>`;
   }).join('');
   return pageHead(g.eyebrow,g.title,g.lede)+`<div class="exam-grid">${cards}</div>
-  <div class="note note-info" style="margin-top:18px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>${EXAMS.length} exams managed on Hubblehox OMS. Select any exam to ${screen==='normalize'?'open its normalization engine.':'edit its window and fee.'}</span></div>`;
+  <div class="note note-info" style="margin-top:18px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>${EXAMS.length} exams managed on Hubblehox OMS. Select any exam to ${screen==='manage'?'review its objections by subject and SME.':screen==='normalize'?'open its normalization engine.':'edit its window and fee.'}</span></div>`;
 }
-function enterExam(s,id){ if(id) state.selectedExamId=id; state.examGate[s]=true; render(); window.scrollTo(0,0); }
+function enterExam(s,id){ if(id) state.selectedExamId=id; state.examGate[s]=true; if(s==='manage') state.objFilter={subject:'all',status:'all',sme:'all'}; render(); window.scrollTo(0,0); }
 function backToExamCard(s){ state.examGate[s]=false; render(); window.scrollTo(0,0); }
 function examBackBar(screen){
   return `<div style="display:flex;gap:10px;margin:-4px 0 16px;flex-wrap:wrap;align-items:center">
@@ -1813,59 +2705,192 @@ PAGES.admin.window = ()=>{
   </div>`;
 };
 
+function objRow(o){
+  return `<tr>
+    <td style="width:34px;text-align:center"><input type="checkbox" class="obj-chk" ${state.objSel[o.id]?'checked':''} ${(o.status==='accepted'||o.status==='rejected')?'disabled':''} onclick="toggleObjSel('${o.id}')"></td>
+    <td><b class="mono">${o.id}</b>${o.mine?' <span class="badge-st st-info" style="font-size:9px;padding:1px 6px"><span class="bd"></span>Yours</span>':''}</td>
+    <td>${o.cand}<br><span class="mono" style="font-size:11px;color:var(--muted)">${o.roll}</span></td>
+    <td><b class="mono">Q${o.q}</b> · ${o.subject}</td>
+    <td style="font-size:12px">${o.reason}</td>
+    <td>${o.sme?o.sme:'<span style="color:var(--muted)">— unassigned</span>'}</td>
+    <td>${badge(o.status)}</td>
+  </tr>`;
+}
+function toggleObjSel(id){ if(state.objSel[id]) delete state.objSel[id]; else state.objSel[id]=true; render(); }
+function selObjAllFiltered(){ const ids=window._objFiltered||[]; const all=ids.length&&ids.every(i=>state.objSel[i]); ids.forEach(i=>{ if(all) delete state.objSel[i]; else state.objSel[i]=true; }); render(); }
+function clearObjSel(){ state.objSel={}; render(); }
+function bulkReject(){
+  const ids=Object.keys(state.objSel); let n=0;
+  ids.forEach(id=>{ const o=state.queue.find(x=>x.id===id); if(o && o.status!=='accepted' && o.status!=='rejected'){ o.status='rejected'; o.decision='Dismissed by Exam Authority (bulk action).'; if(dbReady()) dbRun("UPDATE objections SET status='rejected',decision=? WHERE id=?",[o.decision,o.id]); n++; } });
+  audit('admin','objection.bulkreject',n+' objections dismissed'); state.objSel={}; render(); buildNav(); toast(n+' objection(s) dismissed.');
+}
+function bulkReassign(){
+  const sme=$('#bulkSme')?$('#bulkSme').value:''; if(!sme) return;
+  const ids=Object.keys(state.objSel); let n=0;
+  ids.forEach(id=>{ const o=state.queue.find(x=>x.id===id); if(o && o.status!=='accepted' && o.status!=='rejected'){ o.sme=sme; o.status='review'; o.autoRouted=false; if(dbReady()) dbRun("UPDATE objections SET sme=?,status='review' WHERE id=?",[sme,o.id]); n++; } });
+  audit('admin','objection.bulkreassign',n+' → '+sme); state.objSel={}; render(); buildNav(); toast(n+' objection(s) reassigned to '+sme+'.');
+}
+function isPending(o){ return o.status==='pending'||o.status==='review'||o.status==='clarify'; }
+function setObjFilter(key,val){ state.objFilter[key]=val; render(); }
+function clearObjFilter(){ state.objFilter={subject:'all',status:'all',sme:'all'}; render(); }
 PAGES.admin.manage = ()=>{
-  const rows=state.queue.map(o=>`
-    <tr>
-      <td><b class="mono">${o.id}</b>${o.mine?' <span class="badge-st st-info" style="font-size:9px;padding:1px 6px"><span class="bd"></span>Yours</span>':''}</td>
-      <td>${o.cand}<br><span class="mono" style="font-size:11px;color:var(--muted)">${o.roll}</span></td>
-      <td><b class="mono">Q${o.q}</b> · ${o.subject}</td>
-      <td style="font-size:12px">${o.reason}</td>
-      <td>${o.sme?o.sme:'<span style="color:var(--muted)">— unassigned</span>'}</td>
-      <td>${badge(o.status)}</td>
-    </tr>`).join('');
-  return pageHead('Objection Tracker','Objection management','Every objection in the system, filterable by subject and decision state.')+`
+  if(!state.examGate.manage) return adminExamCard('manage');
+  const ex=selectedExam();
+  const head=pageHead('Objection Tracker','Objection management — '+ex.name,'Totals, subject and SME breakdown, and a filterable register of every objection.')+examBackBar('manage');
+  if(!ex.primary){
+    return head+`<div class="card"><div class="empty">${svg(ICN.check)}<div style="font-weight:600;color:var(--ink)">No objections recorded for ${ex.name}</div>
+      <div style="margin-top:6px">This exam is still in its objection window — challenges will appear here once candidates submit them.</div></div></div>`;
+  }
+  const q=state.queue, f=state.objFilter;
+  const resolved=q.filter(o=>o.status==='accepted'||o.status==='rejected').length;
+  const pending=q.length-resolved;
+  const subs=state.exam.sections||[];
+  const subRows=subs.map(s=>{ const list=q.filter(o=>o.subject===s); return {s, total:list.length, pending:list.filter(isPending).length}; });
+  const smeRows=state.smeList.map(sme=>{ const list=q.filter(o=>o.sme===sme); return {sme, total:list.length, pending:list.filter(isPending).length}; }).filter(r=>r.total>0);
+  const unassigned=q.filter(o=>!o.sme);
+  const filtered=q.filter(o=>
+    (f.subject==='all'||o.subject===f.subject) &&
+    (f.status==='all'||o.status===f.status) &&
+    (f.sme==='all' || (f.sme==='unassigned'? !o.sme : o.sme===f.sme))
+  );
+  const active = f.subject!=='all'||f.status!=='all'||f.sme!=='all';
+  const selectable=filtered.filter(o=>o.status!=='accepted'&&o.status!=='rejected').map(o=>o.id);
+  window._objFiltered=selectable;
+  const sel=Object.keys(state.objSel);
+  const cats=categoryTotals(q);
+  const catList=OBJ_CATEGORIES.filter(c=>cats[c]>0);
+  const aggAll=questionAgg(q);
+  const agg=questionAgg(filtered);
+  const maxCount=Math.max(1,...aggAll.map(g=>g.count));
+  const multi=aggAll.filter(g=>g.count>1).length;
+  const view=state.objView||'objection';
+  return head+`
+  <div class="grid cols-4" style="margin-bottom:18px">
+    ${kpi(ICN.list,'Total objections',q.length,ex.name,'')}
+    ${kpi(ICN.norm,'Distinct questions',aggAll.length,multi+' with multiple','')}
+    ${kpi(ICN.check,'Resolved',resolved,'accepted or rejected','accent-g')}
+    ${kpi(ICN.clock,'Pending',pending,'awaiting action','accent-a')}
+  </div>
+  <div class="grid cols-2" style="margin-bottom:18px">
+    <div class="card pad">
+      <div class="sec-title">${svg(ICN.list)} By subject</div>
+      <div class="sec-sub">Pending objections per subject.</div>
+      ${subRows.map(r=>`<button class="kv kv-btn" onclick="setObjFilter('subject','${r.s}')"><span class="k">${r.s}</span><span class="v">${r.pending} pending <span style="color:var(--muted);font-weight:400">/ ${r.total}</span></span></button>`).join('')}
+    </div>
+    <div class="card pad">
+      <div class="sec-title">${svg(ICN.assign)} By SME</div>
+      <div class="sec-sub">Who has how many pending.</div>
+      ${smeRows.length?smeRows.map(r=>`<button class="kv kv-btn" onclick="setObjFilter('sme','${r.sme}')"><span class="k">${r.sme} <span style="color:var(--muted);font-weight:400;font-size:11px">· ${subjectForSme(r.sme)||'—'}</span></span><span class="v">${r.pending} pending <span style="color:var(--muted);font-weight:400">/ ${r.total}</span></span></button>`).join(''):'<div style="color:var(--muted);font-size:13px">No SME assignments yet.</div>'}
+      ${unassigned.length?`<button class="kv kv-btn" onclick="setObjFilter('sme','unassigned')"><span class="k">Unassigned</span><span class="v" style="color:var(--amber)">${unassigned.length} pending</span></button>`:''}
+    </div>
+  </div>
+  ${objectionHeatmap()}
+  <div class="card pad" style="margin-bottom:18px">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <div><div class="sec-title" style="margin:0">${svg(ICN.list)} Objections by category</div>
+        <div class="sec-sub" style="margin-top:2px">Total of each objection type across ${q.length} objections on ${aggAll.length} questions.</div></div>
+      <button class="btn btn-ghost btn-sm" style="margin-left:auto" onclick="downloadQuestionReport()">${svg('<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>')} Download report (CSV)</button>
+    </div>
+    <div class="cat-strip">${catList.map(c=>`<button class="cat-chip" onclick="setObjView('question')"><b>${cats[c]}</b><span>${CAT_SHORT[c]}</span></button>`).join('')}</div>
+  </div>
   <div class="card" style="overflow:hidden">
     <div style="padding:16px 18px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-      <select class="inp" style="width:auto"><option>All subjects</option><option>Science</option><option>Aptitude</option><option>Geography</option></select>
-      <select class="inp" style="width:auto"><option>All statuses</option><option>Pending</option><option>Under review</option><option>Accepted</option><option>Rejected</option></select>
-      <div style="margin-left:auto;font-size:12.5px;color:var(--muted)" class="mono">${state.queue.length} records</div>
+      <div class="seg">
+        <button class="${view==='objection'?'on':''}" onclick="setObjView('objection')">By objection</button>
+        <button class="${view==='question'?'on':''}" onclick="setObjView('question')">By question</button>
+      </div>
+      <select class="inp" style="width:auto" onchange="setObjFilter('subject',this.value)">
+        <option value="all">All subjects</option>${subs.map(s=>`<option ${f.subject===s?'selected':''}>${s}</option>`).join('')}</select>
+      <select class="inp" style="width:auto" onchange="setObjFilter('status',this.value)">
+        <option value="all">All statuses</option>
+        ${[['pending','Pending'],['review','Under review'],['accepted','Accepted'],['rejected','Rejected'],['clarify','Need clarification']].map(([v,l])=>`<option value="${v}" ${f.status===v?'selected':''}>${l}</option>`).join('')}</select>
+      <select class="inp" style="width:auto" onchange="setObjFilter('sme',this.value)">
+        <option value="all">All SMEs</option>
+        <option value="unassigned" ${f.sme==='unassigned'?'selected':''}>Unassigned</option>
+        ${state.smeList.map(s=>`<option ${f.sme===s?'selected':''}>${s}</option>`).join('')}</select>
+      ${active?`<button class="btn btn-ghost btn-sm" onclick="clearObjFilter()">${svg('<path d="M18 6 6 18M6 6l12 12"/>')} Clear</button>`:''}
+      <div style="margin-left:auto;font-size:12.5px;color:var(--muted)" class="mono">${view==='question'?agg.length+' questions':filtered.length+' / '+q.length+' records'}</div>
     </div>
-    <div style="overflow-x:auto"><table class="tbl">
-      <thead><tr><th>Objection ID</th><th>Candidate</th><th>Question</th><th>Reason</th><th>Assigned SME</th><th>Status</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table></div>
+    ${view==='question'
+      ? `<div style="overflow-x:auto"><table class="tbl">
+          <thead><tr><th>Question</th><th>Subject</th><th>Objections</th><th>Type breakdown</th><th>Candidates</th><th>SME</th><th>Ruling</th><th></th></tr></thead>
+          <tbody>${agg.length?agg.map(g=>`<tr>
+            <td><b class="mono">Q${g.q}</b></td>
+            <td>${g.subject}</td>
+            <td><div style="display:flex;align-items:center;gap:8px"><span class="objbar"><i style="width:${Math.round(g.count/maxCount*100)}%"></i></span><b class="mono">${g.count}</b></div></td>
+            <td>${Object.entries(g.types).map(([t,c])=>`<span class="ur-chip">${CAT_SHORT[t]||t} ×${c}</span>`).join(' ')}</td>
+            <td class="mono">${g.candidates}</td>
+            <td style="font-size:12px">${g.smes.join(', ')||'<span style="color:var(--muted)">—</span>'}</td>
+            <td>${badge(g.status)}${g.policy?`<br><span class="db-act" style="margin-top:3px;display:inline-block">${policyLabel(g.policy)}</span>`:''}</td>
+            <td><button class="btn btn-ghost btn-sm" onclick="openQuestion360(${g.q})">360 →</button></td>
+          </tr>`).join(''):`<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:26px">No questions match these filters.</td></tr>`}</tbody>
+        </table></div>`
+      : `${sel.length?`<div class="bulkbar">
+          <b>${sel.length} selected</b>
+          <button class="btn btn-ghost btn-sm" onclick="bulkReject()">${svg('<path d="M18 6 6 18M6 6l12 12"/>')} Dismiss</button>
+          <div style="display:flex;gap:6px;align-items:center">
+            <select class="inp" id="bulkSme" style="width:auto">${state.smeList.map(s=>`<option>${s}</option>`).join('')}</select>
+            <button class="btn btn-ghost btn-sm" onclick="bulkReassign()">${svg(ICN.assign)} Reassign</button>
+          </div>
+          <button class="btn btn-ghost btn-sm" onclick="clearObjSel()" style="margin-left:auto">Clear selection</button>
+        </div>`:''}
+        <div style="overflow-x:auto"><table class="tbl">
+          <thead><tr><th style="width:34px;text-align:center"><input type="checkbox" ${selectable.length&&selectable.every(i=>state.objSel[i])?'checked':''} onclick="selObjAllFiltered()"></th><th>Objection ID</th><th>Candidate</th><th>Question</th><th>Reason</th><th>Assigned SME</th><th>Status</th></tr></thead>
+          <tbody>${filtered.length?filtered.map(objRow).join(''):`<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:26px">No objections match these filters.</td></tr>`}</tbody>
+        </table></div>`}
   </div>`;
 };
 
 PAGES.admin.assign = ()=>{
-  const unassigned=state.queue.filter(o=>!o.sme && (o.status==='pending'));
-  return pageHead('Objection Tracker','SME assignment','Route unassigned objections to subject-matter experts for review.')+`
-  ${unassigned.length===0?`<div class="card"><div class="empty">${svg(ICN.check)}<div style="font-weight:600;color:var(--ink)">All objections are assigned</div><div style="margin-top:6px">Nothing waiting in the assignment queue.</div></div></div>`:`
-  <div class="card" style="overflow:hidden">
+  const open=state.queue.filter(o=>o.status!=='accepted' && o.status!=='rejected'); // active objections
+  const unowned=open.filter(o=>!o.sme);   // no active expert owns the subject → manual assignment
+  const routed=open.filter(o=>o.sme);
+  const ownerMap=(state.exam.sections||[]).map(s=>`${s} → ${smeOwnerForSubject(s)||'<span style="color:var(--amber)">no expert</span>'}`).join(' · ');
+  return pageHead('Objection Tracker','SME assignment & routing','New objections auto-route to the Subject Expert who owns each subject. Manual assignment is only needed when a subject has no active expert; you can also reassign here.')+`
+  <div class="note ${unowned.length?'note-warn':'note-ok'}" style="margin-bottom:18px">${svg(unowned.length?'<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>':ICN.check)}<span><b>Auto-routing is on.</b> ${ownerMap}. ${unowned.length?`<b>${unowned.length}</b> objection(s) need manual assignment — no active expert owns their subject.`:'Nothing is waiting for manual assignment.'}</span></div>
+  ${unowned.length?`
+  <div class="card pad" style="margin-bottom:18px;border-left:3px solid var(--amber)">
+    <div class="sec-title">${svg(ICN.assign)} Needs manual assignment</div>
+    <div class="sec-sub">No active Subject Expert owns these subjects — assign one (or create one in User Management).</div>
     <div style="overflow-x:auto"><table class="tbl">
-      <thead><tr><th>Objection ID</th><th>Subject</th><th>Reason</th><th>Assign to SME</th></tr></thead>
-      <tbody>${unassigned.map(o=>`
-        <tr>
-          <td><b class="mono">${o.id}</b></td>
-          <td><b class="mono">Q${o.q}</b> · ${o.subject}</td>
-          <td style="font-size:12px">${o.reason}</td>
-          <td><div style="display:flex;gap:8px;align-items:center">
-            <select class="inp" style="width:auto" id="sme_${o.id}">${state.smeList.map(s=>`<option>${s}</option>`).join('')}</select>
-            <button class="btn btn-primary btn-sm" onclick="assignSme('${o.id}')">Assign</button>
-          </div></td>
-        </tr>`).join('')}</tbody>
+      <thead><tr><th>Objection</th><th>Subject</th><th>Reason</th><th>Assign to SME</th></tr></thead>
+      <tbody>${unowned.map(o=>{const sug=smeForSubject(o.subject);return `<tr>
+        <td><b class="mono">${o.id}</b></td><td><b class="mono">Q${o.q}</b> · ${o.subject}</td>
+        <td style="font-size:12px">${o.reason}</td>
+        <td><div style="display:flex;gap:8px;align-items:center">
+          <select class="inp" style="width:auto" id="sme_${o.id}">${state.smeList.map(s=>`<option ${s===sug?'selected':''}>${s}</option>`).join('')}</select>
+          <button class="btn btn-primary btn-sm" onclick="assignSme('${o.id}')">Assign</button></div></td>
+      </tr>`}).join('')}</tbody>
     </table></div>
-  </div>`}
-  <div class="card pad" style="margin-top:18px">
+  </div>`:''}
+  <div class="card" style="overflow:hidden;margin-bottom:18px">
+    <div style="padding:16px 18px;border-bottom:1px solid var(--line)"><div class="sec-title" style="margin:0">${svg(ICN.review)} Routing &amp; reassignment</div><div class="sec-sub" style="margin-top:4px">Every active objection and the expert it routed to. Reassign only if needed.</div></div>
+    ${routed.length?`<div style="overflow-x:auto"><table class="tbl">
+      <thead><tr><th>Objection</th><th>Question</th><th>Routed to</th><th>Status</th><th>Reassign</th></tr></thead>
+      <tbody>${routed.map(o=>`<tr>
+        <td><b class="mono">${o.id}</b></td><td><b class="mono">Q${o.q}</b> · ${o.subject}</td>
+        <td>${o.sme}${o.autoRouted?' <span class="badge-st st-info" style="font-size:9px;padding:1px 6px"><span class="bd"></span>Auto</span>':''}</td>
+        <td>${badge(o.status)}</td>
+        <td><div style="display:flex;gap:8px;align-items:center">
+          <select class="inp" style="width:auto" id="sme_${o.id}">${state.smeList.map(s=>`<option ${s===o.sme?'selected':''}>${s}</option>`).join('')}</select>
+          <button class="btn btn-ghost btn-sm" onclick="assignSme('${o.id}')">Reassign</button></div></td>
+      </tr>`).join('')}</tbody>
+    </table></div>`:`<div class="empty" style="padding:24px">${svg(ICN.check)}<div>No active objections to route right now.</div></div>`}
+  </div>
+  <div class="card pad">
     <div class="sec-title">${svg(ICN.assign)} SME workload</div>
-    <div class="sec-sub">Objections currently routed to each expert.</div>
-    ${state.smeList.map(s=>{const c=state.queue.filter(o=>o.sme===s).length;return `<div class="kv"><span class="k">${s}</span><span class="v">${c} assigned</span></div>`}).join('')}
+    <div class="sec-sub">Pending vs total objections routed to each expert.</div>
+    ${state.smeList.map(s=>{const c=state.queue.filter(o=>o.sme===s).length;const p=state.queue.filter(o=>o.sme===s&&isPending(o)).length;return `<div class="kv"><span class="k">${s} <span style="color:var(--muted);font-weight:400;font-size:11px">· ${subjectForSme(s)||'—'}</span></span><span class="v">${p} pending <span style="color:var(--muted);font-weight:400">/ ${c} total</span></span></div>`}).join('')}
   </div>`;
 };
 function assignSme(id){
   const sel=$('#sme_'+id); const o=state.queue.find(x=>x.id===id);
-  o.sme=sel.value; o.status='review'; render(); buildNav();
-  toast(o.id+' assigned to '+o.sme+'.');
+  const prev=o.sme; o.sme=sel.value; o.status='review'; o.autoRouted=false;
+  if(dbReady()){ dbRun("UPDATE objections SET sme=?,status='review' WHERE id=?",[o.sme,o.id]); audit('admin', prev?'objection.reassign':'objection.assign', `${o.id} → ${o.sme}`); }
+  render(); buildNav();
+  const owner=subjectForSme(o.sme);
+  if(owner && owner!==o.subject){ toast('⚠ '+o.id+' '+(prev?'reassigned':'assigned')+' to '+o.sme+' ('+owner+') but Q'+o.q+' is '+o.subject+'.'); }
+  else { toast(o.id+' '+(prev?'reassigned':'assigned')+' to '+o.sme+'.'); }
 }
 
 PAGES.admin.normalize = ()=>{
@@ -1873,18 +2898,22 @@ PAGES.admin.normalize = ()=>{
   return selectedExam().primary ? normalizePrimary() : normalizeOther(selectedExam());
 };
 function normalizePrimary(){
-  const canRun = allResolved();
+  const canRun = pipelineReady();
+  const lockMsg = !allResolved()
+    ? `<b>Normalization is locked.</b> ${pendCount()} objection(s) are still open with the Subject Experts.`
+    : `<b>Normalization is locked.</b> ${modPending().length} accepted question(s) are awaiting an award-policy decision from the Moderation Committee.`;
   const stats=state.shiftStats;
   return pageHead('Result Engine · Product 02','Score normalization','Equate raw scores across shifts so candidates are judged fairly despite differing paper difficulty.')+examBackBar('normalize')+`
-  ${!canRun?`<div class="note note-warn" style="margin-bottom:18px">${svg('<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>')}<span><b>Normalization is locked.</b> ${pendCount()} objection(s) are still open. Resolve every objection so the answer key is final before running.</span></div>`:''}
+  ${!canRun?`<div class="note note-warn" style="margin-bottom:18px">${svg('<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>')}<span>${lockMsg} The answer key and award policy must be final before equating.</span></div>`:''}
+  ${normMethodCard()}
   <div class="card pad" style="margin-bottom:18px">
     <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
       <div><div class="sec-title" style="margin-bottom:2px">${svg(ICN.norm)} Run the engine</div>
-        <div style="font-size:13px;color:var(--muted)">Inputs: final answer key · recalculated raw scores · shift details · candidate data</div></div>
+        <div style="font-size:13px;color:var(--muted)">Method: <b>${NORM_METHODS[state.normMethod||'z'].label}</b> · final answer key · recalculated raw scores · shift details</div></div>
       <button class="btn ${canRun&&!state.normDone?'btn-green':''} ${!canRun||state.normDone?'btn-ghost':''}" ${(!canRun||state.normDone)?'disabled':''} style="margin-left:auto" onclick="runNormalization()">
         ${state.normDone?svg(ICN.check)+' Completed':svg(ICN.norm)+' Run normalization'}</button>
     </div>
-    ${state.normDone?`<div class="note note-ok" style="margin-top:16px">${svg(ICN.check)}<span><b>Normalization complete.</b> Scores equated across ${stats.length} shifts. Data has moved to the Scorecard Generator.</span></div>`:''}
+    ${state.normDone?`<div class="note note-ok" style="margin-top:16px">${svg(ICN.check)}<span><b>Normalization complete.</b> Equated with <b>${NORM_METHODS[state.normMethod||'z'].label}</b> across ${stats.length} shifts. Data has moved to the Scorecard Generator.</span></div>`:''}
   </div>
   <div class="grid cols-2" style="margin-bottom:18px">
     ${stats.map(s=>`<div class="card pad">
@@ -1948,7 +2977,7 @@ function runNormalization(){
   toast('Normalization engine running…');
   setTimeout(()=>{
     state.normDone=true; state.pipeline.objection='done'; state.pipeline.normalization='done';
-    state.pipeline.scorecard='active'; buildShell(); render();
+    state.pipeline.scorecard='active'; dbReeval(); dbNormalize(); buildShell(); render();
     toast('Normalization complete — data sent to Scorecard Generator.');
   },1700);
 }
@@ -2001,6 +3030,20 @@ function publishPrimary(){
     ${kpi(ICN.check,'Status',state.scorecardReady?'Live':'Draft',state.scorecardReady?'available to download':'awaiting publish',state.scorecardReady?'accent-g':'accent-a')}
   </div>
   <div class="card pad">
+    <div class="sec-title">${svg(ICN.user)} Category-wise results</div>
+    <div class="sec-sub">Percentile cutoff and qualified counts per reservation category${state.scorecardReady?'':' (projected from shift statistics until publish)'}.</div>
+    <div style="overflow-x:auto"><table class="tbl">
+      <thead><tr><th>Category</th><th>Percentile cutoff</th><th>Candidates</th><th>Qualified</th><th>Qualify rate</th></tr></thead>
+      <tbody>${categoryResultRows().map(r=>`<tr>
+        <td><b>${r.cat}</b>${r.cat===state.me.cat?' <span class="badge-st st-info" style="font-size:9px;padding:1px 6px"><span class="bd"></span>Sample candidate</span>':''}</td>
+        <td class="mono">${r.cutoff.toFixed(2)}</td>
+        <td class="mono">${r.candidates.toLocaleString('en-IN')}</td>
+        <td class="mono" style="color:var(--verify)">${r.qualified.toLocaleString('en-IN')}</td>
+        <td class="mono">${r.rate.toFixed(2)}%</td>
+      </tr>`).join('')}</tbody>
+    </table></div>
+  </div>
+  <div class="card pad" style="margin-top:18px">
     <div class="sec-title">${svg(ICN.review)} Re-issue &amp; version history</div>
     <div class="sec-sub">Any post-result correction regenerates and republishes updated scorecards with version history.</div>
     <div class="kv"><span class="k">v1.0 — Initial publication</span><span class="v" style="font-family:inherit">${state.scorecardReady?badge('accepted'):badge('pending')}</span></div>
@@ -2037,16 +3080,93 @@ function publishScorecards(){
   const raw=computeRaw();
   const norm=computeNormalized(raw);
   const pct=computePercentile(raw);
-  const cutoff=92.00;
-  state.scores={ raw:raw.toFixed(2), normalized:norm.toFixed(2), percentile:pct.toFixed(2), cutoff:cutoff.toFixed(2), qualified: pct>=cutoff, version:state.scores.version };
+  const cutoff=categoryCutoff(state.me.cat);   // category-wise cutoff
+  dbReeval(); dbNormalize();
+  const vid=dbPublishScorecard();   // → INSERT INTO scorecards (SQLite)
+  state.scores={ raw:raw.toFixed(2), normalized:norm.toFixed(2), percentile:pct.toFixed(2), cutoff:cutoff.toFixed(2), qualified: pct>=cutoff, version:state.scores.version, verifyId:vid||state.scores.verifyId };
   state.scorecardReady=true; state.scoreLive=true; state.pipeline.scorecard='done'; buildShell(); render();
-  toast('Scorecards published successfully.');
+  notify('candidate','Scorecard published','Your verified scorecard is now available to view and download.',ICN.card,state.me.roll);
+  toast('Scorecards published'+(vid?' · '+vid:'')+'.');
 }
 function regenerate(){
   state.scores.version++; render(); toast('Scorecards regenerated as v'+state.scores.version+'.0 with version history retained.');
 }
 
 /* ---- Reports (exam-wise downloads) ---- */
+PAGES.admin.import = ()=>{
+  const cards=[
+    {kind:'shiftstats', title:'Shift statistics', desc:'Per-shift candidate count, mean, SD and top score — feeds the normalization engine directly.', cols:'shift, candidates, mean, sd, top'},
+    {kind:'answerkey', title:'Provisional answer key', desc:'Question → key. Loaded as the provisional (v1) key candidates raise objections against.', cols:'question, key'},
+    {kind:'responses', title:'Candidate responses', desc:'Roll → question → chosen answer. Updates the response sheet used for scoring.', cols:'roll, question, answer'}
+  ];
+  return pageHead('Administration','Data import','Ingest real exam data via CSV — shift statistics, the provisional answer key and candidate responses. Everything downstream (scoring, normalization, reports) runs on what you load here.')+`
+  <div class="note note-info" style="margin-bottom:18px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>Paste CSV (or load a sample), then import. Imports write to the live in-browser store — inspect them on the Database screen, and see the effect immediately on Normalization and Reports.</span></div>
+  ${cards.map(c=>{ const pv=window['_imp_'+c.kind+'_preview']; return `
+  <div class="card pad" style="margin-bottom:18px">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <div><div class="sec-title" style="margin:0">${svg(ICN.db)} ${c.title}</div>
+        <div class="sec-sub" style="margin-top:2px">${c.desc}</div></div>
+      <span class="mono" style="margin-left:auto;font-size:11px;color:var(--muted)">columns: ${c.cols}</span>
+    </div>
+    <textarea class="inp" id="imp_${c.kind}" rows="4" style="font-family:'IBM Plex Mono';font-size:12px;margin-top:12px" placeholder="${c.cols}&#10;…" aria-label="${c.title} CSV"></textarea>
+    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+      <button class="btn btn-ghost btn-sm" onclick="loadImportSample('${c.kind}')">Load sample</button>
+      <button class="btn btn-primary btn-sm" onclick="runImport('${c.kind}')">${svg('<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>')} Import CSV</button>
+    </div>
+    ${pv?`<div class="note note-ok" style="margin-top:12px">${svg(ICN.check)}<span>Imported <b>${pv.total}</b> row(s). Preview (first ${pv.body.length}):</span></div>
+      <div style="overflow-x:auto;margin-top:8px"><table class="tbl"><thead><tr>${pv.head.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+      <tbody>${pv.body.map(r=>`<tr>${r.map(c2=>`<td class="mono">${c2}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:''}
+  </div>`; }).join('')}`;
+};
+
+PAGES.admin.appeals = ()=>{
+  const open=state.appeals.filter(a=>a.status==='open');
+  const upheld=state.appeals.filter(a=>a.status==='upheld').length;
+  const dismissed=state.appeals.filter(a=>a.status==='dismissed').length;
+  return pageHead('Objection Tracker','Appeals &amp; grievances','Candidates can escalate a decided objection for a final review by the Exam Authority. Resolve each as upheld (ruling changes) or dismissed (ruling stands).')+`
+  <div class="grid cols-3" style="margin-bottom:18px">
+    ${kpi(ICN.review,'Open grievances',open.length,'awaiting review','accent-a')}
+    ${kpi(ICN.check,'Upheld',upheld,'ruling revised','accent-g')}
+    ${kpi(ICN.obj,'Dismissed',dismissed,'ruling stands','')}
+  </div>
+  ${state.appeals.length===0?`<div class="card"><div class="empty">${svg(ICN.check)}<div style="font-weight:600;color:var(--ink)">No grievances filed</div><div style="margin-top:6px">When a candidate appeals a decided objection, it appears here for final review.</div></div></div>`:`
+  <div class="card" style="overflow:hidden"><div style="overflow-x:auto"><table class="tbl">
+    <thead><tr><th>Appeal</th><th>Question</th><th>Candidate</th><th>Grounds</th><th>Status</th><th></th></tr></thead>
+    <tbody>${state.appeals.map(a=>`<tr>
+      <td><b class="mono">${a.id}</b></td>
+      <td><b class="mono">Q${a.q}</b> · ${a.subject}</td>
+      <td>${a.cand||'—'}<br><span class="mono" style="font-size:11px;color:var(--muted)">${a.roll||''}</span></td>
+      <td style="font-size:12px;max-width:280px">${a.reason}</td>
+      <td>${a.status==='open'?badge('pending'):a.status==='upheld'?badge('accepted'):badge('rejected')} <span style="font-size:11px;color:var(--muted)">${a.status}</span></td>
+      <td>${a.status==='open'?`<div style="display:flex;gap:6px"><button class="btn btn-green btn-sm" onclick="resolveAppeal('${a.id}','upheld')">Uphold</button><button class="btn btn-ghost btn-sm" onclick="resolveAppeal('${a.id}','dismissed')">Dismiss</button></div>`:`<span class="mono" style="font-size:11px;color:var(--muted)">${a.resolvedTs||''}</span>`}</td>
+    </tr>`).join('')}</tbody>
+  </table></div></div>`}`;
+};
+
+PAGES.admin.keyhistory = ()=>{
+  const kh=state.keyHistory;
+  const finalised=kh.filter(k=>k.stage&&k.stage.startsWith('Finalised')).length;
+  return pageHead('Result Engine · Answer Key','Key revisions','Two-stage answer-key trail. A provisional key (v1) is released for objections; every change is made by an SME and confirmed by the Moderation Committee before the final key (v2) is locked.')+`
+  <div class="note note-info" style="margin-bottom:18px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span><b>Maker–checker.</b> SME proposes the corrected key (maker); the Moderation Committee confirms it (checker) when setting the award policy. No single person finalises a key alone.</span></div>
+  <div class="grid cols-3" style="margin-bottom:18px">
+    ${kpi(ICN.review,'Keys revised',kh.length,'questions changed','')}
+    ${kpi(ICN.check,'Finalised (v2)',finalised,'checker-confirmed','accent-g')}
+    ${kpi(ICN.clock,'Pending moderation',kh.length-finalised,'awaiting checker','accent-a')}
+  </div>
+  ${kh.length===0?`<div class="card"><div class="empty">${svg(ICN.check)}<div style="font-weight:600;color:var(--ink)">No key revisions yet</div><div style="margin-top:6px">When an SME accepts an objection with a corrected key, the change is recorded here with its maker and checker.</div></div></div>`:`
+  <div class="card" style="overflow:hidden"><div style="overflow-x:auto"><table class="tbl">
+    <thead><tr><th>Question</th><th>Provisional (v1)</th><th>Revised (v2)</th><th>Maker · SME</th><th>Checker · Moderation</th><th>Stage</th></tr></thead>
+    <tbody>${kh.map(k=>`<tr>
+      <td><b class="mono">Q${k.q}</b> · ${k.subject}</td>
+      <td><span class="mono" style="color:var(--rose)">${k.prov}</span></td>
+      <td><span class="mono" style="color:var(--verify)"><b>${k.revised}</b></span></td>
+      <td style="font-size:12px">${k.maker}</td>
+      <td style="font-size:12px">${k.checker}</td>
+      <td>${k.stage&&k.stage.startsWith('Finalised')?badge('accepted'):badge('pending')} <span style="font-size:11px;color:var(--muted)">${k.stage}</span></td>
+    </tr>`).join('')}</tbody>
+  </table></div></div>`}`;
+};
+
 PAGES.admin.reports = ()=>{
   if(!state.examGate.reports) return adminExamCard('reports');
   return reportsList(selectedExam());
@@ -2055,14 +3175,20 @@ function reportsFor(ex){
   const norm = ex.primary ? state.normDone : ex.normDone;
   const pub  = ex.primary ? state.scorecardReady : ex.scorecardReady;
   const objCount = ex.primary ? state.queue.length : Math.round(parseInt(ex.candidates.replace(/[^0-9]/g,''))*0.012);
+  const P = ex.primary;
   return [
-    {name:'Objection Summary',        desc:`All ${objCount.toLocaleString('en-IN')} objections raised — by question, subject and decision status.`, fmt:'XLSX', size:'1.2 MB', ready:true},
-    {name:'SME Decision Audit',       desc:'Every accept / reject / clarify decision with SME, rationale and timestamp.', fmt:'PDF', size:'860 KB', ready:true},
-    {name:'Fee Collection Report',    desc:'Objection fee transactions, fee model and revenue reconciliation.', fmt:'XLSX', size:'540 KB', ready:true},
-    {name:'Shift-wise Statistics',    desc:`Mean, standard deviation and top score across all ${ex.shifts} shifts.`, fmt:'XLSX', size:'320 KB', ready:true},
-    {name:'Normalization Report',     desc:'Raw vs normalized scores with equating parameters for every shift.', fmt:'PDF', size:'1.5 MB', ready:norm, gate:'Run normalization to enable'},
-    {name:'Result & Scorecard Report',desc:'Final normalized scores, category cutoffs and qualified-candidate counts.', fmt:'PDF', size:'2.1 MB', ready:pub, gate:'Publish scorecards to enable'},
-    {name:'Candidate Master Data',    desc:'Registrations, categories and shift allocation for all candidates.', fmt:'CSV', size:'4.8 MB', ready:true}
+    {name:'Objection Summary',        desc:`All ${objCount.toLocaleString('en-IN')} objections — by question, subject, candidate and decision status.`, fmt:'CSV', size:'live', ready:P, gen:'objsummary', gate:'Live exam only'},
+    {name:'Question-wise Objection Analysis', desc:'Per question: objection count, candidates, type breakdown and category totals — the multi-objection report.', fmt:'CSV', size:'live', ready:P, gen:'questionwise', gate:'Live exam only'},
+    {name:'SME Decision Audit',       desc:'Every accept / reject / clarify decision with SME, rationale and timestamp.', fmt:'CSV', size:'live', ready:P, gen:'decisionaudit', gate:'Live exam only'},
+    {name:'SME Performance & SLA',    desc:'Per expert: assigned, accept rate, turnaround and overturned-at-moderation rate.', fmt:'CSV', size:'live', ready:P, gen:'smeperf', gate:'Live exam only'},
+    {name:'Answer-Key Revision Log',  desc:'Two-stage key trail: provisional → revised, maker (SME) and checker (Moderation).', fmt:'CSV', size:'live', ready:P, gen:'keylog', gate:'Live exam only'},
+    {name:'Fee & Refund Reconciliation', desc:'Collected vs refunded (upheld objections) vs net, with a per-objection ledger.', fmt:'CSV', size:'live', ready:P, gen:'feerefund', gate:'Live exam only'},
+    {name:'Impact Analysis (pre-publication)', desc:'Per accepted question: candidates affected and estimated qualified-status flips.', fmt:'CSV', size:'live', ready:P, gen:'impact', gate:'Live exam only'},
+    {name:'Shift-wise Statistics',    desc:`Mean, standard deviation and top score across all ${ex.shifts} shifts.`, fmt:'CSV', size:'live', ready:P, gen:'shiftstats', gate:'Live exam only'},
+    {name:'Normalization Audit',      desc:'Method, per-shift parameters, pooled mean/SD and the equal-ability assumption.', fmt:'CSV', size:'live', ready:norm&&P, gen:'normaudit', gate:'Run normalization to enable'},
+    {name:'Category-wise Result',     desc:'Per category: cutoff, candidates and qualified counts.', fmt:'CSV', size:'live', ready:pub&&P, gen:'categorywise', gate:'Publish scorecards to enable'},
+    {name:'Audit-Log Export',         desc:'Complete tamper-evident action log — every system, SME and admin event.', fmt:'CSV', size:'live', ready:P, gen:'auditlog', gate:'Live exam only'},
+    {name:'Candidate Master Data',    desc:'Registrations, categories and shift allocation for all candidates.', fmt:'CSV', size:'4.8 MB', ready:true, gen:'candmaster'}
   ];
 }
 function reportsList(ex){
@@ -2091,7 +3217,62 @@ function reportsList(ex){
 }
 function downloadReport(i){
   const ex=selectedExam(); const r=reportsFor(ex)[i]; if(!r) return;
-  toast('Downloading: '+r.name+' ('+r.fmt+') — '+ex.name);
+  if(r.gen==='questionwise'){ downloadQuestionReport(); return; }
+  const rows=reportData(r.gen, ex);
+  if(!rows){ toast('Downloading: '+r.name+' ('+r.fmt+') — '+ex.name); return; }
+  downloadCSV(r.name.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-'+ex.id+'.csv', rows);
+  toast('Downloaded: '+r.name+' ('+rows.length+' rows).');
+  audit('admin','report.export',`${r.name} · ${ex.id} · ${rows.length} rows`);
+}
+function reportData(gen, ex){
+  const fee=objFee();
+  switch(gen){
+    case 'objsummary':
+      return [['Objection ID','Question','Subject','Candidate','Roll','Reason','Assigned SME','Status','Ruling','Fee','Refund']]
+        .concat(state.queue.map(o=>[o.id,'Q'+o.q,o.subject,o.cand,o.roll||'',o.reason,o.sme||'unassigned',o.status,o.decision||'',fee,o.status==='accepted'?fee:0]));
+    case 'decisionaudit':
+      return [['Objection ID','Question','Subject','SME','Decision','Rationale','When']]
+        .concat(state.queue.filter(o=>o.status==='accepted'||o.status==='rejected'||o.status==='clarify').map(o=>[o.id,'Q'+o.q,o.subject,o.sme||'',o.status,o.decision||'',o.stamp||'']));
+    case 'smeperf':
+      return [['SME','Subject','Assigned','Accepted','Rejected','Pending','Accept rate %','Avg turnaround','Overturned at moderation']]
+        .concat(smePerfRows().map(r=>[r.sme,r.subject,r.assigned,r.accepted,r.rejected,r.pending,r.acceptRate,r.avgTAT,r.overturned]));
+    case 'keylog':
+      return [['Question','Subject','Provisional key (v1)','Revised key (v2)','Maker (SME)','Checker (Moderation)','Stage','Reason']]
+        .concat(state.keyHistory.length?state.keyHistory.map(k=>['Q'+k.q,k.subject,k.prov,k.revised,k.maker,k.checker,k.stage,k.reason]):[['—','no key changes yet','','','','','','']]);
+    case 'feerefund': {
+      const L=refundLedger();
+      const rows=[['Summary','Amount (₹)'],['Fee per objection',L.fee],['Total objections',L.count],['Collected',L.collected],['Refundable (upheld)',L.refundableCount],['Refunded',L.refunded],['Net retained',L.net],[],['Objection ID','Candidate','Status','Fee','Refund']];
+      state.queue.forEach(o=>rows.push([o.id,o.cand,o.status,fee,o.status==='accepted'?fee:0]));
+      return rows;
+    }
+    case 'impact': {
+      const s=impactSummary();
+      return [['Question','Subject','Objections','Ruling','Candidates affected','Est. status flips']]
+        .concat(impactRows().map(r=>['Q'+r.q,r.subject,r.objections,r.action,r.affected,r.flips]))
+        .concat([[],['TOTAL','',state.queue.filter(o=>o.status==='accepted').length,'',s.affected,s.flips]]);
+    }
+    case 'shiftstats':
+      return [['Shift','Candidates','Mean raw','Std deviation','Top raw']]
+        .concat(state.shiftStats.map(s=>[s.shift,s.cnt,s.mean,s.sd,s.topRaw]));
+    case 'normaudit': {
+      const m=NORM_METHODS[state.normMethod||'z']; const pool=pooledStats();
+      const rows=[['Normalization method',m.label],['Formula',m.formula],['Pooled mean_all',pool.mean.toFixed(2)],['Pooled sd_all',pool.sd.toFixed(2)],['Assumption','Shifts equal in underlying ability; output depends only on within-shift position'],[],['Shift','Mean','SD','Top']];
+      state.shiftStats.forEach(s=>rows.push([s.shift,s.mean,s.sd,s.topRaw]));
+      return rows;
+    }
+    case 'categorywise':
+      return [['Category','Percentile cutoff','Candidates','Qualified','Qualify rate %']]
+        .concat(categoryResultRows().map(r=>[r.cat,r.cutoff,r.candidates,r.qualified,r.rate.toFixed(2)]));
+    case 'auditlog': {
+      const rows=[['Timestamp','Actor','Action','Detail']];
+      if(dbReady()){ try{ dbAll("SELECT ts,actor,action,detail FROM audit ORDER BY id").forEach(a=>rows.push([a.ts,a.actor,a.action,a.detail])); }catch(e){} }
+      return rows;
+    }
+    case 'candmaster':
+      return [['Name','Roll','Registration','Category','Shift','Email']]
+        .concat(PROFILES.filter(p=>p.role==='candidate').map(p=>[p.me.name,p.me.roll,p.me.reg,p.me.cat,p.me.shift,p.me.email]));
+  }
+  return null;
 }
 
 /* ---- User Management (module-based RBAC) ---- */
@@ -2116,14 +3297,17 @@ PAGES.admin.users = ()=>{
   <div class="user-list">${rows}</div>`;
 };
 function userRow(u){
-  const chips = u.custom
-    ? u.modules.map(id=>`<span class="ur-chip">${moduleLabel(id)}</span>`).join('')
-    : `<span class="ur-chip">${u.role==='sme'?'Review Desk':'All modules'}</span>`;
+  let chips;
+  if(u.role==='sme'){ const s=u.subject||subjectForSme(u.name); chips=`<span class="ur-chip">Review Desk</span>${s?`<span class="ur-chip">${s}</span>`:''}`; }
+  else if(u.role==='moderator') chips=`<span class="ur-chip">Award Moderation</span>`;
+  else if(u.custom) chips=u.modules.map(id=>`<span class="ur-chip">${moduleLabel(id)}</span>`).join('');
+  else chips=`<span class="ur-chip">All modules</span>`;
+  const roleCls=u.custom?'r-sme2':u.role==='sme'?'r-sme':u.role==='moderator'?'r-sme2':'r-adm';
   return `<div class="user-row ${u.status==='inactive'?'off':''}">
     <span class="ur-av" style="background:${u.color}">${u.initials}</span>
     <div class="ur-body">
-      <div class="ur-name">${u.name} <span class="p-role ${u.custom?'r-sme2':u.role==='sme'?'r-sme':'r-adm'}">${u.custom?'Custom':u.roleLabel}</span></div>
-      <div class="ur-email">${u.email}</div>
+      <div class="ur-name">${u.name} <span class="p-role ${roleCls}">${u.custom?'Custom':u.roleLabel}</span></div>
+      <div class="ur-email">${u.email}${u.title?' · '+u.title:''}</div>
       <div class="ur-chips">${chips}</div>
     </div>
     <div class="ur-actions">
@@ -2133,92 +3317,159 @@ function userRow(u){
   </div>`;
 }
 function toggleUser(id){ const u=state.users.find(x=>x.id===id); if(!u)return; u.status=u.status==='active'?'inactive':'active'; render(); toast(u.name+' '+(u.status==='active'?'activated':'deactivated')+'.'); }
+function allSubjects(){ const s=new Set(); EXAMS.forEach(e=>(e.sections||[]).forEach(x=>s.add(x))); return [...s]; }
 function openAddUser(){
+  const subs=allSubjects();
   $('#modal').innerHTML=`
     <div class="modal-head">
       <div class="mh-ic" style="background:var(--brand-soft)">${svg(ICN.user,'stroke="var(--brand)"')}</div>
-      <div><h3>Add user</h3><p>Create a user and assign module-based access</p></div>
+      <div><h3>Create user</h3><p>Add a team member and define their role, access and subject routing</p></div>
       <button class="close" onclick="closeModal()">${svg('<path d="M18 6 6 18M6 6l12 12"/>')}</button>
     </div>
     <div class="modal-body">
-      <div class="field"><label>Full name</label><input class="inp" id="nuName" placeholder="e.g. Sunita Rao"></div>
-      <div class="field"><label>Email / login ID</label><input class="inp" id="nuEmail" placeholder="name@hubblehox.io"></div>
-      <div class="field"><label>Role</label>
-        <select class="inp" id="nuRole" onchange="onUserRoleChange()">
-          <option value="admin">Administrator — full access</option>
-          <option value="sme">Subject Expert — review desk</option>
-          <option value="custom" selected>Custom — choose modules</option>
-        </select></div>
-      <div id="nuSmeNote" class="note note-info" style="display:none">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>Subject experts get the SME Review Desk (Assigned Objections &amp; Decision History).</span></div>
-      <label style="font-size:12px;font-weight:700;color:var(--ink-2);display:block;margin:8px 0 8px">Module access</label>
-      <div class="mod-grid" id="nuModules">
-        ${MODULES.map(m=>`<label class="mod-check"><input type="checkbox" value="${m.id}" checked>${m.label}</label>`).join('')}
+      <div class="form-sec">Profile</div>
+      <div class="grid cols-2" style="gap:0 16px">
+        <div class="field"><label>Full name <span class="req">*</span></label><input class="inp" id="nuName" placeholder="e.g. Sunita Rao"></div>
+        <div class="field"><label>Email / login ID <span class="req">*</span></label><input class="inp" id="nuEmail" placeholder="name@hubblehox.io"></div>
+        <div class="field"><label>Phone</label><input class="inp" id="nuPhone" placeholder="+91 98765 43210"></div>
+        <div class="field"><label>Designation</label><input class="inp" id="nuTitle" placeholder="e.g. Professor, Dept. of Physics"></div>
+      </div>
+      <div class="form-sec" style="margin-top:18px">Role &amp; access</div>
+      <div class="grid cols-2" style="gap:0 16px">
+        <div class="field"><label>Role <span class="req">*</span></label>
+          <select class="inp" id="nuRole" onchange="onUserRoleChange()">
+            <option value="admin">Administrator</option>
+            <option value="sme">Subject Expert</option>
+            <option value="moderator">Moderation Committee</option>
+            <option value="custom" selected>Custom — choose modules</option>
+          </select></div>
+        <div class="field" id="nuSubjectField" style="display:none"><label>Subject <span class="req">*</span></label>
+          <select class="inp" id="nuSubject">${subs.map(s=>`<option>${s}</option>`).join('')}</select>
+          <div class="hint">Objections on this subject route to this expert.</div></div>
+        <div class="field"><label>Status</label>
+          <select class="inp" id="nuStatus"><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
+        <div class="field"><label>Temporary password</label><input class="inp" id="nuPwd" value="demo@1234">
+          <div class="hint">Demo accounts share the password demo@1234.</div></div>
+      </div>
+      <div id="nuRoleNote" class="note note-info" style="display:none;margin-bottom:14px"></div>
+      <div id="nuModWrap">
+        <label class="form-sub-lbl">Module access</label>
+        <div class="mod-grid" id="nuModules">
+          ${MODULES.map(m=>`<label class="mod-check"><input type="checkbox" value="${m.id}" checked>${m.label}</label>`).join('')}
+        </div>
       </div>
     </div>
     <div class="modal-foot">
       <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-primary" onclick="saveUser()">Add user</button>
+      <button class="btn btn-primary" onclick="saveUser()">Create user</button>
     </div>`;
   $('#overlay').classList.add('open');
   onUserRoleChange();
 }
 function onUserRoleChange(){
-  const role=$('#nuRole').value; const grid=$('#nuModules'); const note=$('#nuSmeNote');
-  if(role==='sme'){ grid.style.display='none'; note.style.display='flex'; return; }
-  grid.style.display='grid'; note.style.display='none';
-  grid.querySelectorAll('input').forEach(b=>{ if(role==='admin'){ b.checked=true; b.disabled=true; } else { b.disabled=false; } });
+  const role=$('#nuRole').value;
+  const subF=$('#nuSubjectField'), modWrap=$('#nuModWrap'), grid=$('#nuModules'), note=$('#nuRoleNote');
+  subF.style.display = role==='sme' ? 'block' : 'none';
+  const showMods = role==='admin'||role==='custom';
+  modWrap.style.display = showMods ? 'block' : 'none';
+  if(showMods){ grid.querySelectorAll('input').forEach(b=>{ if(role==='admin'){ b.checked=true; b.disabled=true; } else { b.disabled=false; } }); }
+  const info=`<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>`;
+  if(role==='sme'){ note.style.display='flex'; note.innerHTML=`${svg(info)}<span>Subject Experts get the Review Desk and see only the objections for their assigned subject.</span>`; }
+  else if(role==='moderator'){ note.style.display='flex'; note.innerHTML=`${svg(info)}<span>The Moderation Committee sets the award policy for SME-accepted questions before normalization.</span>`; }
+  else { note.style.display='none'; }
 }
 function saveUser(){
-  const name=($('#nuName').value||'').trim(); const email=($('#nuEmail').value||'').trim(); const role=$('#nuRole').value;
-  if(!name){ toast('Enter a name.'); return; }
+  const v=id=>{const el=$('#'+id);return el?(el.value||'').trim():'';};
+  const name=v('nuName'), email=v('nuEmail'), phone=v('nuPhone'), title=v('nuTitle');
+  const role=$('#nuRole').value, status=$('#nuStatus').value;
+  const subject = role==='sme' ? $('#nuSubject').value : null;
+  if(!name){ toast('Enter a full name.'); return; }
+  if(!email){ toast('Enter an email / login ID.'); return; }
+  if(role==='sme' && !subject){ toast('Select the subject this expert owns.'); return; }
   let modules;
   if(role==='sme') modules=['assigned','history'];
+  else if(role==='moderator') modules=['modqueue','modhistory'];
   else if(role==='admin') modules=ALL_ADMIN_MODULES.slice();
   else modules=[...$('#nuModules').querySelectorAll('input:checked')].map(b=>b.value);
-  if(role!=='sme' && !modules.length){ toast('Select at least one module.'); return; }
+  if((role==='admin'||role==='custom') && !modules.length){ toast('Select at least one module.'); return; }
   const initials=name.split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
-  const colors=['#1A4D8F','#117A52','#A86A12','#B23A33','#7A4FB0','#0E7C86'];
-  state.users.push({ id:'u-'+Date.now(), name,
+  const colors=['#0284C7','#15803D','#B45309','#7A4FB0','#0E7C86','#0369A1'];
+  const u={ id:'u-'+Date.now(), name,
     email: email || (name.toLowerCase().replace(/\s+/g,'.')+'@hubblehox.io'),
-    role, roleLabel: role==='admin'?'Administrator':role==='sme'?'Subject Expert':'Custom user',
-    modules, status:'active', initials, color:colors[state.users.length%colors.length], custom: role==='custom', loginable:true });
-  closeModal(); render(); toast('User “'+name+'” added with '+modules.length+' module'+(modules.length>1?'s':'')+'.');
+    phone, title, role,
+    roleLabel: role==='admin'?'Administrator':role==='sme'?'Subject Expert':role==='moderator'?'Moderation Committee':'Custom user',
+    subject, modules, status, initials, color:colors[state.users.length%colors.length],
+    custom: role==='custom', loginable:true };
+  state.users.push(u);
+  if(role==='sme' && !state.smeList.includes(name)) state.smeList.push(name);   // appears in SME assignment + routing
+  closeModal(); render();
+  toast('User “'+name+'” created'+(subject?' · '+subject+' expert':'')+'.');
 }
 
 /* ============================================================
    SME PAGES
    ============================================================ */
-function smeQueue(){ // objections visible to current SME (Dr. R. Iyer) + unreviewed
-  return state.queue.filter(o=> o.sme==='Dr. R. Iyer' || o.mine || (!o.sme && o.status==='pending'));
+/* subject ownership — each Subject Expert owns one section (built-ins + created users) */
+const SME_SUBJECT = { 'Dr. R. Iyer':'Physics', 'Prof. S. Bose':'Mathematics', 'Dr. M. Khan':'Chemistry' };
+function subjectForSme(name){
+  if(SME_SUBJECT[name]) return SME_SUBJECT[name];
+  const u=(state.users||[]).find(x=>x.role==='sme' && x.name===name);
+  return u && u.subject ? u.subject : null;
+}
+function smeForSubject(sub){
+  const builtin=Object.keys(SME_SUBJECT).find(k=>SME_SUBJECT[k]===sub);
+  if(builtin) return builtin;
+  const u=(state.users||[]).find(x=>x.role==='sme' && x.subject===sub && x.status!=='inactive');
+  return u ? u.name : state.smeList[0];
+}
+/* strict owner — returns the active SME who owns this subject, or null if none exists */
+function smeOwnerForSubject(sub){
+  const builtin=Object.keys(SME_SUBJECT).find(k=>SME_SUBJECT[k]===sub);
+  if(builtin) return builtin;
+  const u=(state.users||[]).find(x=>x.role==='sme' && x.subject===sub && x.status!=='inactive');
+  return u ? u.name : null;
+}
+function currentSme(){ return state.smeUser || 'Dr. R. Iyer'; }
+function smeSubject(){ return subjectForSme(currentSme()); }
+function smeQueue(){ // objections owned by the logged-in SME, or unassigned in their subject
+  const me=currentSme(), sub=smeSubject();
+  return state.queue.filter(o => o.sme===me || (!o.sme && o.status==='pending' && o.subject===sub));
 }
 PAGES.sme.assigned = ()=>{
-  const q = state.queue.slice();
-  const mine=q.filter(o=>o.sme==='Dr. R. Iyer' || o.mine);
-  const pending=q.filter(o=>o.status==='review'||o.status==='pending');
-  return pageHead('SME Review Desk','Review queue','Examine each challenge against the question, candidate response, evidence and current key, then decide. Accepting a challenge updates the master key and recalculates scores downstream.')+`
+  const me=currentSme(), sub=smeSubject();
+  const q = smeQueue();
+  const groups = dedupeByQuestion(q);   // review once per question
+  const pendingGroups = groups.filter(o=>o.status==='review'||o.status==='pending');
+  const decidedGroups = groups.filter(o=>o.status==='accepted'||o.status==='rejected');
+  return pageHead('SME Review Desk · '+me,'Review queue — '+(sub||'all subjects'),'Each question is reviewed once; your ruling applies to every candidate who objected to it. Accepting sends the question to the Moderation Committee and recalculates scores downstream.')+`
   <div class="grid cols-3" style="margin-bottom:18px">
-    ${kpi(ICN.list,'On your desk',mine.length,'routed to Dr. Iyer','')}
-    ${kpi(ICN.clock,'Awaiting decision',pending.length,'across the board','accent-a')}
-    ${kpi(ICN.check,'Decided',q.length-pending.length,'this cycle','accent-g')}
+    ${kpi(ICN.list,'Questions on desk',groups.length,q.length+' objections total','')}
+    ${kpi(ICN.clock,'Awaiting decision',pendingGroups.length,'in '+(sub||'your subject'),'accent-a')}
+    ${kpi(ICN.check,'Decided',decidedGroups.length,'this cycle','accent-g')}
   </div>
+  ${groups.length===0?`<div class="card"><div class="empty">${svg(ICN.check)}<div style="font-weight:600;color:var(--ink)">No ${sub||''} objections on your desk</div><div style="margin-top:6px">Items appear here once a ${sub||''} objection is routed to you.</div></div></div>`:`
   <div class="card" style="overflow:hidden">
     <div style="overflow-x:auto"><table class="tbl">
-      <thead><tr><th>Objection</th><th>Question</th><th>Reason</th><th>Status</th><th></th></tr></thead>
-      <tbody>${q.map(o=>`
-        <tr>
-          <td><b class="mono">${o.id}</b><br><span style="font-size:11px;color:var(--muted)">${o.cand}</span></td>
+      <thead><tr><th>Question</th><th>Objections</th><th>Reasons raised</th><th>SLA</th><th>Status</th><th></th></tr></thead>
+      <tbody>${groups.map(o=>{
+        const items=q.filter(x=>x.q===o.q); const types={}; items.forEach(x=>types[x.reason]=(types[x.reason]||0)+1);
+        const decided=o.status==='accepted'||o.status==='rejected';
+        return `<tr>
           <td><b class="mono">Q${o.q}</b> · ${o.subject}</td>
-          <td style="font-size:12px">${o.reason}</td>
+          <td><b class="mono">${items.length}</b> <span style="font-size:11px;color:var(--muted)">candidate${items.length>1?'s':''}</span></td>
+          <td style="font-size:11.5px">${Object.entries(types).map(([k,c])=>`<span class="ur-chip">${CAT_SHORT[k]||k}${c>1?' ×'+c:''}</span>`).join(' ')}</td>
+          <td>${decided?'<span style="color:var(--muted);font-size:12px">—</span>':`<span class="sla-clock sla-pill" data-deadline="${objSLA(o)}">${slaRemain(objSLA(o)).text}</span>`}</td>
           <td>${badge(o.status)}</td>
           <td>${(o.status==='review'||o.status==='pending')
             ?`<button class="btn btn-primary btn-sm" onclick="openReview('${o.id}')">Review →</button>`
             :`<button class="btn btn-ghost btn-sm" onclick="openReview('${o.id}')">View</button>`}</td>
-        </tr>`).join('')}</tbody>
+        </tr>`}).join('')}</tbody>
     </table></div>
-  </div>`;
+  </div>`}`;
 };
 PAGES.sme.history = ()=>{
-  const decided=state.queue.filter(o=>o.status==='accepted'||o.status==='rejected');
+  const me=currentSme();
+  const decided=state.queue.filter(o=>(o.status==='accepted'||o.status==='rejected') && o.sme===me);
   return pageHead('SME Review Desk','Decision history','An auditable trail of every objection decision, with remarks and timestamps.')+`
   <div class="card" style="overflow:hidden"><div style="overflow-x:auto"><table class="tbl">
     <thead><tr><th>Objection</th><th>Question</th><th>Decision</th><th>Remark</th><th>SME</th><th>When</th></tr></thead>
@@ -2229,6 +3480,174 @@ PAGES.sme.history = ()=>{
   </table></div></div>`;
 };
 
+/* ============================================================
+   MODERATION COMMITTEE  (award policy — sits between SME & Normalization)
+   ============================================================ */
+function modCard(o){
+  const q=state.questions.find(x=>x.n===o.q)||{};
+  const drop = o.smeAction==='drop';
+  const done = o.modStatus==='moderated';
+  const attempted = q.chosen!=null;
+  const cnt=qObjCount(o.q);
+  return `<div class="mod-card ${done?'done':''}">
+    <div class="mod-head">
+      <div><b class="mono">Q${o.q}</b> · ${o.subject}${cnt>1?` <span class="ur-chip" style="vertical-align:middle">${cnt} objections</span>`:''}
+        <div class="mod-sub">SME ruling: ${drop?'<b>All options wrong → drop</b>':'<b>Key corrected → '+(q.key||'?')+'</b>'} · ${o.sme||'SME'} · one policy applies to all ${cnt} objector${cnt>1?'s':''}</div></div>
+      ${done?`<span class="badge-st st-accepted"><span class="bd"></span>${policyLabel(o.modPolicy)}</span>`:`<span class="badge-st st-pending"><span class="bd"></span>Awaiting policy</span>`}
+    </div>
+    <div class="mod-q">${q.stmt||('Q'+o.q)}</div>
+    <div class="mod-note">${drop
+      ? `No option is defensible. Decide who receives the ${state.exam.marksPer} marks for this question.`
+      : `Candidates who selected the corrected key gain marks on re-evaluation. The committee can also award the item to everyone if it was ambiguous.`}</div>
+    ${done?'':`<div class="mod-actions">
+      ${drop?`
+        <button class="btn btn-green btn-sm" onclick="moderate('${o.id}','ALL')">${svg(ICN.user)} Award to ALL candidates</button>
+        <button class="btn btn-ghost btn-sm" onclick="moderate('${o.id}','ATTEMPTED')">${svg(ICN.check)} Only those who attempted</button>
+      `:`
+        <button class="btn btn-green btn-sm" onclick="moderate('${o.id}','REKEY')">${svg(ICN.check)} Re-evaluate (corrected key)</button>
+        <button class="btn btn-ghost btn-sm" onclick="moderate('${o.id}','ALL')">${svg(ICN.user)} Award to all</button>
+      `}
+    </div>
+    <div class="mod-hint">${drop
+      ? `For your candidate (${state.me.name}) this question was <b>${attempted?'attempted':'left blank'}</b> — “Award to all” gives them +${state.exam.marksPer}; “attempted only” gives ${attempted?'+'+state.exam.marksPer:'0'}.`
+      : ''}</div>`}
+  </div>`;
+}
+function impactCard(){
+  const s=impactSummary(); if(!s.questions) return '';
+  return `<div class="card pad" style="margin-bottom:18px;border-left:3px solid var(--brand)">
+    <div class="sec-title">${svg(ICN.dash)} Impact simulation — what-if</div>
+    <div class="sec-sub">Estimated effect of the accepted rulings on the full cohort before scores are finalised.</div>
+    <div class="grid cols-3" style="margin:4px 0 6px">
+      ${kpi(ICN.list,'Questions ruled',s.questions,'accepted','')}
+      ${kpi(ICN.user,'Candidates affected','~'+s.affected.toLocaleString('en-IN'),'scores recomputed','')}
+      ${kpi(ICN.check,'Est. status flips','~'+s.flips.toLocaleString('en-IN'),'qualified ↔ not','accent-g')}
+    </div>
+    <div style="overflow-x:auto"><table class="tbl">
+      <thead><tr><th>Question</th><th>Ruling</th><th>Candidates affected</th><th>Est. flips</th></tr></thead>
+      <tbody>${impactRows().map(r=>`<tr><td><b class="mono">Q${r.q}</b> · ${r.subject}</td><td>${r.action}</td><td class="mono">~${r.affected.toLocaleString('en-IN')}</td><td class="mono">~${r.flips.toLocaleString('en-IN')}</td></tr>`).join('')}</tbody>
+    </table></div>
+    <div class="note note-info" style="margin-top:12px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>Estimates from shift statistics; final counts are computed at re-evaluation.</span></div>
+  </div>`;
+}
+PAGES.moderator.modqueue = ()=>{
+  const acc=acceptedQueue();
+  const pend=modPending();
+  const accQ=dedupeByQuestion(acc);
+  const pendQ=dedupeByQuestion(pend);
+  const drops=accQ.filter(o=>o.smeAction==='drop').length;
+  return pageHead('Moderation Committee','Award moderation','For every question the SME accepted, decide the marking policy — award to all candidates, or only to those who attempted — before scores go to normalization. One policy covers every objector on the question.')+`
+  <div class="grid cols-3" style="margin-bottom:18px">
+    ${kpi(ICN.review,'Accepted questions',accQ.length,acc.length+' objections','')}
+    ${kpi(ICN.clock,'Pending policy',pendQ.length,'to moderate','accent-a')}
+    ${kpi(ICN.assign,'Dropped items',drops,'no correct option','accent-g')}
+  </div>
+  ${acc.length?impactCard():''}
+  ${!acc.length?`<div class="card"><div class="empty">${svg(ICN.assign)}<div style="font-weight:600;color:var(--ink)">Nothing to moderate yet</div>
+    <div style="margin-top:6px">Items appear here once a Subject Expert accepts an objection (key correction or question drop).</div></div></div>`
+  :`${pipelineReady()
+    ?`<div class="note note-ok" style="margin-bottom:18px">${svg(ICN.check)}<span><b>Moderation complete.</b> Award policy set for every accepted item — Normalization is now unlocked for the Exam Authority.</span></div>`
+    :`<div class="note note-warn" style="margin-bottom:18px">${svg('<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>')}<span><b>${pendQ.length} question(s) still need a policy.</b> Normalization stays locked until every accepted question is moderated.</span></div>`}
+  <div class="mod-list">${accQ.map(modCard).join('')}</div>`}`;
+};
+PAGES.moderator.modhistory = ()=>{
+  const done=state.queue.filter(o=>o.modStatus==='moderated');
+  return pageHead('Moderation Committee','Moderation history','An auditable record of every award-policy decision.')+`
+  <div class="card" style="overflow:hidden"><div style="overflow-x:auto"><table class="tbl">
+    <thead><tr><th>Objection</th><th>Question</th><th>SME ruling</th><th>Award policy</th><th>When</th></tr></thead>
+    <tbody>${done.length?done.map(o=>`<tr>
+      <td><b class="mono">${o.id}</b></td><td class="mono">Q${o.q} · ${o.subject}</td>
+      <td style="font-size:12px">${o.smeAction==='drop'?'All options wrong → drop':'Key corrected'}</td>
+      <td><span class="db-act">${policyLabel(o.modPolicy)}</span></td>
+      <td class="mono" style="font-size:11px;color:var(--muted)">${o.stamp}</td></tr>`).join('')
+    :`<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:26px">No moderation decisions yet.</td></tr>`}</tbody>
+  </table></div></div>`;
+};
+
+function globalSearch(v){
+  v=(v||'').trim(); if(!v) return; const up=v.toUpperCase();
+  let o=state.queue.find(x=>x.id.toUpperCase()===up) || state.queue.find(x=>x.id.toUpperCase().includes(up));
+  if(o){ openQuestion360(o.q); return; }
+  const prof=PROFILES.find(p=>p.role==='candidate' && p.me.roll.toUpperCase()===up);
+  if(prof){ openCandidate360(prof.me.roll); return; }
+  const byRoll=state.queue.find(x=>(x.roll||'').toUpperCase()===up);
+  if(byRoll){ openCandidate360(byRoll.roll); return; }
+  if(/^PCM\d{6,}$/i.test(v)){ openCandidate360(up); return; }
+  const m=v.match(/^q?\s*(\d{1,3})$/i);
+  if(m){ const n=+m[1]; if(n>=1 && n<=(state.exam.totalQ||150)){ openQuestion360(n); return; } }
+  toast('No match for “'+v+'”. Try a roll number, objection ID, or Q-number.');
+}
+function evidenceList(objs){
+  return objs.map((x,i,arr)=>`<div style="padding:${i?'12px':'0'} 0 12px;${i<arr.length-1?'border-bottom:1px solid var(--line)':''}">
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><b style="font-size:12.5px">${x.cand} <span class="mono" style="font-size:10.5px;color:var(--muted);font-weight:400">${x.roll||''}</span></b><span class="ur-chip">${CAT_SHORT[x.reason]||x.reason}</span></div>
+    ${x.exp?`<div style="font-size:12.5px;margin-top:7px;color:var(--ink-2);line-height:1.5">${x.exp}</div>`:''}
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center">
+      ${x.ref?`<span class="ev-chip">${svg('<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V2H6.5A2.5 2.5 0 0 0 4 4.5z"/>')} ${x.ref}</span>`:''}
+      ${x.url?`<span class="ev-chip">${svg('<path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/>')} link</span>`:''}
+      ${x.file?`<span class="ev-chip">${svg('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>')} ${x.file}</span>`:''}
+      ${!x.exp&&!x.ref&&!x.file?`<span style="font-size:11.5px;color:var(--muted)">No evidence attached</span>`:''}
+    </div></div>`).join('');
+}
+function openQuestion360(qn){
+  const q=state.questions.find(x=>x.n===qn)||{opts:{}};
+  const objs=state.queue.filter(o=>o.q===qn);
+  const kh=state.keyHistory.find(k=>k.q===qn);
+  const prov=(state._provKeys&&state._provKeys[qn])||q.key||'—';
+  const st=objs.length?aggStatus(objs):'pending';
+  $('#modal').innerHTML=`
+    <div class="modal-head"><div class="mh-ic" style="background:var(--brand-soft)">${svg(ICN.list,'stroke="var(--brand)"')}</div>
+      <div><h3>Question 360 — Q${qn}</h3><p>${q.subject||''} · ${objs.length} objection${objs.length!==1?'s':''} · ${badge(st)}</p></div>
+      <button class="close" onclick="closeModal()">${svg('<path d="M18 6 6 18M6 6l12 12"/>')}</button></div>
+    <div class="modal-body">
+      <div class="q360-grid">
+        <div class="q360-cell"><span>Objections</span><b>${objs.length}</b></div>
+        <div class="q360-cell"><span>Candidates</span><b>${new Set(objs.map(o=>o.roll)).size}</b></div>
+        <div class="q360-cell"><span>Provisional key</span><b class="mono">${prov}</b></div>
+        <div class="q360-cell ${q.key!==prov?'chg':''}"><span>Current key</span><b class="mono">${q.key||'—'}</b></div>
+      </div>
+      ${q.stmt?`<div class="sc-sec-lbl" style="color:var(--muted)">Question</div><div class="qstmt" style="font-size:13px">${q.stmt}</div>
+      <div class="opts" style="margin-bottom:16px">${Object.entries(q.opts).map(([k,v])=>`<div class="opt ${k===q.key?'is-key':''}"><span class="ok">${k}</span><span>${v}</span>${k===q.key?'<span class="tag">Key</span>':''}</div>`).join('')}</div>`:''}
+      ${kh?`<div class="note note-ok" style="margin-bottom:16px">${svg(ICN.check)}<span><b>Key revised ${prov} → ${kh.revised}.</b> Maker: ${kh.maker} · Checker: ${kh.checker} · ${kh.stage}.</span></div>`:''}
+      <div class="sc-sec-lbl" style="color:var(--muted)">Objector evidence</div>
+      <div class="card pad" style="background:var(--surface-2);box-shadow:none;margin-bottom:8px">${objs.length?evidenceList(objs):'<span style="color:var(--muted);font-size:13px">No objections on this question.</span>'}</div>
+    </div>
+    <div class="modal-foot"><button class="btn btn-ghost" onclick="closeModal()">Close</button>${objs.length?`<button class="btn btn-primary" onclick="closeModal();goScreen('manage');setObjView('question')">Open in management</button>`:''}</div>`;
+  $('#overlay').classList.add('open');
+}
+function openCandidate360(roll){
+  const prof=PROFILES.find(p=>p.role==='candidate' && p.me.roll===roll);
+  const objs=state.queue.filter(o=>o.roll===roll);
+  const me=prof?prof.me:(objs[0]?{name:objs[0].cand,roll,cat:'—',shift:'—',reg:'—'}:{name:'Unknown candidate',roll,cat:'—',shift:'—',reg:'—'});
+  const acc=objs.filter(o=>o.status==='accepted').length;
+  const refund=acc*objFee();
+  const isMe = state.me && state.me.roll===roll;
+  $('#modal').innerHTML=`
+    <div class="modal-head"><div class="mh-ic" style="background:var(--brand-soft)">${svg(ICN.user,'stroke="var(--brand)"')}</div>
+      <div><h3>Candidate 360 — ${me.name}</h3><p class="mono">${roll} · ${me.cat} · ${me.shift}</p></div>
+      <button class="close" onclick="closeModal()">${svg('<path d="M18 6 6 18M6 6l12 12"/>')}</button></div>
+    <div class="modal-body">
+      <div class="q360-grid">
+        <div class="q360-cell"><span>Objections</span><b>${objs.length}</b></div>
+        <div class="q360-cell"><span>Upheld</span><b style="color:var(--verify)">${acc}</b></div>
+        <div class="q360-cell"><span>Fee refund</span><b class="mono">₹${refund}</b></div>
+        <div class="q360-cell"><span>Category</span><b>${me.cat}</b></div>
+      </div>
+      ${isMe && state.scorecardReady?`<div class="sc-sec-lbl" style="color:var(--muted)">Result</div>
+        <div class="q360-grid" style="margin-bottom:14px">
+          <div class="q360-cell"><span>Raw</span><b class="mono">${state.scores.raw}</b></div>
+          <div class="q360-cell"><span>Normalized</span><b class="mono">${state.scores.normalized}</b></div>
+          <div class="q360-cell"><span>Percentile</span><b class="mono">${state.scores.percentile}</b></div>
+          <div class="q360-cell ${state.scores.qualified?'':'chg'}"><span>Status</span><b>${state.scores.qualified?'Qualified':'Not qualified'}</b></div>
+        </div>`:''}
+      <div class="sc-sec-lbl" style="color:var(--muted)">Objection history</div>
+      ${objs.length?`<div style="overflow-x:auto"><table class="tbl">
+        <thead><tr><th>ID</th><th>Question</th><th>Reason</th><th>Status</th><th>Refund</th></tr></thead>
+        <tbody>${objs.map(o=>`<tr><td><b class="mono">${o.id}</b></td><td><b class="mono">Q${o.q}</b> · ${o.subject}</td><td style="font-size:12px">${o.reason}</td><td>${badge(o.status)}</td><td class="mono">${o.status==='accepted'?'₹'+objFee():'—'}</td></tr>`).join('')}</tbody>
+      </table></div>`:'<div style="color:var(--muted);font-size:13px">No objections raised by this candidate.</div>'}
+    </div>
+    <div class="modal-foot"><button class="btn btn-ghost" onclick="closeModal()">Close</button></div>`;
+  $('#overlay').classList.add('open');
+}
 function openReview(id){
   const o=state.queue.find(x=>x.id===id);
   const q=state.questions.find(x=>x.n===o.q) || {stmt:'Question text (from master bank)',opts:{A:'—',B:'—',C:'—',D:'—'},key:'A',chosen:'B'};
@@ -2240,19 +3659,28 @@ function openReview(id){
       <button class="close" onclick="closeModal()">${svg('<path d="M18 6 6 18M6 6l12 12"/>')}</button>
     </div>
     <div class="modal-body">
+      ${qObjCount(o.q)>1?`<div class="note note-info" style="margin-bottom:16px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span><b>${qObjCount(o.q)} candidates objected to Q${o.q}.</b> Reasons: ${Object.entries((()=>{const t={};state.queue.filter(x=>x.q===o.q).forEach(x=>t[x.reason]=(t[x.reason]||0)+1);return t;})()).map(([k,c])=>`${CAT_SHORT[k]||k}${c>1?' ×'+c:''}`).join(', ')}. Your single ruling applies to all of them.</span></div>`:''}
       <div class="sc-sec-lbl" style="color:var(--muted)">Question & current key</div>
       <div class="qstmt" style="font-size:13.5px">${q.stmt}</div>
       <div class="opts" style="margin-bottom:18px">
         ${Object.entries(q.opts).map(([k,v])=>`<div class="opt ${k===q.key?'is-key':''} ${k===q.chosen&&k!==q.key?'is-chosen':''}">
           <span class="ok">${k}</span><span>${v}</span>${k===q.key?'<span class="tag">Current key</span>':k===q.chosen?'<span class="tag">Candidate</span>':''}</div>`).join('')}
       </div>
-      <div class="sc-sec-lbl" style="color:var(--muted)">Candidate's objection</div>
+      <div class="sc-sec-lbl" style="color:var(--muted)">Objection${qObjCount(o.q)>1?'s':''} & evidence</div>
       <div class="card pad" style="background:var(--surface-2);box-shadow:none;margin-bottom:16px">
-        <div class="kv"><span class="k">Reason</span><span class="v" style="font-family:inherit">${o.reason}</span></div>
-        ${myObj?`<div style="font-size:13px;margin:10px 0"><b style="font-size:10.5px;color:var(--muted);font-family:'IBM Plex Mono'">EXPLANATION</b><br>${myObj.exp}</div>
-        <div class="kv"><span class="k">Reference</span><span class="v" style="font-family:inherit;font-size:12px">${myObj.ref}</span></div>
-        ${myObj.file?`<div class="file-chip" style="margin-top:10px">${svg('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>')}<span>${myObj.file}</span></div>`:''}`
-        :`<div style="font-size:13px;color:var(--ink-2);margin-top:8px">Candidate contends the marked option is not the only defensible answer; supporting reference and document attached.</div>`}
+        ${state.queue.filter(x=>x.q===o.q).map((x,i,arr)=>`
+          <div style="padding:${i?'12px':'0'} 0 12px;${i<arr.length-1?'border-bottom:1px solid var(--line)':''}">
+            <div style="display:flex;justify-content:space-between;gap:10px;align-items:center">
+              <b style="font-size:12.5px">${x.cand} <span class="mono" style="font-size:10.5px;color:var(--muted);font-weight:400">${x.roll||''}</span></b>
+              <span class="ur-chip">${CAT_SHORT[x.reason]||x.reason}</span></div>
+            ${x.exp?`<div style="font-size:12.5px;margin-top:7px;color:var(--ink-2);line-height:1.5">${x.exp}</div>`:''}
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center">
+              ${x.ref?`<span class="ev-chip">${svg('<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V2H6.5A2.5 2.5 0 0 0 4 4.5z"/>')} ${x.ref}</span>`:''}
+              ${x.url?`<span class="ev-chip">${svg('<path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/>')} reference link</span>`:''}
+              ${x.file?`<span class="ev-chip">${svg('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>')} ${x.file}</span>`:''}
+              ${!x.exp&&!x.ref&&!x.file?`<span style="font-size:11.5px;color:var(--muted)">No evidence attached</span>`:''}
+            </div>
+          </div>`).join('')}
       </div>
       <div class="field">
         <label>Decision <span class="req">*</span></label>
@@ -2263,9 +3691,9 @@ function openReview(id){
         </div>
       </div>
       <div id="acceptPanel" style="display:none">
-        <div class="field"><label>Update answer key to</label>
-          <select class="inp" id="newKey">${Object.keys(q.opts).map(k=>`<option ${k===q.key?'selected':''}>${k}</option>`).join('')}<option>Drop question (full marks to all)</option></select>
-          <div class="hint">This updates the Master Answer Key and triggers automatic re-evaluation of every impacted candidate.</div>
+        <div class="field"><label>Accept as</label>
+          <select class="inp" id="newKey">${Object.keys(q.opts).map(k=>`<option ${k===q.key?'selected':''}>${k}</option>`).join('')}<option>Drop question — all options wrong</option></select>
+          <div class="hint">Re-key updates the Master Answer Key. Either way, the item is referred to the <b>Moderation Committee</b>, which sets the award policy (to all candidates or only those who attempted) before normalization.</div>
         </div>
       </div>
       <div class="field" style="margin-bottom:0"><label>SME remarks</label>
@@ -2289,29 +3717,97 @@ function setDecision(d){
 function submitDecision(id){
   const o=state.queue.find(x=>x.id===id);
   const d=window._currentDecision; const remark=$('#smeRemark').value.trim();
+  let newKey=null, decisionText='', smeAction=null;
   if(d==='accept'){
     o.status='accepted';
     const nk=$('#newKey').value;
-    if(nk.startsWith('Drop')){ o.decision=(remark||'Question dropped; full marks awarded.'); }
-    else {
+    if(nk.startsWith('Drop')){
+      smeAction='drop';
+      decisionText=(remark||'Accepted — all options incorrect. Referred to Moderation Committee for award policy.');
+    } else {
+      smeAction='rekey';
       const q=state.questions.find(x=>x.n===o.q);
-      if(q){ q.key=nk; } // <-- this mutates the master key → recalculates candidate raw score everywhere
-      o.decision=(remark||('Answer key updated to Option '+nk+'.'));
+      if(q){ q.key=nk; }   // mutate in-memory master key
+      newKey=nk;
+      decisionText=(remark||('Accepted — answer key corrected to Option '+nk+'. Referred to Moderation Committee.'));
     }
+    o.smeAction=smeAction; o.modStatus='pending'; o.decision=decisionText;
     state.smeReviewed=true;
   } else if(d==='reject'){
-    o.status='rejected'; o.decision=remark||'Objection does not hold; key upheld.';
+    o.status='rejected'; decisionText=remark||'Objection does not hold; key upheld.'; o.decision=decisionText;
   } else {
-    o.status='clarify'; o.decision=remark||'Referred back for clarification.';
+    o.status='clarify'; decisionText=remark||'Referred back for clarification.'; o.decision=decisionText;
   }
   o.stamp='26 Feb, 14:'+(10+Math.floor(Math.random()*40));
-  // if all resolved, mark re-eval ready
-  if(allResolved()){ state.reEvalDone=true; }
+  dbDecide(o,d,newKey,decisionText,smeAction);   // → SQLite: objections (+ questions on re-key)
+  // ONE RULING PER QUESTION → apply to every other objection on the same question (all objectors)
+  const siblings=state.queue.filter(x=>x.q===o.q && x.id!==o.id && x.status!=='accepted' && x.status!=='rejected');
+  siblings.forEach(s=>{ s.status=o.status; s.decision=decisionText; s.stamp=o.stamp; if(d==='accept'){ s.smeAction=smeAction; s.modStatus='pending'; } dbDecide(s,d,newKey,decisionText,smeAction); });
+  const affected=1+siblings.length;
+  [o,...siblings].forEach(x=>{ if(x.roll) notify('candidate','Objection '+x.status,'Your objection on Q'+x.q+' ('+x.subject+') was '+x.status+'.',ICN.review,x.roll); });
+  if(pipelineReady()){ state.reEvalDone=true; dbReeval(); }
   closeModal(); render(); buildNav();
-  toast(o.id+' — '+(d==='accept'?'accepted, key updated':d==='reject'?'rejected':'sent for clarification')+'.');
+  toast('Q'+o.q+' — '+(d==='accept'?(smeAction==='drop'?'accepted (drop) → moderation':'accepted (re-key) → moderation'):d==='reject'?'rejected':'sent for clarification')+(affected>1?' · '+affected+' objections':'')+'.');
 }
 
+/* ---- Database explorer (live SQLite store) ---- */
+const DB_TABLES=['exams','questions','answers','objections','moderation','shift_stats','scores','scorecards','audit'];
+function dbSelectTable(t){ window._dbTable=t; render(); window.scrollTo(0,0); }
+function runSQL(){
+  const inp=$('#sqlBox'); if(!inp) return;
+  const q=inp.value.trim(); window._sql=q;
+  if(!q){ window._sqlRows=null; window._sqlErr=null; render(); return; }
+  try{ window._sqlRows=dbAll(q); window._sqlErr=null; }
+  catch(e){ window._sqlRows=null; window._sqlErr=e.message; }
+  render();
+}
+function dbTableEl(rows){
+  if(!rows || !rows.length) return `<div class="empty" style="padding:24px">${svg(ICN.db)}<div>No rows.</div></div>`;
+  const cols=Object.keys(rows[0]);
+  return `<div class="db-scroll"><table class="db-table"><thead><tr>${cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead>
+    <tbody>${rows.map(r=>`<tr>${cols.map(c=>`<td>${r[c]===null?'<span class="db-null">NULL</span>':String(r[c])}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+}
+PAGES.admin.database = ()=>{
+  if(!dbReady()){
+    return pageHead('Administration','Database','In-browser SQLite (WASM) store.')+
+    `<div class="note note-warn">${svg('<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>')}<span><b>SQLite is still loading or unavailable.</b> The WASM engine loads from a CDN the first time this page opens; if you are offline the app runs on its in-memory store instead. Reconnect and reload to activate the live database.</span></div>`;
+  }
+  const sel=window._dbTable||'objections';
+  const counts={}; DB_TABLES.forEach(t=>counts[t]=dbVal('SELECT COUNT(*) FROM '+t));
+  const rows=dbAllSafe('SELECT * FROM '+sel+' LIMIT 200');
+  const auditRows=dbAllSafe('SELECT ts,actor,action,detail FROM audit ORDER BY id DESC LIMIT 40');
+  const defQuery="SELECT o.id, o.q, o.status, q.key FROM objections o JOIN questions q ON q.exam_id=o.exam_id AND q.n=o.q LIMIT 20;";
+  return pageHead('Administration','Database','Live SQLite store — every objection, key change, score and scorecard is written here as the pipeline runs.')+`
+  <div class="grid cols-4" style="margin-bottom:18px">
+    ${kpi(ICN.db,'Engine','SQLite','sql.js · WASM','accent-g')}
+    ${kpi(ICN.list,'Questions',counts.questions,'master answer key','')}
+    ${kpi(ICN.obj,'Objections',counts.objections,'rows stored','accent-a')}
+    ${kpi(ICN.card,'Scorecards',counts.scorecards,'issued','')}
+  </div>
+  <div class="sec-title">${svg(ICN.db)} Tables</div>
+  <div class="db-chips">${DB_TABLES.map(t=>`<button class="db-chip ${t===sel?'on':''}" onclick="dbSelectTable('${t}')">${t}<span>${counts[t]}</span></button>`).join('')}</div>
+  <div class="card pad" style="margin:14px 0 18px">
+    <div class="sec-title" style="margin:0 0 10px">${svg(ICN.list)} ${sel} <span style="font-weight:400;color:var(--muted);font-size:12px">· up to 200 rows</span></div>
+    ${dbTableEl(rows)}
+  </div>
+  <div class="card pad" style="margin-bottom:18px">
+    <div class="sec-title">${svg('<path d="M4 17l6-6-6-6M12 19h8"/>')} SQL console</div>
+    <div class="sec-sub">Run a read query against the live database.</div>
+    <textarea class="inp" id="sqlBox" rows="2" style="font-family:'IBM Plex Mono';font-size:12.5px;resize:vertical" placeholder="SELECT * FROM scorecards;">${window._sql||defQuery}</textarea>
+    <div style="display:flex;gap:10px;margin-top:10px"><button class="btn btn-primary btn-sm" onclick="runSQL()">${svg(ICN.norm)} Run query</button></div>
+    ${window._sqlErr?`<div class="note note-warn" style="margin-top:12px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>')}<span class="mono">${window._sqlErr}</span></div>`:window._sqlRows?`<div style="margin-top:12px">${dbTableEl(window._sqlRows)}</div>`:''}
+  </div>
+  <div class="card pad">
+    <div class="sec-title">${svg(ICN.clock)} Audit log</div>
+    <div class="sec-sub">Most recent pipeline events written to the store (newest first).</div>
+    <div class="db-scroll"><table class="db-table"><thead><tr><th>ts</th><th>actor</th><th>action</th><th>detail</th></tr></thead>
+    <tbody>${auditRows.map(a=>`<tr><td class="mono">${a.ts}</td><td>${a.actor}</td><td><span class="db-act">${a.action}</span></td><td>${a.detail}</td></tr>`).join('')}</tbody></table></div>
+  </div>`;
+};
+
 /* boot */
+initDB();
+seedNotes(); startSLAClock();
 render && null;
 </script>
 </body>
