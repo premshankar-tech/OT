@@ -226,7 +226,9 @@ textarea.inp{min-height:88px;resize:vertical}
 .p-role.r-sme{background:var(--verify-soft);color:var(--verify)}
 .p-role.r-sme2{background:var(--amber-soft);color:var(--amber)}
 .p-role.r-sme3{background:var(--rose-soft);color:var(--rose)}
-.lp-note{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--muted);margin-top:18px;line-height:1.5}
+.lp-note{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--muted);margin-top:18px;line-height:1.5}
+.lp-manual{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--brand);text-decoration:none;border:1px solid var(--line-2);background:var(--surface);padding:9px 16px;border-radius:10px;transition:.15s}
+.lp-manual:hover{border-color:var(--sky);background:var(--brand-soft)}
 .lp-note svg{width:15px;height:15px;flex:none;color:var(--brand);margin-top:1px}
 /* login credential form */
 .lp-form{display:flex;flex-direction:column;gap:13px;margin-top:6px}
@@ -794,8 +796,7 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.nav-item:focus-visible,
     <div class="lp-divider">Or quick sign-in (demo)</div>
     <div class="profile-list" id="profileList"></div>
     <div class="lp-note">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-      <span>Role-based access — each account sees only the modules its role permits. Sign out to switch users; the shared dataset persists across sessions.</span>
+      <a href="Hubblehox-OMS-User-Manual.md" target="_blank" rel="noopener" class="lp-manual">📄 View User Manual</a>
     </div>
   </div>
 </div>
