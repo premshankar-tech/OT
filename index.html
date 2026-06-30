@@ -9,26 +9,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#1F2937;
-  --ink-2:#374151;
-  --muted:#6B7280;
-  --canvas:#F7FBFF;
+  --ink:#212121;
+  --ink-2:#424242;
+  --muted:#757575;
+  --canvas:#F7F7F7;
   --surface:#FFFFFF;
-  --surface-2:#F2F9FE;
-  --line:#E5E7EB;
-  --line-2:#D6E3F0;
-  --brand:#0284C7;          /* sky-600 — interactive + AA-safe accent text */
-  --brand-deep:#0369A1;     /* sky-700 — hover / deep */
-  --sky:#38BDF8;            /* sky-400 — bright accent, focus rings, gradients */
-  --brand-soft:#E0F2FE;     /* sky-100 — soft fills */
-  --verify:#15803D;
+  --surface-2:#F0F2F4;
+  --line:#EBEBEB;
+  --line-2:#E0E0E0;
+  --brand:#3F41D1;          /* primary indigo — interactive + AA-safe accent text */
+  --brand-deep:#3335B0;     /* deeper indigo — hover / deep */
+  --sky:#4B4DD4;            /* bright indigo — accents, focus rings, gradients */
+  --brand-soft:#EBF2FF;     /* lightest indigo — soft fills */
+  --accent:#E697AB;         /* pink accent */
+  --accent-soft:#EBDEE5;    /* soft pink */
+  --accent-on:#310000;      /* text on accent */
+  --verify:#008A2E;
+  --verify-bright:#06C270;
   --verify-soft:#DCFCE7;
-  --amber:#B45309;
-  --amber-soft:#FEF3C7;
-  --rose:#DC2626;
-  --rose-soft:#FEE2E2;
-  --shadow:0 1px 2px rgba(2,132,199,.05), 0 6px 18px -10px rgba(2,132,199,.16);
-  --shadow-lg:0 24px 60px -28px rgba(2,132,199,.32);
+  --amber:#C26A2A;
+  --amber-soft:#F7E9DB;
+  --rose:#E6393E;
+  --rose-deep:#9F0712;
+  --rose-soft:#FFE2E2;
+  --shadow:0 1px 2px rgba(33,33,33,.05), 0 6px 18px -10px rgba(63,65,209,.16);
+  --shadow-lg:0 24px 60px -28px rgba(63,65,209,.30);
   --r:12px;
   --r-sm:10px;
 }
@@ -44,18 +49,18 @@ body{
 }
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink)}
-::selection{background:#cfe0f5}
+::selection{background:#CFD5F1}
 
 /* ---------- App shell ---------- */
 .app{display:grid;grid-template-columns:264px 1fr;grid-template-rows:auto 1fr;grid-template-areas:"side top" "side main";min-height:100vh}
-.sidebar{grid-area:side;background:linear-gradient(180deg,#FFFFFF,#F7FBFF);color:var(--ink-2);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;border-right:1px solid var(--line)}
+.sidebar{grid-area:side;background:linear-gradient(180deg,#FFFFFF,#F7F7F7);color:var(--ink-2);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;border-right:1px solid var(--line)}
 .topbar{grid-area:top;background:rgba(255,255,255,.82);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
-.main{grid-area:main;padding:30px 38px 80px;max-width:1180px;width:100%}
+.main{grid-area:main;padding:30px 38px 80px;width:100%}
 
 /* ---------- Sidebar ---------- */
 .brand{padding:22px 22px 16px;border-bottom:1px solid var(--line)}
 .brand .seal{display:flex;align-items:center;gap:11px}
-.brand .crest{width:38px;height:38px;border-radius:10px;background:linear-gradient(160deg,#38BDF8,#0284C7);display:grid;place-items:center;flex:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3), 0 4px 12px -4px rgba(2,132,199,.55)}
+.brand .crest{width:38px;height:38px;border-radius:10px;background:linear-gradient(160deg,#7B7FDE,#3F41D1);display:grid;place-items:center;flex:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3), 0 4px 12px -4px rgba(63,65,209,.55)}
 .brand .crest svg{width:21px;height:21px}
 .brand .name{font-family:'Archivo';font-weight:800;font-size:15px;letter-spacing:.2px;color:var(--ink);line-height:1.15}
 .brand .sub{font-size:11px;color:var(--muted);margin-top:2px;letter-spacing:.3px}
@@ -66,7 +71,7 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink)}
 .role-pill{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:10px;color:var(--ink-2);font-weight:600;font-size:13px;text-align:left;width:100%;transition:.15s;border:1px solid transparent}
 .role-pill .ic{width:17px;height:17px;opacity:.8}
 .role-pill:hover{background:var(--brand-soft)}
-.role-pill.active{background:var(--brand-soft);color:var(--brand);border-color:#bfe6fb}
+.role-pill.active{background:var(--brand-soft);color:var(--brand);border-color:#CFD5F1}
 .role-pill small{display:block;font-weight:400;font-size:10.5px;color:var(--muted);letter-spacing:.2px}
 
 .nav{padding:14px 14px;flex:1;overflow-y:auto}
@@ -78,6 +83,9 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink)}
 .nav-item .badge{margin-left:auto;font-family:'IBM Plex Mono';font-size:10px;background:var(--amber);color:#fff;border-radius:20px;padding:1px 7px;font-weight:600}
 .nav-item.active .badge{background:var(--amber)}
 .sb-foot{padding:14px 20px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);line-height:1.5}
+.sb-manual{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--ink-2);text-decoration:none;transition:.12s}
+.sb-manual:hover{color:var(--brand)}
+.sb-manual svg{width:15px;height:15px}
 
 /* ---------- Topbar / pipeline spine ---------- */
 .topwrap{display:flex;align-items:center;gap:18px;padding:0 30px;height:72px}
@@ -87,7 +95,7 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink)}
 .stage .si svg{width:16px;height:16px;color:var(--muted)}
 .stage .meta .t{font-family:'Archivo';font-weight:700;font-size:12.5px;line-height:1.1;white-space:nowrap}
 .stage .meta .s{font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.4px;color:var(--muted);text-transform:uppercase;margin-top:2px}
-.stage.done .si{background:var(--verify-soft);border-color:#bfe0d0}
+.stage.done .si{background:var(--verify-soft);border-color:#BBF7D0}
 .stage.done .si svg{color:var(--verify)}
 .stage.done .meta .s{color:var(--verify)}
 .stage.active .si{background:var(--brand);border-color:var(--brand)}
@@ -97,7 +105,7 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink)}
 .conn{flex:1;height:2px;background:var(--line-2);position:relative;min-width:22px;border-radius:2px;overflow:hidden}
 .conn .flow{position:absolute;inset:0;background:var(--line-2)}
 .conn.lit .flow{background:linear-gradient(90deg,var(--verify),var(--brand))}
-.conn.flowing .flow{background:linear-gradient(90deg,var(--brand),#5fa3e6,var(--brand));background-size:200% 100%;animation:flow 1.1s linear infinite}
+.conn.flowing .flow{background:linear-gradient(90deg,var(--brand),#7B7FDE,var(--brand));background-size:200% 100%;animation:flow 1.1s linear infinite}
 @keyframes flow{0%{background-position:120% 0}100%{background-position:-120% 0}}
 .userchip{display:flex;align-items:center;gap:10px;padding:6px 6px 6px 13px;border:1px solid var(--line);border-radius:30px;background:var(--surface-2);flex:none;margin-left:auto}
 .userchip .who{text-align:right;line-height:1.15}
@@ -107,10 +115,10 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink)}
 .menu-btn{display:none}
 
 /* ---------- Typo / shared ---------- */
-.page-head{margin-bottom:24px}
-.eyebrow{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--brand);font-weight:500;margin-bottom:9px;display:flex;align-items:center;gap:8px}
+.page-head{margin-bottom:20px}
+.eyebrow{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--brand);font-weight:500;margin-bottom:6px;display:flex;align-items:center;gap:8px}
 .eyebrow::before{content:"";width:18px;height:2px;background:var(--brand);border-radius:2px}
-h1.title{font-family:'Archivo';font-weight:800;font-size:27px;letter-spacing:-.5px;line-height:1.12}
+h1.title{font-family:'Archivo';font-weight:800;font-size:21px;letter-spacing:-.3px;line-height:1.15}
 .lede{color:var(--ink-2);font-size:14.5px;margin-top:8px;max-width:60ch}
 .mono{font-family:'IBM Plex Mono'}
 
@@ -141,7 +149,7 @@ h1.title{font-family:'Archivo';font-weight:800;font-size:27px;letter-spacing:-.5
 .st-review{background:var(--amber-soft);color:var(--amber)} .st-review .bd{background:var(--amber)}
 .st-accepted{background:var(--verify-soft);color:var(--verify)} .st-accepted .bd{background:var(--verify)}
 .st-rejected{background:var(--rose-soft);color:var(--rose)} .st-rejected .bd{background:var(--rose)}
-.st-clarify{background:#EAE7F7;color:#5b46b8} .st-clarify .bd{background:#5b46b8}
+.st-clarify{background:#EBF2FF;color:#5b46b8} .st-clarify .bd{background:#5b46b8}
 .st-info{background:var(--brand-soft);color:var(--brand)} .st-info .bd{background:var(--brand)}
 
 /* buttons */
@@ -184,16 +192,16 @@ textarea.inp{min-height:88px;resize:vertical}
 .file-chip .x{margin-left:auto;color:var(--muted);cursor:pointer;font-size:16px}
 
 /* login */
-.login{display:grid;grid-template-columns:1.04fr 1fr;min-height:100vh;background:var(--surface)}
+.login{display:grid;grid-template-columns:1.04fr 1fr;height:100vh;height:100dvh;overflow:hidden;background:var(--surface)}
 /* left brand panel */
-.login-brand{position:relative;overflow:hidden;background:linear-gradient(157deg,#1d3e6e 0%,var(--brand-deep) 72%);color:#fff;padding:52px 56px;display:flex;flex-direction:column}
+.login-brand{position:relative;overflow-y:auto;background:linear-gradient(157deg,#26288F 0%,var(--brand-deep) 72%);color:#fff;padding:52px 56px;display:flex;flex-direction:column;justify-content:center}
 .login-brand::after{content:'';position:absolute;inset:0;background:radial-gradient(80% 55% at 88% 8%,rgba(255,255,255,.10),transparent 60%);pointer-events:none}
 .login-brand>*{position:relative;z-index:1}
-.lb-gov{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:1.6px;color:#9DB6D8;text-transform:uppercase}
+.lb-gov{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:1.6px;color:#B9BEEC;text-transform:uppercase}
 .lb-crest{width:72px;height:72px;border-radius:18px;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);display:grid;place-items:center;margin:28px 0 24px}
 .lb-crest svg{width:38px;height:38px}
 .login-brand h1{font-family:'Fraunces';font-weight:600;font-size:33px;line-height:1.12;letter-spacing:-.5px;max-width:15ch}
-.lb-tag{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:2.2px;color:#B7C8E0;text-transform:uppercase;margin-top:14px}
+.lb-tag{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:2.2px;color:#CFD5F1;text-transform:uppercase;margin-top:14px}
 .lb-mock{margin:34px 0 30px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:16px}
 .lbm-bar{display:flex;gap:6px;margin-bottom:13px}
 .lbm-bar span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.28)}
@@ -204,10 +212,10 @@ textarea.inp{min-height:88px;resize:vertical}
 .lbm-chart u{flex:1;background:rgba(255,255,255,.42);border-radius:3px 3px 0 0}
 .lbm-donut{height:60px;border-radius:8px;background:rgba(255,255,255,.08);display:grid;place-items:center}
 .lbm-donut::before{content:'';width:30px;height:30px;border-radius:50%;border:5px solid rgba(255,255,255,.5);border-right-color:rgba(255,255,255,.16);border-bottom-color:rgba(255,255,255,.16)}
-.lb-desc{font-size:13.5px;color:#C6D4E8;line-height:1.6;max-width:44ch}
-.lb-foot{margin-top:auto;font-family:'IBM Plex Mono';font-size:10.5px;letter-spacing:1.4px;color:#7E96BC;text-transform:uppercase;padding-top:30px}
+.lb-desc{font-size:13.5px;color:#DDE0F7;line-height:1.6;max-width:44ch}
+.lb-foot{margin-top:auto;font-family:'IBM Plex Mono';font-size:10.5px;letter-spacing:1.4px;color:#A6AAEA;text-transform:uppercase;padding-top:30px}
 /* right profile panel */
-.login-panel{display:flex;flex-direction:column;justify-content:center;padding:40px 54px;max-width:580px;width:100%;margin:0 auto;max-height:100vh;overflow-y:auto}
+.login-panel{display:flex;flex-direction:column;justify-content:center;padding:40px 54px;max-width:580px;width:100%;margin:0 auto;height:100%;max-height:100%;overflow-y:auto}
 .lp-h{font-family:'Archivo';font-weight:800;font-size:27px;letter-spacing:-.4px;color:var(--ink)}
 .lp-sub{font-size:14px;color:var(--muted);margin-top:6px}
 .lp-divider{display:flex;align-items:center;gap:14px;margin:26px 0 16px;color:var(--muted);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px}
@@ -222,16 +230,36 @@ textarea.inp{min-height:88px;resize:vertical}
 .p-org{font-size:12px;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .p-role{flex:none;font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;white-space:nowrap}
 .p-role.r-cand{background:var(--brand-soft);color:var(--brand)}
-.p-role.r-adm{background:#E9ECF2;color:var(--ink)}
+.p-role.r-adm{background:#EBEBEB;color:var(--ink)}
 .p-role.r-sme{background:var(--verify-soft);color:var(--verify)}
 .p-role.r-sme2{background:var(--amber-soft);color:var(--amber)}
 .p-role.r-sme3{background:var(--rose-soft);color:var(--rose)}
 .lp-note{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--muted);margin-top:18px;line-height:1.5}
-.lp-manual{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--brand);text-decoration:none;border:1px solid var(--line-2);background:var(--surface);padding:9px 16px;border-radius:10px;transition:.15s}
-.lp-manual:hover{border-color:var(--sky);background:var(--brand-soft)}
+.lp-forgot{text-align:center;margin-top:4px}
+.lp-forgot a{font-size:12.5px;font-weight:600;color:var(--brand);cursor:pointer;text-decoration:none}
+.lp-forgot a:hover{text-decoration:underline}
+.lp-ok{display:none;font-size:12.5px;color:var(--verify);background:var(--verify-soft);border:1px solid #bbf7d0;border-radius:9px;padding:10px 12px;line-height:1.5}
 .lp-note svg{width:15px;height:15px;flex:none;color:var(--brand);margin-top:1px}
 /* login credential form */
 .lp-form{display:flex;flex-direction:column;gap:13px;margin-top:6px}
+/* fit the login to short / non-fullscreen windows */
+@media(max-height:780px){
+  .login-brand{padding:34px 48px}
+  .lb-mock{margin:22px 0 20px}
+  .login-panel{padding-top:30px;padding-bottom:30px}
+  .profile-list{max-height:26vh}
+}
+@media(max-height:660px){
+  .login-brand{padding:26px 44px}
+  .lb-mock{display:none}
+  .lb-desc{display:none}
+  .login-panel{padding-top:22px;padding-bottom:22px}
+}
+@media(max-height:540px){
+  .login-brand{padding:20px 40px}
+  .lb-tag{display:none}
+  .lp-sub{display:none}
+}
 .lp-field label{display:block;font-size:11.5px;font-weight:700;color:var(--ink-2);margin-bottom:6px;letter-spacing:.2px}
 .lp-err{display:none;background:var(--rose-soft);color:var(--rose);font-size:12.5px;font-weight:600;padding:9px 13px;border-radius:9px}
 .lp-cred{font-family:'IBM Plex Mono';font-size:11px;color:var(--muted);margin-top:2px}
@@ -252,26 +280,26 @@ textarea.inp{min-height:88px;resize:vertical}
 .chip-logout:hover{border-color:var(--rose);color:var(--rose);background:var(--rose-soft)}
 .chip-logout svg{width:16px;height:16px}
 /* sidebar role tag */
-.role-tag{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--brand);background:var(--brand-soft);border:1px solid #bfe6fb;padding:7px 12px;border-radius:10px}
+.role-tag{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--brand);background:var(--brand-soft);border:1px solid #CFD5F1;padding:7px 12px;border-radius:10px}
 .role-tag svg{width:15px;height:15px;opacity:.9}
 /* exam cover card */
-.exam-cover{display:flex;align-items:center;gap:20px;width:100%;text-align:left;background:linear-gradient(150deg,#1d3e6e,var(--brand-deep));color:#fff;border:none;border-radius:16px;padding:26px 28px;cursor:pointer;transition:.18s;box-shadow:var(--shadow);position:relative;overflow:hidden;font-family:inherit}
-.exam-cover:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
-.xc-crest{width:58px;height:58px;border-radius:14px;background:rgba(255,255,255,.12);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);display:grid;place-items:center;flex:none}
-.xc-crest svg{width:28px;height:28px}
+.exam-cover{display:flex;align-items:center;gap:14px;width:100%;max-width:560px;text-align:left;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;transition:.18s;box-shadow:var(--shadow);position:relative;overflow:hidden;font-family:inherit}
+.exam-cover:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--line-2)}
+.xc-crest{width:40px;height:40px;border-radius:10px;background:var(--brand-soft);box-shadow:inset 0 0 0 1px var(--line);display:grid;place-items:center;flex:none}
+.xc-crest svg{width:20px;height:20px;stroke:var(--brand)}
 .xc-body{flex:1;min-width:0}
-.xc-name{font-family:'Fraunces';font-weight:600;font-size:22px;letter-spacing:-.3px}
-.xc-meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:11px;font-size:12.5px;color:#C6D4E8}
-.xc-meta span{display:inline-flex;align-items:center;gap:7px}
-.xc-meta svg{width:15px;height:15px;color:#9DB6D8}
-.xc-cta{margin-top:16px;font-size:13px;font-weight:700;color:#fff;display:inline-flex;align-items:center;gap:8px}
+.xc-name{font-family:'Fraunces';font-weight:600;font-size:15.5px;letter-spacing:-.2px;color:var(--ink)}
+.xc-meta{display:flex;flex-wrap:wrap;gap:5px 14px;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.xc-meta span{display:inline-flex;align-items:center;gap:6px}
+.xc-meta svg{width:13px;height:13px;color:var(--brand)}
+.xc-cta{margin-top:9px;font-size:12px;font-weight:700;color:var(--brand);display:inline-flex;align-items:center;gap:7px}
 .xc-cta span{transition:.18s}
 .exam-cover:hover .xc-cta span{transform:translateX(4px)}
-.xc-shift{position:absolute;top:18px;right:20px;font-family:'IBM Plex Mono';font-size:10.5px;letter-spacing:.5px;color:#9DB6D8;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:4px 10px;border-radius:20px}
+.xc-shift{position:absolute;top:11px;right:13px;font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.5px;color:var(--brand);background:var(--brand-soft);border:1px solid var(--line-2);padding:3px 8px;border-radius:20px}
 /* exam-card grid (admin: manage multiple exams) */
 .exam-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .exam-tile{display:flex;flex-direction:column;gap:0;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:18px 18px 14px;cursor:pointer;transition:.16s;font-family:inherit;position:relative;overflow:hidden}
-.exam-tile::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#2E6BB8,var(--brand-deep))}
+.exam-tile::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#4B4DD4,var(--brand-deep))}
 .exam-tile:hover{border-color:var(--brand);box-shadow:var(--shadow);transform:translateY(-2px)}
 /* per-exam pipeline progress */
 .et-pipe{display:flex;align-items:center;margin:13px 0 4px;padding-top:13px;border-top:1px solid var(--line)}
@@ -324,7 +352,7 @@ textarea.inp{min-height:88px;resize:vertical}
 .mod-hint{font-size:11.5px;color:var(--ink-2);margin-top:10px}
 .mod-hint b{color:var(--brand)}
 .et-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.et-ic{width:40px;height:40px;border-radius:11px;background:linear-gradient(150deg,#2E6BB8,var(--brand-deep));display:grid;place-items:center;flex:none}
+.et-ic{width:40px;height:40px;border-radius:11px;background:linear-gradient(150deg,#4B4DD4,var(--brand-deep));display:grid;place-items:center;flex:none}
 .et-ic svg{width:20px;height:20px}
 .et-name{font-family:'Fraunces';font-weight:600;font-size:18px;line-height:1.2;color:var(--ink);letter-spacing:-.2px}
 .et-meta{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:12px;color:var(--muted)}
@@ -371,7 +399,7 @@ textarea.inp{min-height:88px;resize:vertical}
 .tower{display:flex;align-items:stretch;gap:0;margin-top:14px;flex-wrap:wrap}
 .tw-step{display:flex;align-items:center;gap:11px;flex:1;min-width:210px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .tw-step.ok{background:var(--verify-soft);border-color:#bbf7d0}
-.tw-step.block{background:var(--amber-soft);border-color:#fde68a}
+.tw-step.block{background:var(--amber-soft);border-color:#EBC9A0}
 .tw-ic{width:30px;height:30px;border-radius:8px;background:var(--surface);display:grid;place-items:center;flex:none}
 .tw-body{flex:1;min-width:0}
 .tw-name{font-family:'Archivo';font-weight:700;font-size:13px;color:var(--ink)}
@@ -403,7 +431,7 @@ textarea.inp{min-height:88px;resize:vertical}
 .q360-cell{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
 .q360-cell span{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;font-weight:600}
 .q360-cell b{font-size:16px;color:var(--ink);font-family:'Archivo'}
-.q360-cell.chg{background:var(--amber-soft);border-color:#fde68a}
+.q360-cell.chg{background:var(--amber-soft);border-color:#EBC9A0}
 .q360-cell.chg b{color:var(--amber)}
 @media(max-width:560px){.q360-grid{grid-template-columns:repeat(2,1fr)}}
 /* notification bell + panel */
@@ -429,14 +457,29 @@ textarea.inp{min-height:88px;resize:vertical}
 .sla-box{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:11px 13px;display:flex;flex-direction:column;gap:4px}
 .sla-box span{font-size:11px;color:var(--muted)}
 .sla-box b{font-size:16px;font-family:'IBM Plex Mono';color:var(--ink)}
-.sla-box.warn{background:var(--amber-soft);border-color:#fde68a}
+.sla-box.warn{background:var(--amber-soft);border-color:#EBC9A0}
 .sla-box.warn b{color:var(--amber)}
 .sla-clock.breach{color:var(--rose)!important}
 .sla-pill{display:inline-block;font-family:'IBM Plex Mono';font-size:11px;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--ink-2)}
-.sla-pill.breach{background:var(--rose-soft);border-color:#fecaca;color:var(--rose)}
+.sla-pill.breach{background:var(--rose-soft);border-color:#FAC7C7;color:var(--rose)}
 @media(max-width:560px){.sla-grid{grid-template-columns:1fr}}
 /* accessibility */
 .skip-link{position:absolute;left:-999px;top:8px;z-index:200;background:var(--brand);color:#fff;padding:9px 16px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none}
+/* subject-level routing cards */
+.subj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.subj-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:13px}
+.subj-card.unowned{border-color:#EBC9A0;background:var(--amber-soft)}
+.sc-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.sc-subj{font-family:'Archivo';font-weight:700;font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:7px}
+.sc-subj svg{width:15px;height:15px;stroke:var(--brand)}
+.sc-counts{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:11px}
+.sc-counts>div{background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:6px 4px;text-align:center}
+.subj-card.unowned .sc-counts>div{background:var(--surface)}
+.sc-counts b{display:block;font-family:'Archivo';font-weight:800;font-size:15px;color:var(--ink);line-height:1}
+.sc-counts span{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;font-weight:600}
+.sc-lbl{font-size:10.5px;font-weight:700;color:var(--ink-2);display:block;margin-bottom:5px}
+.sc-assign{display:flex;gap:7px}
+.sc-assign .inp{flex:1}
 .skip-link:focus{left:8px}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
 .ur-chip{font-size:10.5px;font-weight:600;background:var(--brand-soft);color:var(--brand);padding:2px 8px;border-radius:6px}
@@ -466,7 +509,7 @@ textarea.inp{min-height:88px;resize:vertical}
 .np-cell{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
 .np-cell span{font-size:11px;color:var(--muted)}
 .np-cell b{font-size:15px;color:var(--ink)}
-.np-cell.hl{background:var(--brand-soft);border-color:#bfe6fb}
+.np-cell.hl{background:var(--brand-soft);border-color:#CFD5F1}
 .np-cell.hl b{color:var(--brand)}
 .np-err{color:var(--rose);font-size:11.5px;margin-top:8px}
 @media(max-width:720px){.norm-methods{grid-template-columns:1fr}.np-grid{grid-template-columns:1fr}}
@@ -489,7 +532,7 @@ textarea.inp{min-height:88px;resize:vertical}
 .app.immersive{grid-template-columns:1fr;grid-template-areas:"top" "main"}
 .app.immersive .sidebar{display:none}
 .app.immersive .menu-btn{display:none}
-.app.immersive .main{max-width:1160px;padding-top:22px}
+.app.immersive .main{max-width:none;margin:0;padding-top:22px}
 .paper-bar{display:flex;align-items:center;gap:11px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:11px 13px;margin-bottom:22px;box-shadow:var(--shadow);position:sticky;top:14px;z-index:20}
 .pb-exit{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-weight:600;font-size:13px;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:8px 12px;cursor:pointer;transition:.15s}
 .pb-exit:hover{border-color:var(--line-2);color:var(--ink)}
@@ -500,7 +543,7 @@ textarea.inp{min-height:88px;resize:vertical}
 .view-toggle button{display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);background:transparent;border:none;border-radius:7px;padding:7px 13px;cursor:pointer;transition:.15s}
 .view-toggle button svg{width:15px;height:15px}
 .view-toggle button.on{background:var(--surface);color:var(--brand);box-shadow:var(--shadow)}
-.q-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:stretch;grid-auto-rows:1fr}
+.q-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:16px;align-items:stretch;grid-auto-rows:1fr}
 .q-grid .qcard{height:100%}
 .q-grid .qcard .qbody{flex:1}
 .focus-wrap{display:flex;flex-direction:column;gap:18px}
@@ -509,7 +552,7 @@ textarea.inp{min-height:88px;resize:vertical}
 .qdot:hover{border-color:var(--brand);color:var(--brand)}
 .qdot.cur{background:var(--brand);border-color:var(--brand);color:#fff}
 .qdot.obj{box-shadow:inset 0 -3px 0 var(--amber)}
-.focus-stage{max-width:780px;width:100%;margin:0 auto}
+.focus-stage{width:100%;max-width:none;margin:0}
 .focus-count{font-family:'IBM Plex Mono';font-size:12px;letter-spacing:.6px;color:var(--muted);text-transform:uppercase;text-align:center;margin-bottom:12px}
 .focus-count span{color:var(--line-2)}
 .focus-stage .qcard{box-shadow:var(--shadow-lg)}
@@ -537,6 +580,20 @@ textarea.inp{min-height:88px;resize:vertical}
 .opts{display:grid;gap:8px}
 .opt{display:flex;align-items:center;gap:11px;padding:9px 13px;border:1px solid var(--line);border-radius:9px;font-size:13px;transition:.12s}
 .opt .ok{width:22px;height:22px;border-radius:6px;background:var(--surface-2);display:grid;place-items:center;font-family:'IBM Plex Mono';font-weight:600;font-size:11px;flex:none;border:1px solid var(--line)}
+.opt .otext{flex:1;min-width:0}
+.opt .oid{font-family:'IBM Plex Mono';font-size:10px;color:var(--muted);flex:none;letter-spacing:.3px}
+.qid{font-family:'IBM Plex Mono';font-size:10.5px;color:var(--muted);letter-spacing:.3px;background:var(--surface);border:1px solid var(--line);padding:2px 8px;border-radius:6px}
+.ans-sum{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.as-row{display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:9px 12px;border-radius:9px;font-size:12.5px;border:1px solid var(--line)}
+.as-lbl{display:inline-flex;align-items:center;gap:7px;font-weight:700;flex:none}
+.as-lbl svg{width:15px;height:15px}
+.as-val{font-weight:600;text-align:left;min-width:0;color:var(--ink)}
+.as-val small{font-family:'IBM Plex Mono';font-size:9.5px;color:var(--muted);margin-left:6px;font-weight:500}
+@media(max-width:520px){.ans-sum{grid-template-columns:1fr}}
+.as-key{background:var(--verify-soft);border-color:#BBF7D0;color:var(--verify)}
+.as-ok{background:var(--verify-soft);border-color:#BBF7D0;color:var(--verify)}
+.as-no{background:var(--rose-soft);border-color:#FAC7C7;color:var(--rose-deep)}
+.as-na{background:var(--surface-2);color:var(--muted)}
 .opt.is-key{border-color:var(--verify);background:var(--verify-soft)} .opt.is-key .ok{background:var(--verify);color:#fff;border-color:var(--verify)}
 .opt.is-chosen{border-color:var(--brand)} .opt.is-chosen .ok{background:var(--brand);color:#fff;border-color:var(--brand)}
 .opt .tag{margin-left:auto;font-size:10px;font-family:'IBM Plex Mono';letter-spacing:.5px;text-transform:uppercase;font-weight:600}
@@ -578,13 +635,13 @@ textarea.inp{min-height:88px;resize:vertical}
 .scorecard{background:var(--surface);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--line);position:relative}
 .sc-watermark{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;opacity:.035;z-index:0}
 .sc-watermark svg{width:300px;height:300px}
-.sc-head{background:linear-gradient(140deg,#1d3e6e,var(--brand-deep));color:#fff;padding:26px 30px;display:flex;align-items:center;gap:16px;position:relative;z-index:1}
+.sc-head{background:linear-gradient(140deg,#26288F,var(--brand-deep));color:#fff;padding:26px 30px;display:flex;align-items:center;gap:16px;position:relative;z-index:1}
 .sc-head .crest{width:54px;height:54px;border-radius:12px;background:rgba(255,255,255,.12);display:grid;place-items:center;flex:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)}
 .sc-head .crest svg{width:30px;height:30px}
-.sc-head .gov{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:1.4px;color:#9DB6D8;text-transform:uppercase}
+.sc-head .gov{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:1.4px;color:#B9BEEC;text-transform:uppercase}
 .sc-head h2{font-family:'Fraunces';font-weight:600;font-size:21px;margin-top:4px;letter-spacing:-.2px}
-.sc-head .ex{font-size:12.5px;color:#C2D2E8;margin-top:3px}
-.sc-head .ver{margin-left:auto;text-align:right;font-family:'IBM Plex Mono';font-size:10px;color:#9DB6D8}
+.sc-head .ex{font-size:12.5px;color:#DDE0F7;margin-top:3px}
+.sc-head .ver{margin-left:auto;text-align:right;font-family:'IBM Plex Mono';font-size:10px;color:#B9BEEC}
 .sc-body{padding:26px 30px;position:relative;z-index:1}
 .sc-sec-lbl{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--brand);margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid var(--line)}
 .sc-rows{display:grid;grid-template-columns:1fr 1fr;gap:13px 30px;margin-bottom:24px}
@@ -595,8 +652,8 @@ textarea.inp{min-height:88px;resize:vertical}
 .sc-score{border:1px solid var(--line);border-radius:11px;padding:15px;text-align:center;background:var(--surface-2)}
 .sc-score .sl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-family:'IBM Plex Mono'}
 .sc-score .sv{font-family:'Archivo';font-weight:800;font-size:25px;margin-top:6px;letter-spacing:-1px}
-.sc-score.hl{background:var(--brand);border-color:var(--brand)} .sc-score.hl .sl{color:#A9C3E6} .sc-score.hl .sv{color:#fff}
-.sc-qual{display:flex;align-items:center;gap:18px;padding:16px 20px;border-radius:12px;background:var(--verify-soft);border:1px solid #bfe0d0}
+.sc-score.hl{background:var(--brand);border-color:var(--brand)} .sc-score.hl .sl{color:#CFD5F1} .sc-score.hl .sv{color:#fff}
+.sc-qual{display:flex;align-items:center;gap:18px;padding:16px 20px;border-radius:12px;background:var(--verify-soft);border:1px solid #BBF7D0}
 .sc-qual .ic{width:46px;height:46px;border-radius:50%;background:var(--verify);display:grid;place-items:center;flex:none}
 .sc-qual .ic svg{width:26px;height:26px;color:#fff}
 .sc-qual .qt{font-family:'Archivo';font-weight:800;font-size:17px;color:var(--verify)}
@@ -608,32 +665,33 @@ textarea.inp{min-height:88px;resize:vertical}
 .sc-foot svg{width:14px;height:14px;color:var(--verify)}
 
 /* flow / integration diagram */
-.flowmap{background:linear-gradient(160deg,#16294a,var(--brand-deep));border-radius:var(--r);padding:30px;color:#fff;position:relative;overflow:hidden}
+.flowmap{background:linear-gradient(160deg,#26288F,var(--brand-deep));border-radius:var(--r);padding:30px;color:#fff;position:relative;overflow:hidden}
 .flowmap .fm-grid{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:22px 22px;opacity:.6}
 .fm-stages{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;gap:0;position:relative;z-index:1}
 .fm-prod{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:18px;backdrop-filter:blur(4px)}
-.fm-prod .pn{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:1px;color:#8FA8CC}
+.fm-prod .pn{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:1px;color:#A6AAEA}
 .fm-prod h4{font-family:'Archivo';font-weight:700;font-size:15px;margin:6px 0 8px}
-.fm-prod p{font-size:11.5px;color:#B7C8E0;line-height:1.5}
-.fm-prod .io{margin-top:11px;padding-top:11px;border-top:1px solid rgba(255,255,255,.1);font-size:10.5px;color:#90A6C6;font-family:'IBM Plex Mono';line-height:1.7}
-.fm-prod .io b{color:#D9E3F1;font-weight:500}
-.fm-arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 6px;color:#5fa3e6}
+.fm-prod p{font-size:11.5px;color:#CFD5F1;line-height:1.5}
+.fm-prod .io{margin-top:11px;padding-top:11px;border-top:1px solid rgba(255,255,255,.1);font-size:10.5px;color:#A6AAEA;font-family:'IBM Plex Mono';line-height:1.7}
+.fm-prod .io b{color:#E1E8F5;font-weight:500}
+.fm-arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 6px;color:#7B7FDE}
 .fm-arrow svg{width:24px;height:24px}
-.fm-arrow .al{font-size:9px;font-family:'IBM Plex Mono';color:#8FA8CC;text-align:center;margin-top:4px;max-width:64px;line-height:1.3}
+.fm-arrow .al{font-size:9px;font-family:'IBM Plex Mono';color:#A6AAEA;text-align:center;margin-top:4px;max-width:64px;line-height:1.3}
 
 /* misc */
 .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:13px 20px;border-radius:11px;font-size:13.5px;font-weight:500;box-shadow:var(--shadow-lg);z-index:200;opacity:0;transition:.25s;display:flex;align-items:center;gap:10px}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.toast svg{width:18px;height:18px;color:#5fd0a0}
+.toast svg{width:18px;height:18px;color:#06C270}
 .divider{height:1px;background:var(--line);margin:20px 0}
 .note{display:flex;gap:11px;padding:14px 16px;border-radius:11px;font-size:13px;line-height:1.5}
 .note svg{width:18px;height:18px;flex:none;margin-top:1px}
 .note-info{background:var(--brand-soft);color:var(--brand-deep)} .note-info svg{color:var(--brand)}
-.note-warn{background:var(--amber-soft);color:#6b4710} .note-warn svg{color:var(--amber)}
+.note-warn{background:var(--amber-soft);color:#8A4A12} .note-warn svg{color:var(--amber)}
 .note-ok{background:var(--verify-soft);color:#0c4d34} .note-ok svg{color:var(--verify)}
 .sec-title{font-family:'Archivo';font-weight:700;font-size:16px;margin-bottom:4px;display:flex;align-items:center;gap:9px}
+.card .sec-title{margin-bottom:14px}
 .sec-title svg{width:17px;height:17px;flex:none;color:var(--brand)}
-.sec-sub{font-size:13px;color:var(--muted);margin-bottom:16px}
+.sec-sub{display:none}
 .kv{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
 .kv:last-child{border-bottom:none}
 .kv .k{color:var(--muted)}
@@ -672,13 +730,13 @@ textarea.inp{min-height:88px;resize:vertical}
   .sc-rows,.sc-scores{grid-template-columns:1fr 1fr}
   .fm-stages{grid-template-columns:1fr}
   .fm-arrow{padding:8px 0;transform:rotate(90deg)}
-  h1.title{font-size:23px}
+  h1.title{font-size:19px}
 }
 /* ============================================================
    SKY-THEME ENHANCEMENTS — premium enterprise polish
    (overrides only; no structural/JS changes)
    ============================================================ */
-::selection{background:#bae6fd;color:#0c3a52}
+::selection{background:#CFD5F1;color:#1B1C5E}
 
 /* keyboard accessibility — visible focus everywhere */
 :focus-visible{outline:2px solid var(--sky);outline-offset:2px;border-radius:6px}
@@ -687,23 +745,23 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.nav-item:focus-visible,
 .db-chip:focus-visible,.exam-tile:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
 
 /* colored brand panels → bright sky gradients (no navy) */
-.login-brand{background:linear-gradient(157deg,#38BDF8 0%,#0EA5E9 45%,#0369A1 100%)}
-.lb-gov{color:#EAF6FF}.lb-tag{color:#CDEBFB}.lb-desc{color:#EAF6FF}.lb-foot{color:#CDEBFB}
+.login-brand{background:linear-gradient(157deg,#7B7FDE 0%,#4B4DD4 45%,#3335B0 100%)}
+.lb-gov{color:#EBF2FF}.lb-tag{color:#DDE0F7}.lb-desc{color:#EBF2FF}.lb-foot{color:#DDE0F7}
 .lb-crest{background:rgba(255,255,255,.18);box-shadow:inset 0 0 0 1px rgba(255,255,255,.32)}
-.exam-cover{background:linear-gradient(150deg,#38BDF8,#0369A1)}
-.exam-tile::before{background:linear-gradient(180deg,#38BDF8,#0284C7)}
-.et-ic{background:linear-gradient(150deg,#38BDF8,#0284C7)}
-.sc-head{background:linear-gradient(140deg,#38BDF8,#0369A1)}
-.flowmap{background:linear-gradient(160deg,#0EA5E9,#075985)}
+.exam-cover{background:var(--surface)}
+.exam-tile::before{background:linear-gradient(180deg,#7B7FDE,#3F41D1)}
+.et-ic{background:linear-gradient(150deg,#7B7FDE,#3F41D1)}
+.sc-head{background:linear-gradient(140deg,#7B7FDE,#3335B0)}
+.flowmap{background:linear-gradient(160deg,#4B4DD4,#3335B0)}
 
 /* buttons — sky primary, white-with-blue-border secondary */
 .btn{border-radius:10px;transition:background .18s,border-color .18s,box-shadow .18s,transform .18s,color .18s}
-.btn-primary{background:linear-gradient(180deg,#38BDF8,#0EA5E9);color:#fff;border-color:transparent;box-shadow:0 1px 2px rgba(2,132,199,.25),inset 0 1px 0 rgba(255,255,255,.28)}
-.btn-primary:hover{background:linear-gradient(180deg,#0EA5E9,#0284C7);box-shadow:0 8px 18px -7px rgba(2,132,199,.6);transform:translateY(-1px)}
-.btn-primary:active{transform:translateY(0);box-shadow:0 1px 2px rgba(2,132,199,.3)}
-.btn-ghost{background:#fff;border-color:#bfe6fb;color:var(--brand)}
+.btn-primary{background:linear-gradient(180deg,#7B7FDE,#4B4DD4);color:#fff;border-color:transparent;box-shadow:0 1px 2px rgba(63,65,209,.25),inset 0 1px 0 rgba(255,255,255,.28)}
+.btn-primary:hover{background:linear-gradient(180deg,#4B4DD4,#3F41D1);box-shadow:0 8px 18px -7px rgba(63,65,209,.6);transform:translateY(-1px)}
+.btn-primary:active{transform:translateY(0);box-shadow:0 1px 2px rgba(63,65,209,.3)}
+.btn-ghost{background:#fff;border-color:#CFD5F1;color:var(--brand)}
 .btn-ghost:hover{background:var(--brand-soft);border-color:var(--sky);color:var(--brand-deep);transform:translateY(-1px)}
-.btn-green{background:linear-gradient(180deg,#22C55E,#16A34A);color:#fff;border-color:transparent}
+.btn-green{background:linear-gradient(180deg,#06C270,#008A2E);color:#fff;border-color:transparent}
 .btn-green:hover{filter:none;box-shadow:0 8px 18px -7px rgba(22,163,74,.5);transform:translateY(-1px)}
 .btn-rose:hover{transform:translateY(-1px)}
 .btn:disabled{opacity:.5;transform:none;box-shadow:none;cursor:not-allowed}
@@ -714,20 +772,20 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.nav-item:focus-visible,
 /* cards & KPIs — soft lift on hover */
 .card{transition:box-shadow .2s,transform .2s,border-color .2s}
 .kpi{transition:box-shadow .2s,transform .2s,border-color .2s}
-.kpi:hover{box-shadow:var(--shadow);transform:translateY(-2px);border-color:#cfe9fb}
-.kpi .k-ic{box-shadow:inset 0 0 0 1px rgba(2,132,199,.06)}
+.kpi:hover{box-shadow:var(--shadow);transform:translateY(-2px);border-color:#DDE0F7}
+.kpi .k-ic{box-shadow:inset 0 0 0 1px rgba(63,65,209,.06)}
 
 /* tables — sticky header, zebra striping, sky hover */
 .tbl thead th{position:sticky;top:0;background:var(--surface-2);z-index:2;box-shadow:inset 0 -1px 0 var(--line)}
-.tbl tbody tr:nth-child(even){background:#FAFDFF}
+.tbl tbody tr:nth-child(even){background:#FAFAFA}
 .tbl tbody tr:hover{background:var(--brand-soft)}
-.db-table tbody tr:nth-child(even) td{background:#FAFDFF}
+.db-table tbody tr:nth-child(even) td{background:#FAFAFA}
 .db-table tbody tr:hover td{background:var(--brand-soft)}
 
 /* forms — larger, airy inputs with sky focus */
 .inp,select.inp,textarea.inp{padding:11px 14px;border-radius:10px;font-size:14px;transition:border-color .15s,box-shadow .15s,background .15s}
 .inp:hover,select.inp:hover,textarea.inp:hover{border-color:var(--sky)}
-.inp:focus,textarea.inp:focus,select.inp:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(56,189,248,.28)}
+.inp:focus,textarea.inp:focus,select.inp:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(75,77,212,.28)}
 
 /* modal / overlay — airy glass */
 .overlay{background:rgba(15,42,76,.40);backdrop-filter:blur(5px)}
@@ -739,11 +797,11 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.nav-item:focus-visible,
 
 /* scrollbars */
 *::-webkit-scrollbar{width:10px;height:10px}
-*::-webkit-scrollbar-thumb{background:#cbe2f3;border-radius:8px;border:2px solid transparent;background-clip:padding-box}
-*::-webkit-scrollbar-thumb:hover{background:#a9cfe8;background-clip:padding-box}
+*::-webkit-scrollbar-thumb{background:#CFD5F1;border-radius:8px;border:2px solid transparent;background-clip:padding-box}
+*::-webkit-scrollbar-thumb:hover{background:#B9BEEC;background-clip:padding-box}
 
 /* loading skeleton (available for loading states) */
-.skeleton{background:linear-gradient(90deg,#eef6fd 25%,#dcefff 37%,#eef6fd 63%);background-size:400% 100%;animation:shimmer 1.4s ease infinite;border-radius:8px}
+.skeleton{background:linear-gradient(90deg,#EEEFFB 25%,#DDE0F7 37%,#EEEFFB 63%);background-size:400% 100%;animation:shimmer 1.4s ease infinite;border-radius:8px}
 @keyframes shimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
 
 /* respect reduced-motion */
@@ -758,7 +816,7 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.nav-item:focus-visible,
   <div class="login-brand">
     <div class="lb-gov">Hubblehox Platform</div>
     <div class="lb-crest">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#cfe0f5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#CFD5F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
     </div>
     <h1>Hubblehox Objection Management System</h1>
     <div class="lb-tag">Objection · Normalization · Scorecard</div>
@@ -771,32 +829,46 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.nav-item:focus-visible,
       </div>
     </div>
     <div class="lb-desc">A single integrated pipeline for answer-key objections, cross-shift score normalization, and verified score-card generation — one live dataset shared across every role.</div>
-    <div class="lb-foot">Hubblehox · Objection Management System · v2.4</div>
+    <div class="lb-foot">Hubblehox · Objection Management System · v3.0 “Indigo”</div>
   </div>
   <!-- RIGHT · PROFILES -->
   <div class="login-panel">
-    <div class="lp-h">Welcome back 👋</div>
-    <div class="lp-sub">Sign in with your credentials, or quick-pick a demo profile below.</div>
-    <div class="lp-form">
-      <div class="lp-field">
-        <label>Login ID</label>
-        <input class="inp" id="loginId" placeholder="e.g. PCM2026100482 or SME-PHY-04" onkeydown="if(event.key==='Enter')submitLogin()">
+    <div id="signinView">
+      <div class="lp-h">Sign in</div>
+      <div class="lp-sub">Enter your credentials to continue.</div>
+      <div class="lp-form">
+        <div class="lp-field">
+          <label>Login ID</label>
+          <input class="inp" id="loginId" placeholder="Enter Login ID" onkeydown="if(event.key==='Enter')submitLogin()">
+        </div>
+        <div class="lp-field">
+          <label>Password</label>
+          <input class="inp" id="loginPwd" type="password" placeholder="Enter password" onkeydown="if(event.key==='Enter')submitLogin()">
+        </div>
+        <div class="lp-err" id="loginErr"></div>
+        <button class="btn btn-primary btn-block" onclick="submitLogin()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>
+          Sign In
+        </button>
+        <div class="lp-forgot"><a onclick="showReset()">Forgot password?</a></div>
       </div>
-      <div class="lp-field">
-        <label>Password</label>
-        <input class="inp" id="loginPwd" type="password" placeholder="Enter password" onkeydown="if(event.key==='Enter')submitLogin()">
-      </div>
-      <div class="lp-err" id="loginErr"></div>
-      <button class="btn btn-primary btn-block" onclick="submitLogin()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>
-        Sign in to portal
-      </button>
-      <div class="lp-cred">Demo password for every account · <b>demo@1234</b></div>
     </div>
-    <div class="lp-divider">Or quick sign-in (demo)</div>
-    <div class="profile-list" id="profileList"></div>
-    <div class="lp-note">
-      <a href="Hubblehox-OMS-User-Manual.md" target="_blank" rel="noopener" class="lp-manual">📄 View User Manual</a>
+    <div id="resetView" style="display:none">
+      <div class="lp-h">Reset password</div>
+      <div class="lp-sub">Enter your Login ID and we’ll send a reset link to the email registered with your account.</div>
+      <div class="lp-form">
+        <div class="lp-field">
+          <label>Login ID</label>
+          <input class="inp" id="resetId" placeholder="Enter Login ID" onkeydown="if(event.key==='Enter')submitReset()">
+        </div>
+        <div class="lp-err" id="resetErr"></div>
+        <div class="lp-ok" id="resetOk"></div>
+        <button class="btn btn-primary btn-block" onclick="submitReset()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          Send reset link
+        </button>
+        <div class="lp-forgot"><a onclick="showLogin()">← Back to sign in</a></div>
+      </div>
     </div>
   </div>
 </div>
@@ -808,20 +880,21 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.nav-item:focus-visible,
     <div class="brand">
       <div class="seal">
         <div class="crest">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#cfe0f5" stroke-width="1.7"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#CFD5F1" stroke-width="1.7"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
         <div>
           <div class="name">Hubblehox OMS</div>
-          <div class="sub">Objection Management · v2.4</div>
+          <div class="sub">Objection Management · v3.0 “Indigo”</div>
         </div>
       </div>
     </div>
-    <div class="role-switch">
-      <div class="lbl">Role &amp; access</div>
-      <div class="role-tag" id="roleTag"></div>
-      <div class="su-scope" id="suScope"></div>
-    </div>
     <nav class="nav" id="navList"></nav>
+    <div class="sb-foot">
+      <a href="Hubblehox-OMS-User-Manual.md" target="_blank" rel="noopener" class="sb-manual">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V2H6.5A2.5 2.5 0 0 0 4 4.5z"/></svg>
+        User Manual
+      </a>
+    </div>
   </aside>
 
   <a href="#screen" class="skip-link" onclick="document.getElementById('screen').focus()">Skip to main content</a>
@@ -842,7 +915,7 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.nav-item:focus-visible,
         <div class="note-panel" id="notePanel"></div>
       </div>
       <div class="userchip">
-        <div class="who"><b id="chipName">—</b><span id="chipMeta">—</span></div>
+        <div class="who"><b id="chipName">—</b></div>
         <div class="av" id="chipAv">A</div>
         <button class="chip-logout" onclick="signOut()" title="Sign out" aria-label="Sign out">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
@@ -904,17 +977,17 @@ const ALL_ADMIN_MODULES = MODULES.map(m=>m.id);
 const state = {
   role:'candidate',
   screen:'dashboard',
-  session:{ name:'Aarav Sharma', sub:'PCM2026100482', av:'AS', color:'#0284C7' },
+  session:{ name:'Aarav Sharma', sub:'PCM2026100482', av:'AS', color:'#3F41D1' },
   lastProfile:{},
   exam:{ name:'PCM — Physics · Chemistry · Mathematics', tier:'Entrance · CBT', date:'14 Feb 2026', totalQ:150, marksPer:2, negMark:0.5, sections:['Physics','Chemistry','Mathematics'], perSection:50 },
   fee:500, feeModel:'per', windowOpen:true, windowStart:'20 Feb 2026', windowEnd:'27 Feb 2026', windowStartTime:'10:00 AM', windowEndTime:'05:00 PM',
   scoreLiveStart:'02 Mar 2026', scoreLiveStartTime:'12:00 PM', scoreLiveEnd:'31 Mar 2026', scoreLiveEndTime:'11:59 PM', scoreLive:false,  // scorecard live window (start–end)
   examGate:{}, selectedExamId:'pcm',  // admin: which exam-config screens are open, and which exam is being configured
   users:[
-    {id:'u-meera', name:'Meera Krishnan', email:'meera.krishnan@hubblehox.io', role:'admin', roleLabel:'Exam Controller', modules:['dashboard','pipeline','window','manage','assign','normalize','publish','reports','users','database'], status:'active', initials:'MK', color:'#102A4C'},
-    {id:'u-control', name:'Control Room', email:'ops@hubblehox.io', role:'admin', roleLabel:'System Admin', modules:['dashboard','pipeline','window','manage','assign','normalize','publish','reports','users','database'], status:'active', initials:'CR', color:'#3A4D66'},
-    {id:'u-iyer', name:'Dr. R. Iyer', email:'r.iyer@hubblehox.io', role:'sme', roleLabel:'Subject Expert', modules:['assigned','history'], status:'active', initials:'RI', color:'#117A52'},
-    {id:'u-bose', name:'Prof. S. Bose', email:'s.bose@hubblehox.io', role:'sme', roleLabel:'Subject Expert', modules:['assigned','history'], status:'active', initials:'SB', color:'#A86A12'},
+    {id:'u-meera', name:'Meera Krishnan', email:'meera.krishnan@hubblehox.io', role:'admin', roleLabel:'Exam Controller', modules:['dashboard','pipeline','window','manage','assign','normalize','publish','reports','users','database'], status:'active', initials:'MK', color:'#1B1C5E'},
+    {id:'u-control', name:'Control Room', email:'ops@hubblehox.io', role:'admin', roleLabel:'System Admin', modules:['dashboard','pipeline','window','manage','assign','normalize','publish','reports','users','database'], status:'active', initials:'CR', color:'#3A3C7A'},
+    {id:'u-iyer', name:'Dr. R. Iyer', email:'r.iyer@hubblehox.io', role:'sme', roleLabel:'Subject Expert', modules:['assigned','history'], status:'active', initials:'RI', color:'#008A2E'},
+    {id:'u-bose', name:'Prof. S. Bose', email:'s.bose@hubblehox.io', role:'sme', roleLabel:'Subject Expert', modules:['assigned','history'], status:'active', initials:'SB', color:'#C26A2A'},
     {id:'u-audit', name:'Anita Desai', email:'a.desai@hubblehox.io', role:'admin', roleLabel:'Custom · Reports', modules:['dashboard','reports'], status:'active', initials:'AD', color:'#7A4FB0', custom:true, loginable:true},
     {id:'u-fin', name:'Rakesh Menon', email:'r.menon@hubblehox.io', role:'admin', roleLabel:'Custom · Finance', modules:['dashboard','window','reports'], status:'active', initials:'RM', color:'#0E7C86', custom:true, loginable:true}
   ],
@@ -961,7 +1034,8 @@ const state = {
   objFilter:{ subject:'all', status:'all', sme:'all' }, objView:'objection',   // objection management filters + view mode
   keyHistory:[],   // answer-key revision log (two-stage: provisional → final)
   objSel:{},   // bulk-action selection in objection management
-  notes:[], appeals:[], slaBase:Date.now()   // notifications, appeals/grievances, SLA clock origin
+  notes:[], appeals:[], slaBase:Date.now(),   // notifications, appeals/grievances, SLA clock origin
+  subjectOwner:{}   // runtime subject → SME ownership overrides (drives routing)
 };
 
 /* generate a sectioned paper: 3 sections × 50 questions */
@@ -1383,19 +1457,19 @@ const USERS = {
 
 /* Selectable login profiles — each signs in as a specific person */
 const PROFILES = [
-  { id:'c-aarav', role:'candidate', name:'Aarav Sharma', org:'Roll PCM2026100482 · OBC', initials:'AS', color:'#0284C7', rk:'r-cand', rl:'Candidate',
+  { id:'c-aarav', role:'candidate', name:'Aarav Sharma', org:'Roll PCM2026100482 · OBC', initials:'AS', color:'#3F41D1', rk:'r-cand', rl:'Candidate',
     me:{ name:'Aarav Sharma', roll:'PCM2026100482', reg:'REG-2026-77410', cat:'OBC', shift:'Shift 3', email:'aarav.s@****.in' } },
   { id:'c-priya', role:'candidate', name:'Kavya Reddy', org:'Roll PCM2026100517 · EWS', initials:'KR', color:'#7A4FB0', rk:'r-cand', rl:'Candidate',
     me:{ name:'Kavya Reddy', roll:'PCM2026100517', reg:'REG-2026-77882', cat:'EWS', shift:'Shift 1', email:'kavya.r@****.in' } },
   { id:'c-rohan', role:'candidate', name:'Rohan Verma', org:'Roll PCM2026100644 · General', initials:'RV', color:'#0E7C86', rk:'r-cand', rl:'Candidate',
     me:{ name:'Rohan Verma', roll:'PCM2026100644', reg:'REG-2026-78013', cat:'General', shift:'Shift 6', email:'rohan.v@****.in' } },
-  { id:'a-meera', role:'admin', name:'Meera Krishnan', org:'Hubblehox · Exam Authority', initials:'MK', color:'#102A4C', rk:'r-adm', rl:'Exam Controller',
+  { id:'a-meera', role:'admin', name:'Meera Krishnan', org:'Hubblehox · Exam Authority', initials:'MK', color:'#1B1C5E', rk:'r-adm', rl:'Exam Controller',
     session:{ name:'Meera Krishnan', sub:'Exam Controller · Hubblehox' } },
-  { id:'a-control', role:'admin', name:'Control Room', org:'Result Operations Desk', initials:'CR', color:'#3A4D66', rk:'r-adm', rl:'System Admin',
+  { id:'a-control', role:'admin', name:'Control Room', org:'Result Operations Desk', initials:'CR', color:'#3A3C7A', rk:'r-adm', rl:'System Admin',
     session:{ name:'Control Room', sub:'Result Operations' } },
-  { id:'s-iyer', role:'sme', name:'Dr. R. Iyer', org:'Subject Expert · Physics', initials:'RI', color:'#117A52', rk:'r-sme', rl:'Subject Expert', sme:'Dr. R. Iyer',
+  { id:'s-iyer', role:'sme', name:'Dr. R. Iyer', org:'Subject Expert · Physics', initials:'RI', color:'#008A2E', rk:'r-sme', rl:'Subject Expert', sme:'Dr. R. Iyer',
     session:{ name:'Dr. R. Iyer', sub:'SME · Physics' } },
-  { id:'s-bose', role:'sme', name:'Prof. S. Bose', org:'Subject Expert · Mathematics', initials:'SB', color:'#A86A12', rk:'r-sme2', rl:'Subject Expert', sme:'Prof. S. Bose',
+  { id:'s-bose', role:'sme', name:'Prof. S. Bose', org:'Subject Expert · Mathematics', initials:'SB', color:'#C26A2A', rk:'r-sme2', rl:'Subject Expert', sme:'Prof. S. Bose',
     session:{ name:'Prof. S. Bose', sub:'SME · Mathematics' } },
   { id:'s-khan', role:'sme', name:'Dr. M. Khan', org:'Subject Expert · Chemistry', initials:'MK', color:'#B23A33', rk:'r-sme3', rl:'Subject Expert', sme:'Dr. M. Khan',
     session:{ name:'Dr. M. Khan', sub:'SME · Chemistry' } },
@@ -1448,6 +1522,19 @@ const LOGIN_IDS = {
   'm-rao':'MOD-RES-01'
 };
 function loginErr(m){ const e=$('#loginErr'); if(e){ e.textContent=m; e.style.display='block'; } }
+/* forgot / reset password (demo flow) */
+function showReset(){ const s=$('#signinView'),r=$('#resetView'); if(s)s.style.display='none'; if(r)r.style.display='block'; const e=$('#resetErr'),o=$('#resetOk'); if(e)e.style.display='none'; if(o)o.style.display='none'; const i=$('#resetId'); if(i){ i.value=($('#loginId')&&$('#loginId').value)||''; i.focus(); } }
+function showLogin(){ const s=$('#signinView'),r=$('#resetView'); if(r)r.style.display='none'; if(s)s.style.display='block'; }
+function maskEmail(em){ if(!em||em.indexOf('@')<0) return null; const [u,d]=em.split('@'); return (u[0]||'')+'•••'+(u.slice(-1)||'')+'@'+d; }
+function submitReset(){
+  const idv=($('#resetId').value||'').trim().toLowerCase();
+  const e=$('#resetErr'), o=$('#resetOk'); if(e)e.style.display='none'; if(o)o.style.display='none';
+  if(!idv){ if(e){ e.textContent='Enter your Login ID.'; e.style.display='block'; } return; }
+  const p=PROFILES.find(x=>(LOGIN_IDS[x.id]||'').toLowerCase()===idv || (x.me&&x.me.roll.toLowerCase()===idv));
+  const masked = p && (maskEmail((p.me&&p.me.email)||p.email)) ;
+  // standard secure UX — same confirmation whether or not the account exists
+  if(o){ o.innerHTML='If an account matches that Login ID, a password reset link has been sent to its registered email'+(masked?` (<b>${masked}</b>)`:'')+'. The link expires in 30 minutes.'; o.style.display='block'; }
+}
 function submitLogin(){
   const idv=($('#loginId').value||'').trim().toLowerCase();
   const pw=($('#loginPwd').value||'');
@@ -1518,7 +1605,7 @@ function buildShell(){
   const sc=$('#suScope'); if(sc) sc.textContent = `Access scope · ${n} module${n>1?'s':''}`;
   buildNav();
   buildSpine();
-  $('#chipName').textContent=s.name; $('#chipMeta').textContent=s.sub||s.meta||'';
+  const cn=$('#chipName'); if(cn) cn.textContent=s.name;
   const av=$('#chipAv'); av.textContent=s.av||(s.name||'?')[0]; if(s.color) av.style.background=s.color;
   const gs=$('#gsearch'); if(gs) gs.style.display = state.role==='candidate' ? 'none' : 'flex';
   paintBell();
@@ -1629,7 +1716,6 @@ PAGES.candidate.dashboard = ()=>{
   <div class="page-head">
     <div class="eyebrow">Objection Tracker</div>
     <h1 class="title">Welcome back, ${state.me.name.split(' ')[0]}</h1>
-    <p class="lede">Your provisional answer key is live. Review your paper, raise objections within the window, and track them through to your final scorecard.</p>
   </div>
 
   <div class="grid cols-4" style="margin-bottom:18px">
@@ -1693,11 +1779,10 @@ function paperCover(){
   <div class="page-head">
     <div class="eyebrow">Objection Tracker · Question Paper</div>
     <h1 class="title">Your question paper</h1>
-    <p class="lede">Open your provisional question paper and answer key to review your responses and raise objections within the window.</p>
   </div>
   <button class="exam-cover" onclick="openPaper()">
     <div class="xc-shift">${state.me.shift}</div>
-    <div class="xc-crest">${svg(ICN.list,'stroke="#fff"')}</div>
+    <div class="xc-crest">${svg(ICN.list)}</div>
     <div class="xc-body">
       <div class="xc-name">${e.name}</div>
       <div class="xc-meta">
@@ -1708,7 +1793,7 @@ function paperCover(){
       <div class="xc-cta">View question paper &amp; answer key <span>→</span></div>
     </div>
   </button>
-  <div class="note note-info" style="margin-top:18px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>The objection window is ${state.windowOpen?'<b>open</b> until '+state.windowEnd:'<b>closed</b>'}. Open the paper to review and ${state.windowOpen?'raise objections.':'view the official key.'}</span></div>`;
+  <div class="note note-info" style="margin-top:14px;max-width:560px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>The objection window is ${state.windowOpen?'<b>open</b> until '+state.windowEnd:'<b>closed</b>'}. Open the paper to review and ${state.windowOpen?'raise objections.':'view the official key.'}</span></div>`;
 }
 
 /* Step 1 — how to raise an objection + consent */
@@ -1717,7 +1802,6 @@ function paperInstructions(){
   <div class="page-head">
     <div class="eyebrow">Objection Tracker · Before you begin</div>
     <h1 class="title">How to raise an objection</h1>
-    <p class="lede">Read the process and rules below, then accept the declaration to continue to your question paper.</p>
   </div>
   <div class="card pad">
     <div class="sec-title">${svg(ICN.obj)} Objection process</div>
@@ -1757,6 +1841,8 @@ function focusNav(d){ const n=currentSectionQs().length; state.focusIdx=Math.max
 function focusGo(i){ state.focusIdx=i; render(); window.scrollTo(0,0); }
 function exitPaper(){ goScreen('dashboard'); }
 
+function qCode(q){ return '6303'+String(140000 + q.n*7).padStart(6,'0'); }
+function oCode(q,k){ const i={A:1,B:2,C:3,D:4}[k]||0; return String(25234000 + q.n*10 + i); }
 function renderQCard(q){
   const inBasket = state.objections.find(o=>o.q===q.n);
   const attempted = !!q.chosen;
@@ -1765,6 +1851,7 @@ function renderQCard(q){
     <div class="qhead">
       <span class="qnum">Q${q.n}</span>
       <span style="font-size:11px;font-family:'IBM Plex Mono';color:var(--muted);text-transform:uppercase;letter-spacing:.5px">${q.subject}</span>
+      <span class="qid">QID ${qCode(q)}</span>
       ${attempted?'':'<span class="badge-st st-pending"><span class="bd"></span>Not Attempted</span>'}
       ${inBasket?'<span style="margin-left:auto">'+badge('submitted')+'</span>':''}
     </div>
@@ -1772,12 +1859,21 @@ function renderQCard(q){
       <div class="qstmt">${q.stmt}</div>
       <div class="opts">
         ${Object.entries(q.opts).map(([k,v])=>{
-          const isKey=k===q.key, isChosen=k===q.chosen;
-          return `<div class="opt ${isKey?'is-key':''} ${isChosen&&!isKey?'is-chosen':''}">
-            <span class="ok">${k}</span><span>${v}</span>
-            ${isKey?'<span class="tag">Official key</span>':isChosen?'<span class="tag">Your answer</span>':''}
+          return `<div class="opt">
+            <span class="ok">${k}</span><span class="otext">${v}</span>
+            <span class="oid">OID ${oCode(q,k)}</span>
           </div>`;
         }).join('')}
+      </div>
+      <div class="ans-sum">
+        <div class="as-row as-key">
+          <span class="as-lbl">${svg(ICN.check)} Official correct answer</span>
+          <span class="as-val">${q.key} · ${q.opts[q.key]} <small>OID ${oCode(q,q.key)}</small></span>
+        </div>
+        <div class="as-row ${attempted?(q.chosen===q.key?'as-ok':'as-no'):'as-na'}">
+          <span class="as-lbl">${svg(attempted?(q.chosen===q.key?ICN.check:'<path d="M18 6 6 18M6 6l12 12"/>'):'<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/>')} Your opted answer</span>
+          <span class="as-val">${attempted?`${q.chosen} · ${q.opts[q.chosen]} <small>OID ${oCode(q,q.chosen)}</small>`:'Not attempted'}</span>
+        </div>
       </div>
     </div>
     <div class="qfoot">
@@ -2069,9 +2165,9 @@ PAGES.candidate.scorecard = ()=>{
 function refundNote(){ const r=myRefund(); return `<div class="note note-ok" style="margin-bottom:18px">${svg(ICN.fee)}<span><b>Objection fee refunded.</b> ${r.count} of your objection${r.count>1?'s were':' was'} upheld — ₹${r.amount} credited back to your original payment method.</span></div>`; }
 function scorecardMarkup(s){
   return `<div class="scorecard">
-    <div class="sc-watermark">${svg('<path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/>','stroke="#14253B" stroke-width="0.6"')}</div>
+    <div class="sc-watermark">${svg('<path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/>','stroke="#1B1C5E" stroke-width="0.6"')}</div>
     <div class="sc-head">
-      <div class="crest">${svg('<path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/>','stroke="#cfe0f5" stroke-width="1.4"')}</div>
+      <div class="crest">${svg('<path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/>','stroke="#CFD5F1" stroke-width="1.4"')}</div>
       <div>
         <div class="gov">Examination Authority · Verified via Hubblehox OMS</div>
         <h2>Provisional Scorecard</h2>
@@ -2112,7 +2208,7 @@ function qrSvg(){
   for(let y=0;y<7;y++)for(let x=0;x<7;x++){
     const edge=(x<1||y<1||x>5||y>5); const corner=(x<2&&y<2)||(x>4&&y<2)||(x<2&&y>4);
     const on = corner || (!edge && seed[(x*7+y)%seed.length]);
-    if(on) cells+=`<rect x="${x*8+4}" y="${y*8+4}" width="8" height="8" fill="#14253B"/>`;
+    if(on) cells+=`<rect x="${x*8+4}" y="${y*8+4}" width="8" height="8" fill="#1B1C5E"/>`;
   }
   return `<svg viewBox="0 0 64 64" width="60" height="60">${cells}</svg>`;
 }
@@ -2121,7 +2217,7 @@ function qrSvg(){
    ADMIN PAGES
    ============================================================ */
 function pageHead(eyebrow,title,lede){
-  return `<div class="page-head"><div class="eyebrow">${eyebrow}</div><h1 class="title">${title}</h1><p class="lede">${lede}</p></div>`;
+  return `<div class="page-head"><div class="eyebrow">${eyebrow}</div><h1 class="title">${title}</h1></div>`;
 }
 
 PAGES.admin.dashboard = ()=>{
@@ -2218,8 +2314,6 @@ PAGES.admin.pipeline = ()=>{
     </div>
     <div class="card pad">
       <div class="sec-title">${svg(ICN.cfg)} Single-shift behaviour</div>
-      <div class="sec-sub">How the engine adapts to exam structure.</div>
-      <div class="note note-info" style="margin-bottom:12px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>This exam ran across <b>8 shifts</b>, so the Normalization Engine is engaged.</span></div>
       <div class="note note-warn">${svg('<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>')}<span>If an exam has only one shift, normalization is skipped and raw scores become final scores automatically.</span></div>
     </div>
   </div>`;
@@ -2360,7 +2454,6 @@ function openAppeal(objId){
       <div><h3>File a grievance — Q${o.q}</h3><p>${o.subject} · ruling: ${o.status}</p></div>
       <button class="close" onclick="closeModal()">${svg('<path d="M18 6 6 18M6 6l12 12"/>')}</button></div>
     <div class="modal-body">
-      <div class="note note-info" style="margin-bottom:14px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>A grievance escalates a decided objection to the Exam Authority for a final review.</span></div>
       <div class="field" style="margin-bottom:0"><label>Grounds for appeal <span class="req">*</span></label>
         <textarea class="inp" id="appealReason" placeholder="Explain why the ruling should be reconsidered…"></textarea></div>
     </div>
@@ -2533,7 +2626,7 @@ function objectionHeatmap(){
   const cells=[];
   for(let n=1;n<=total;n++){
     const c=counts[n]||0; const intensity=c?(0.18+0.82*(c/max)):0;
-    const bg=c?`rgba(2,132,199,${intensity.toFixed(2)})`:'var(--surface-2)';
+    const bg=c?`rgba(63,65,209,${intensity.toFixed(2)})`:'var(--surface-2)';
     const col=c && intensity>0.55?'#fff':'var(--muted)';
     cells.push(`<button class="hm-cell" title="Q${n} · ${c} objection${c!==1?'s':''}" style="background:${bg};color:${col}" onclick="${c?`setObjView('question')`:''}">${c||''}</button>`);
   }
@@ -2598,6 +2691,7 @@ const EXAM_STATUS = {
 /* ---- admin: exam-card gate (grid of all exams) ---- */
 const ADMIN_GATE = {
   manage:{ eyebrow:'Objection Tracker', title:'Select an exam', lede:'Choose an exam to review its objections — totals, resolved and pending — broken down by subject and Subject Expert.', cta:'Open objection management', icon:'<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/>' },
+  assign:{ eyebrow:'Objection Tracker', title:'Select an exam', lede:'Choose an exam to assign its subjects to Subject Experts.', cta:'Open SME assignment', icon:'<path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M8.5 7a4 4 0 1 0 0 .01M20 8v6M23 11h-6"/>' },
   window:{ eyebrow:'Objection Tracker · Configuration', title:'Select an exam', lede:'Choose an exam to configure its objection window (start/end date &amp; time) and fee — one-time or per-question.', cta:'Configure window &amp; fee', icon:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' },
   normalize:{ eyebrow:'Result Engine · Product 02', title:'Select an exam', lede:'Choose an exam to run cross-shift score normalization.', cta:'Open normalization', icon:'<path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 5-6"/>' },
   publish:{ eyebrow:'Result Engine · Product 03', title:'Select an exam', lede:'Choose an exam to set its scorecard live-release window and publish verified scorecards.', cta:'Open scorecard publishing', icon:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/>' },
@@ -2623,7 +2717,7 @@ function adminExamCard(screen){
         <span>${svg(ICN.dash)} ${e.shifts} shifts</span>
         <span>${svg(ICN.user)} ${e.candidates}</span>
       </div>
-      ${screen==='manage'
+      ${(screen==='manage'||screen==='assign')
         ? `<div class="et-objstats">
             <div class="eo"><b>${st.total}</b><span>Objections</span></div>
             <div class="eo ok"><b>${st.resolved}</b><span>Resolved</span></div>
@@ -2633,8 +2727,7 @@ function adminExamCard(screen){
       <div class="et-foot"><span class="et-tier">${e.tier}</span><span class="et-cta">${g.cta} →</span></div>
     </button>`;
   }).join('');
-  return pageHead(g.eyebrow,g.title,g.lede)+`<div class="exam-grid">${cards}</div>
-  <div class="note note-info" style="margin-top:18px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>${EXAMS.length} exams managed on Hubblehox OMS. Select any exam to ${screen==='manage'?'review its objections by subject and SME.':screen==='normalize'?'open its normalization engine.':'edit its window and fee.'}</span></div>`;
+  return pageHead(g.eyebrow,g.title,g.lede)+`<div class="exam-grid">${cards}</div>`;
 }
 function enterExam(s,id){ if(id) state.selectedExamId=id; state.examGate[s]=true; if(s==='manage') state.objFilter={subject:'all',status:'all',sme:'all'}; render(); window.scrollTo(0,0); }
 function backToExamCard(s){ state.examGate[s]=false; render(); window.scrollTo(0,0); }
@@ -2843,56 +2936,47 @@ PAGES.admin.manage = ()=>{
 };
 
 PAGES.admin.assign = ()=>{
-  const open=state.queue.filter(o=>o.status!=='accepted' && o.status!=='rejected'); // active objections
-  const unowned=open.filter(o=>!o.sme);   // no active expert owns the subject → manual assignment
-  const routed=open.filter(o=>o.sme);
-  const ownerMap=(state.exam.sections||[]).map(s=>`${s} → ${smeOwnerForSubject(s)||'<span style="color:var(--amber)">no expert</span>'}`).join(' · ');
-  return pageHead('Objection Tracker','SME assignment & routing','New objections auto-route to the Subject Expert who owns each subject. Manual assignment is only needed when a subject has no active expert; you can also reassign here.')+`
-  <div class="note ${unowned.length?'note-warn':'note-ok'}" style="margin-bottom:18px">${svg(unowned.length?'<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>':ICN.check)}<span><b>Auto-routing is on.</b> ${ownerMap}. ${unowned.length?`<b>${unowned.length}</b> objection(s) need manual assignment — no active expert owns their subject.`:'Nothing is waiting for manual assignment.'}</span></div>
-  ${unowned.length?`
-  <div class="card pad" style="margin-bottom:18px;border-left:3px solid var(--amber)">
-    <div class="sec-title">${svg(ICN.assign)} Needs manual assignment</div>
-    <div class="sec-sub">No active Subject Expert owns these subjects — assign one (or create one in User Management).</div>
-    <div style="overflow-x:auto"><table class="tbl">
-      <thead><tr><th>Objection</th><th>Subject</th><th>Reason</th><th>Assign to SME</th></tr></thead>
-      <tbody>${unowned.map(o=>{const sug=smeForSubject(o.subject);return `<tr>
-        <td><b class="mono">${o.id}</b></td><td><b class="mono">Q${o.q}</b> · ${o.subject}</td>
-        <td style="font-size:12px">${o.reason}</td>
-        <td><div style="display:flex;gap:8px;align-items:center">
-          <select class="inp" style="width:auto" id="sme_${o.id}">${state.smeList.map(s=>`<option ${s===sug?'selected':''}>${s}</option>`).join('')}</select>
-          <button class="btn btn-primary btn-sm" onclick="assignSme('${o.id}')">Assign</button></div></td>
-      </tr>`}).join('')}</tbody>
-    </table></div>
-  </div>`:''}
-  <div class="card" style="overflow:hidden;margin-bottom:18px">
-    <div style="padding:16px 18px;border-bottom:1px solid var(--line)"><div class="sec-title" style="margin:0">${svg(ICN.review)} Routing &amp; reassignment</div><div class="sec-sub" style="margin-top:4px">Every active objection and the expert it routed to. Reassign only if needed.</div></div>
-    ${routed.length?`<div style="overflow-x:auto"><table class="tbl">
-      <thead><tr><th>Objection</th><th>Question</th><th>Routed to</th><th>Status</th><th>Reassign</th></tr></thead>
-      <tbody>${routed.map(o=>`<tr>
-        <td><b class="mono">${o.id}</b></td><td><b class="mono">Q${o.q}</b> · ${o.subject}</td>
-        <td>${o.sme}${o.autoRouted?' <span class="badge-st st-info" style="font-size:9px;padding:1px 6px"><span class="bd"></span>Auto</span>':''}</td>
-        <td>${badge(o.status)}</td>
-        <td><div style="display:flex;gap:8px;align-items:center">
-          <select class="inp" style="width:auto" id="sme_${o.id}">${state.smeList.map(s=>`<option ${s===o.sme?'selected':''}>${s}</option>`).join('')}</select>
-          <button class="btn btn-ghost btn-sm" onclick="assignSme('${o.id}')">Reassign</button></div></td>
-      </tr>`).join('')}</tbody>
-    </table></div>`:`<div class="empty" style="padding:24px">${svg(ICN.check)}<div>No active objections to route right now.</div></div>`}
+  if(!state.examGate.assign) return adminExamCard('assign');
+  const ex=selectedExam();
+  const subs=(ex.sections||[]);
+  const head=pageHead('Objection Tracker','SME assignment — '+ex.name)+examBackBar('assign');
+  const rows=subs.map(sub=>{
+    const owner=smeOwnerForSubject(sub);
+    const list=ex.primary?state.queue.filter(o=>o.subject===sub):[];
+    return { sub, owner, total:list.length, pending:list.filter(isPending).length, resolved:list.filter(o=>o.status==='accepted'||o.status==='rejected').length };
+  });
+  const unowned=rows.filter(r=>!r.owner).length;
+  return head+`
+  <div class="note ${unowned?'note-warn':'note-ok'}" style="margin-bottom:18px">${svg(unowned?'<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>':ICN.check)}<span>Routing is by <b>subject</b> — assign a subject to an expert and every objection on it flows automatically. ${unowned?`<b>${unowned}</b> subject(s) have no owner.`:'All subjects are owned.'}</span></div>
+
+  <div class="subj-grid" style="margin-bottom:18px">
+    ${rows.map(r=>`
+      <div class="subj-card ${r.owner?'':'unowned'}">
+        <div class="sc-top">
+          <div class="sc-subj">${svg(ICN.list)} ${r.sub}</div>
+          ${r.owner?`<span class="badge-st st-accepted" style="font-size:9.5px"><span class="bd"></span>Owned</span>`:`<span class="badge-st st-pending" style="font-size:9.5px"><span class="bd"></span>Unowned</span>`}
+        </div>
+        <div class="sc-counts">
+          <div><b>${r.total}</b><span>objections</span></div>
+          <div><b style="color:var(--amber)">${r.pending}</b><span>pending</span></div>
+          <div><b style="color:var(--verify)">${r.resolved}</b><span>resolved</span></div>
+        </div>
+        <label class="sc-lbl">Owning Subject Expert</label>
+        <div class="sc-assign">
+          <select class="inp" onchange="assignSubject('${r.sub}', this.value)">
+            <option value="">— Unassigned —</option>
+            ${state.smeList.map(s=>`<option ${s===r.owner?'selected':''}>${s}</option>`).join('')}
+          </select>
+          ${ex.primary?`<button class="btn btn-ghost btn-sm" onclick="enterExam('manage','${ex.id}');setObjFilter('subject','${r.sub}')" title="View objections">${svg('<path d="M15 3h6v6M14 10l7-7M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>')}</button>`:''}
+        </div>
+      </div>`).join('')}
   </div>
+
   <div class="card pad">
     <div class="sec-title">${svg(ICN.assign)} SME workload</div>
-    <div class="sec-sub">Pending vs total objections routed to each expert.</div>
-    ${state.smeList.map(s=>{const c=state.queue.filter(o=>o.sme===s).length;const p=state.queue.filter(o=>o.sme===s&&isPending(o)).length;return `<div class="kv"><span class="k">${s} <span style="color:var(--muted);font-weight:400;font-size:11px">· ${subjectForSme(s)||'—'}</span></span><span class="v">${p} pending <span style="color:var(--muted);font-weight:400">/ ${c} total</span></span></div>`}).join('')}
+    ${state.smeList.map(s=>{const c=state.queue.filter(o=>o.sme===s).length;const p=state.queue.filter(o=>o.sme===s&&isPending(o)).length;const owns=subs.filter(x=>smeOwnerForSubject(x)===s);return `<div class="kv"><span class="k">${s} <span style="color:var(--muted);font-weight:400;font-size:11px">· ${owns.length?owns.join(', '):'no subject'}</span></span><span class="v">${p} pending <span style="color:var(--muted);font-weight:400">/ ${c} total</span></span></div>`}).join('')}
   </div>`;
 };
-function assignSme(id){
-  const sel=$('#sme_'+id); const o=state.queue.find(x=>x.id===id);
-  const prev=o.sme; o.sme=sel.value; o.status='review'; o.autoRouted=false;
-  if(dbReady()){ dbRun("UPDATE objections SET sme=?,status='review' WHERE id=?",[o.sme,o.id]); audit('admin', prev?'objection.reassign':'objection.assign', `${o.id} → ${o.sme}`); }
-  render(); buildNav();
-  const owner=subjectForSme(o.sme);
-  if(owner && owner!==o.subject){ toast('⚠ '+o.id+' '+(prev?'reassigned':'assigned')+' to '+o.sme+' ('+owner+') but Q'+o.q+' is '+o.subject+'.'); }
-  else { toast(o.id+' '+(prev?'reassigned':'assigned')+' to '+o.sme+'.'); }
-}
 
 PAGES.admin.normalize = ()=>{
   if(!state.examGate.normalize) return adminExamCard('normalize');
@@ -2952,7 +3036,7 @@ function normalizeOther(ex){
       <button class="btn ${!done?'btn-green':'btn-ghost'}" ${done?'disabled':''} style="margin-left:auto" onclick="runNormalizationOther('${ex.id}')">
         ${done?svg(ICN.check)+' Completed':svg(ICN.norm)+' Run normalization'}</button>
     </div>
-    ${done?`<div class="note note-ok" style="margin-top:16px">${svg(ICN.check)}<span><b>Normalization complete.</b> Scores equated across ${stats.length} shifts for ${ex.name}.</span></div>`:`<div class="note note-info" style="margin-top:16px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>Running the engine equates raw scores across all ${ex.shifts} shifts to a common scale.</span></div>`}
+    ${done?`<div class="note note-ok" style="margin-top:16px">${svg(ICN.check)}<span><b>Normalization complete.</b> Scores equated across ${stats.length} shifts for ${ex.name}.</span></div>`:''}
   </div>
   <div class="grid cols-2" style="margin-bottom:18px">
     ${stats.map(s=>`<div class="card pad">
@@ -3100,8 +3184,7 @@ PAGES.admin.import = ()=>{
     {kind:'answerkey', title:'Provisional answer key', desc:'Question → key. Loaded as the provisional (v1) key candidates raise objections against.', cols:'question, key'},
     {kind:'responses', title:'Candidate responses', desc:'Roll → question → chosen answer. Updates the response sheet used for scoring.', cols:'roll, question, answer'}
   ];
-  return pageHead('Administration','Data import','Ingest real exam data via CSV — shift statistics, the provisional answer key and candidate responses. Everything downstream (scoring, normalization, reports) runs on what you load here.')+`
-  <div class="note note-info" style="margin-bottom:18px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>Paste CSV (or load a sample), then import. Imports write to the live in-browser store — inspect them on the Database screen, and see the effect immediately on Normalization and Reports.</span></div>
+  return pageHead('Administration','Data import')+`
   ${cards.map(c=>{ const pv=window['_imp_'+c.kind+'_preview']; return `
   <div class="card pad" style="margin-bottom:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
@@ -3147,8 +3230,7 @@ PAGES.admin.appeals = ()=>{
 PAGES.admin.keyhistory = ()=>{
   const kh=state.keyHistory;
   const finalised=kh.filter(k=>k.stage&&k.stage.startsWith('Finalised')).length;
-  return pageHead('Result Engine · Answer Key','Key revisions','Two-stage answer-key trail. A provisional key (v1) is released for objections; every change is made by an SME and confirmed by the Moderation Committee before the final key (v2) is locked.')+`
-  <div class="note note-info" style="margin-bottom:18px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span><b>Maker–checker.</b> SME proposes the corrected key (maker); the Moderation Committee confirms it (checker) when setting the award policy. No single person finalises a key alone.</span></div>
+  return pageHead('Result Engine · Answer Key','Key revisions')+`
   <div class="grid cols-3" style="margin-bottom:18px">
     ${kpi(ICN.review,'Keys revised',kh.length,'questions changed','')}
     ${kpi(ICN.check,'Finalised (v2)',finalised,'checker-confirmed','accent-g')}
@@ -3214,7 +3296,7 @@ function reportsList(ex){
     ${kpi(ICN.dash,'Shifts',ex.shifts,'covered','')}
   </div>
   <div class="report-list">${rows}</div>
-  <div class="note note-info" style="margin-top:18px">${svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>')}<span>Reports are generated exam-wise. Normalization and result reports unlock once those stages are complete for ${ex.name}.</span></div>`;
+  <div class="note note-info" style="margin-top:18px;display:none"></div>`;
 }
 function downloadReport(i){
   const ex=selectedExam(); const r=reportsFor(ex)[i]; if(!r) return;
@@ -3394,7 +3476,7 @@ function saveUser(){
   else modules=[...$('#nuModules').querySelectorAll('input:checked')].map(b=>b.value);
   if((role==='admin'||role==='custom') && !modules.length){ toast('Select at least one module.'); return; }
   const initials=name.split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
-  const colors=['#0284C7','#15803D','#B45309','#7A4FB0','#0E7C86','#0369A1'];
+  const colors=['#3F41D1','#008A2E','#C26A2A','#7A4FB0','#0E7C86','#3335B0'];
   const u={ id:'u-'+Date.now(), name,
     email: email || (name.toLowerCase().replace(/\s+/g,'.')+'@hubblehox.io'),
     phone, title, role,
@@ -3418,6 +3500,7 @@ function subjectForSme(name){
   return u && u.subject ? u.subject : null;
 }
 function smeForSubject(sub){
+  if(state.subjectOwner && state.subjectOwner[sub]) return state.subjectOwner[sub];
   const builtin=Object.keys(SME_SUBJECT).find(k=>SME_SUBJECT[k]===sub);
   if(builtin) return builtin;
   const u=(state.users||[]).find(x=>x.role==='sme' && x.subject===sub && x.status!=='inactive');
@@ -3425,10 +3508,25 @@ function smeForSubject(sub){
 }
 /* strict owner — returns the active SME who owns this subject, or null if none exists */
 function smeOwnerForSubject(sub){
+  if(state.subjectOwner && state.subjectOwner[sub]!==undefined) return state.subjectOwner[sub] || null;
   const builtin=Object.keys(SME_SUBJECT).find(k=>SME_SUBJECT[k]===sub);
   if(builtin) return builtin;
   const u=(state.users||[]).find(x=>x.role==='sme' && x.subject===sub && x.status!=='inactive');
   return u ? u.name : null;
+}
+/* assign / reassign an entire subject to an SME — re-routes ALL its objections in bulk */
+function assignSubject(sub, sme){
+  state.subjectOwner = state.subjectOwner || {};
+  state.subjectOwner[sub] = sme || '';   // '' = explicitly unassigned
+  let n=0;
+  state.queue.filter(o=>o.subject===sub && o.status!=='accepted' && o.status!=='rejected').forEach(o=>{
+    o.sme = sme || null; o.status = sme ? 'review' : 'pending'; o.autoRouted = !!sme;
+    if(dbReady()) dbRun("UPDATE objections SET sme=?,status=? WHERE id=?",[o.sme,o.status,o.id]);
+    n++;
+  });
+  audit('admin','routing.subject',`${sub} → ${sme||'unassigned'} · ${n} objections re-routed`);
+  render(); buildNav();
+  toast(sme?`${sub} assigned to ${sme} — ${n} objection(s) routed.`:`${sub} unassigned — ${n} objection(s) held.`);
 }
 function currentSme(){ return state.smeUser || 'Dr. R. Iyer'; }
 function smeSubject(){ return subjectForSme(currentSme()); }
